@@ -1,4 +1,4 @@
-# Phase 1 Boilerplate
+# Phase 1 Boilerplate (+ Tailwind)
 
 ## Packages Included
 
@@ -8,6 +8,7 @@
 - vite
 - vitest
 - eslint
+- tailwind
 
 ## Setup
 
@@ -15,10 +16,11 @@
   <details style="padding-left: 2em">
     <summary>Tip</summary>
 
-    ```sh
-    npm install
-    npm run dev
-    ```
+  ```sh
+  npm install
+  npm run dev
+  ```
+
   </details>
 
 ---
