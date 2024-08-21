@@ -1,7 +1,11 @@
 .header-logo {
-  @apply w-1/3 self-start;
+  @apply w-1/4 self-start;
 }
 
 .nav-link {
-  @apply self-end;
+  @apply mx-4;
+}
+
+.active-link {
+  @apply underline;
 }
