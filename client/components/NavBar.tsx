@@ -1,8 +1,15 @@
 import { NavLink } from 'react-router-dom'
+import absmlogo from '../../images/logos/andrew-bolton-sports-massage-logo.webp'
+import '../styles/NavBar.scss'
 
 function NavBar() {
   return (
-    <div>
+    <div className="flex">
+      <img
+        src={absmlogo}
+        alt="Andrew Bolton Sports Massage logo"
+        className="header-logo"
+      />
       <NavLink
         to={'/'}
         className={({ isActive }) =>
@@ -10,6 +17,38 @@ function NavBar() {
         }
       >
         Home
+      </NavLink>
+      <NavLink
+        to={'/massage-&-prices'}
+        className={({ isActive }) =>
+          isActive ? 'nav-link active-link' : 'nav-link'
+        }
+      >
+        Massage & Prices
+      </NavLink>
+      <NavLink
+        to={'/about'}
+        className={({ isActive }) =>
+          isActive ? 'nav-link active-link' : 'nav-link'
+        }
+      >
+        About
+      </NavLink>
+      <NavLink
+        to={'/faq'}
+        className={({ isActive }) =>
+          isActive ? 'nav-link active-link' : 'nav-link'
+        }
+      >
+        FAQ
+      </NavLink>
+      <NavLink
+        to={'/contact'}
+        className={({ isActive }) =>
+          isActive ? 'nav-link active-link' : 'nav-link'
+        }
+      >
+        Contact
       </NavLink>
     </div>
   )
