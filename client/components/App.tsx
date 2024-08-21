@@ -1,7 +1,7 @@
 function App() {
   return (
-    <div className="pt-6 space-y-4">
-      <h1>App</h1>
+    <div className="space-y-4 pt-6">
+      <h1 className="underline">App</h1>
       <p>React development has begun!</p>
     </div>
   )
