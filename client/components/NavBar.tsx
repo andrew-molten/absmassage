@@ -5,20 +5,17 @@ import '../styles/NavBar.scss'
 function NavBar() {
   return (
     <div className="flex justify-between">
-      <img
-        src={absmlogo}
-        alt="Andrew Bolton Sports Massage logo"
-        className="header-logo"
-      />
+      <NavLink
+        to={'/'}
+        className="header-logo nav-link"
+
+        // className={({ isActive }) =>
+        //   isActive ? 'nav-link active-link' : 'nav-link'
+        // }
+      >
+        <img src={absmlogo} alt="Andrew Bolton Sports Massage logo" />
+      </NavLink>
       <div className="flex justify-between self-end">
-        <NavLink
-          to={'/'}
-          className={({ isActive }) =>
-            isActive ? 'nav-link active-link' : 'nav-link'
-          }
-        >
-          Home
-        </NavLink>
         <NavLink
           to={'/massage-&-prices'}
           className={({ isActive }) =>
@@ -51,6 +48,12 @@ function NavBar() {
         >
           Contact
         </NavLink>
+        <a
+          className="nav-link"
+          href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
+        >
+          Book Now
+        </a>
       </div>
     </div>
   )
