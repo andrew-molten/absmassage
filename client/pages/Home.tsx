@@ -1,7 +1,7 @@
 import Slider from '../components/Slider.tsx'
 
 function Home() {
-  console.log('HMMM')
+  // console.log('HMMM')
   return (
     <div>
       <Slider />

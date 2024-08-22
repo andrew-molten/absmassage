@@ -23,11 +23,18 @@
 .slide:not(.vis) {
   visibility: hidden;
 }
+.sl0 {
+  transform: translateX(-100%);
+}
+
 .sl2 {
   transform: translateX(100%);
 }
 .sl3 {
   transform: translatex(200%);
+}
+.sl4 {
+  transform: translatex(300%);
 }
 .slider__btn {
   display: flex;

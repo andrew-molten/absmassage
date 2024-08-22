@@ -6,12 +6,12 @@ import massageHands from './massage-hands.webp'
 import massageSpaceLeafy from './massage-space-leafy.webp'
 import massageStudioWarm from './massage-space-warm.webp'
 
-export const sliderImages = {
-  one: massageSpaceLeafy,
-  two: andrewMassaging,
-  three: massageStudioWarm,
-  four: consultation,
-  five: massageHands,
-  six: absm,
-  seven: indiaAndrew,
-}
+export const sliderImages = [
+  { image: massageSpaceLeafy },
+  { image: andrewMassaging },
+  { image: massageStudioWarm },
+  { image: consultation },
+  { image: massageHands },
+  { image: absm },
+  { image: indiaAndrew },
+]
