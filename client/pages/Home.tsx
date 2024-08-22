@@ -1,7 +1,10 @@
+import Slider from '../components/Slider.tsx'
+
 function Home() {
+  console.log('HMMM')
   return (
     <div>
-      <h1>Home</h1>
+      <Slider />
     </div>
   )
 }

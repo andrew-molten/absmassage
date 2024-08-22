@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import absmlogo from '../../images/logos/andrew-bolton-sports-massage-logo.webp'
-import '../styles/NavBar.scss'
+import absmlogo from '../../../images/logos/andrew-bolton-sports-massage-logo.webp'
 
 function NavBar() {
   return (
