@@ -8,7 +8,7 @@
 .slide {
   position: absolute;
   top: 0;
-  width: 33.33% !important;
+  width: 33.33%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,30 +35,6 @@
 }
 .sl4 {
   transform: translatex(300%);
-}
-.slider__btn {
-  display: flex;
-  flex-flow: row wrap;
-  border-radius: 50%;
-  border-width: 0;
-  background-color: #000000;
-  color: white;
-  position: absolute;
-  opacity: 60%;
-  cursor: grab;
-  height: 2.5rem;
-  width: 2.5rem;
-  font-size: 1.75rem;
-  justify-content: center;
-}
-.slider-button-text {
-  align-self: center;
-}
-.slider__btn--left {
-  left: 1%;
-}
-.slider__btn--right {
-  right: 1%;
 }
 
 .dots {
@@ -88,7 +64,7 @@
   transform: scale(1.5);
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 900px) {
   .slider {
     width: 100%;
   }

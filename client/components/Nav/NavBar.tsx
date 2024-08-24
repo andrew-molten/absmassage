@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import absmlogo from '../../../images/logos/andrew-bolton-sports-massage-logo.webp'
+// import { FaBars } from "react-icons/fa6";
 
 function NavBar() {
   return (

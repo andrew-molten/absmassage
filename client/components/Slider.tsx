@@ -6,6 +6,47 @@ import { SliderImage } from '../../models/mainModels.ts'
 function Slider() {
   const [curSlide, setCurSlide] = useState(1)
   const slides = useRef<HTMLDivElement[]>([])
+  // const sliderRef = useRef<HTMLDivElement>(null)
+  // let touchstartX
+  // const handleTouchStart = (e: TouchEvent) => {
+  //   const touchstartX = e.changedTouches[0].screenX
+  //   // store the touchstartX value in a state or ref
+  //   console.log(touchstartX)
+  // }
+
+  // const handleTouchMove = (e: TouchEvent) => {
+  //   const touchmoveX = e.changedTouches[0].screenX
+  //   // calculate the difference between touchmoveX and touchstartX
+  //   // to determine the direction of the swipe
+  // }
+
+  // const handleTouchEnd = (e: TouchEvent) => {
+  //   const touchendX = e.changedTouches[0].screenX
+  //   // calculate the difference between touchendX and touchstartX
+  //   // to determine the direction of the swipe
+  //   if (touchendX < touchstartX) {
+  //     // swipe to the left
+  //     nextSlide()
+  //   } else if (touchstartX < touchendX) {
+  //     // swipe to the right
+  //     prevSlide()
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   if (sliderRef.current) {
+  //     sliderRef.current.addEventListener('touchstart', handleTouchStart)
+  //     sliderRef.current.addEventListener('touchmove', handleTouchMove)
+  //     sliderRef.current.addEventListener('touchend', handleTouchEnd)
+  //   }
+  //   return () => {
+  //     if (sliderRef.current) {
+  //       sliderRef.current.removeEventListener('touchstart', handleTouchStart)
+  //       sliderRef.current.removeEventListener('touchmove', handleTouchMove)
+  //       sliderRef.current.removeEventListener('touchend', handleTouchEnd)
+  //     }
+  //   }
+  // }, [])
 
   // function handleSliderSwipe() {
   //   if (touchendX < touchstartX) nextSlide()
