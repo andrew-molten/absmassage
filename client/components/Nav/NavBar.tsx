@@ -4,20 +4,37 @@ import NavLinks from './NavLinks'
 import { useEffect, useState } from 'react'
 // import { FaBars } from "react-icons/fa6";
 
-function NavBar() {
+interface Props {
+  logoHeight: number
+  setLogoHeight: (height: number) => void
+  isSmallScreen: boolean
+  setIsSmallScreen: (bool: boolean) => void
+}
+
+function NavBar({
+  logoHeight,
+  setLogoHeight,
+  isSmallScreen,
+  setIsSmallScreen,
+}: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isSmallScreen, setIsSmallScreen] = useState(false)
   const [screenSize, setScreenSize] = useState(window.innerWidth)
 
   useEffect(() => {
     const handleResize = () => {
       setScreenSize(window.innerWidth)
+      setLogoHeight(logo.offsetHeight)
+    }
+
+    const logo = document.querySelector('.header-logo img') as HTMLImageElement
+    logo.onload = () => {
+      setLogoHeight(logo.offsetHeight)
     }
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [setLogoHeight])
 
   useEffect(() => {
     if (screenSize < 690) {
@@ -25,31 +42,39 @@ function NavBar() {
     } else {
       setIsSmallScreen(false)
     }
-  }, [screenSize])
+  }, [screenSize, setIsSmallScreen])
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen)
   }
 
   return (
-    <div className="nav-bar">
+    <div
+      className={`nav-bar ${isMenuOpen && isSmallScreen ? 'open' : ''}`}
+      style={{
+        maxHeight: `${!isMenuOpen && isSmallScreen ? logoHeight : 420}px`,
+      }}
+    >
       <NavLink to={'/'} className="header-logo nav-link">
         <img src={absmlogo} alt="Andrew Bolton Sports Massage logo" />
       </NavLink>
 
-      <div className="menu-container">
+      {isSmallScreen && (
+        <button className="menu-btn" onClick={handleMenuToggle}>
+          Menu
+        </button>
+      )}
+      <div
+        className={`menu-container ${isMenuOpen && isSmallScreen ? 'open' : ''}`}
+      >
         {!isSmallScreen ? (
           <NavLinks />
         ) : (
-          <>
-            <button className="menu-btn" onClick={handleMenuToggle}>
-              Menu
-            </button>
-
+          <div>
             <div className={`accordian ${isMenuOpen ? 'open' : ''}`}>
               <NavLinks />
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>

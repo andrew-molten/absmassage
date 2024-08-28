@@ -19,11 +19,15 @@ body {
 p {
   margin: 1.5rem 0 0 0;
 }
+
+// .app-container {
+//   @apply space-y-4 pt-6;
+// }
 // li {
 //   list-style-type: disc;
 // }
+
 .content-container {
-  // padding: 0rem 3rem;
   padding: 0 20%;
 }
 
@@ -44,4 +48,14 @@ p {
   .content-container {
     padding: 0 10%;
   }
+}
+
+@media screen and (max-width: 690px) {
+  // .page-container {
+  //   position: relative;
+  //   top: 60px;
+  // }
+  // .app-container {
+  //   @apply space-y-2 pt-2;
+  // }
 }
