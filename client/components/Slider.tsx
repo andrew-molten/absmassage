@@ -1,11 +1,46 @@
 import '../styles/Slider.scss'
 import { sliderImages } from '../../images/slider/sliderImages.ts'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { SliderImage } from '../../models/mainModels.ts'
 
 function Slider() {
   const [curSlide, setCurSlide] = useState(1)
+  const [imageHeights, setImageHeights] = useState<number[]>([])
+  const [minHeight, setMinHeight] = useState(0)
   const slides = useRef<HTMLDivElement[]>([])
+
+  useEffect(() => {
+    const images = document.querySelectorAll('.slide img')
+    console.log(images)
+    const heights: number[] = []
+
+    images.forEach((image) => {
+      ;(image as HTMLImageElement).onload = () => {
+        heights.push((image as HTMLImageElement).offsetHeight)
+        setImageHeights(heights)
+      }
+    })
+
+    const handleResize = () => {
+      const newHeights = Array.from(images).map(
+        (image) => (image as HTMLImageElement).offsetHeight,
+      )
+      setImageHeights(newHeights)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (imageHeights.length > 0) {
+      const min = Math.min(...imageHeights)
+      setMinHeight(min)
+    }
+  }, [imageHeights])
   // const sliderRef = useRef<HTMLDivElement>(null)
   // let touchstartX
   // const handleTouchStart = (e: TouchEvent) => {
@@ -87,7 +122,7 @@ function Slider() {
   }
 
   return (
-    <div className="slider">
+    <div className="slider" style={{ maxHeight: `${minHeight}px` }}>
       {sliderImages.map((image: SliderImage, index: number) => (
         <div
           key={`${index}+${image.image}`}
