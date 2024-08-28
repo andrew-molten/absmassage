@@ -2,17 +2,19 @@ import '../styles/Slider.scss'
 import { sliderImages } from '../../images/slider/sliderImages.ts'
 import { useRef, useState, useEffect } from 'react'
 import { SliderImage } from '../../models/mainModels.ts'
+import Dot from './Dot.tsx'
 
 function Slider() {
   const [curSlide, setCurSlide] = useState(1)
   const [imageHeights, setImageHeights] = useState<number[]>([])
   const [minHeight, setMinHeight] = useState(0)
+  const [windowWidth, setWindowWidth] = useState(0)
   const slides = useRef<HTMLDivElement[]>([])
 
   useEffect(() => {
     const images = document.querySelectorAll('.slide img')
-    console.log(images)
     const heights: number[] = []
+    setWindowWidth(window.innerWidth)
 
     images.forEach((image) => {
       ;(image as HTMLImageElement).onload = () => {
@@ -26,6 +28,7 @@ function Slider() {
         (image) => (image as HTMLImageElement).offsetHeight,
       )
       setImageHeights(newHeights)
+      setWindowWidth(window.innerWidth)
     }
 
     window.addEventListener('resize', handleResize)
@@ -113,11 +116,23 @@ function Slider() {
   }
 
   function getSlideClass(index: number) {
-    if (curSlide === index) return 'sl2 vis'
+    if (
+      curSlide === index ||
+      (curSlide - 5 === index && windowWidth < 900 && windowWidth > 600)
+    )
+      return 'sl2 vis'
     if (curSlide + 1 === index) return 'sl3 vis'
     if (curSlide - 1 === index) return 'sl1 vis'
-    if (curSlide - 1 > index) return 'sl0 vis'
-    if (curSlide + 1 < index) return 'sl4 vis'
+    if (curSlide + 4 === index && windowWidth < 900 && windowWidth > 600)
+      return 'sl-1'
+    if (curSlide - 4 === index && windowWidth < 900 && windowWidth > 600)
+      return 'sl4'
+    if (
+      curSlide - 1 > index ||
+      (curSlide + 5 === index && windowWidth < 900 && windowWidth > 600)
+    )
+      return 'sl0 vis'
+    if (curSlide + 1 < index) return 'sl4'
     else return ''
   }
 
@@ -134,26 +149,25 @@ function Slider() {
       ))}
 
       <div className="dots" id="dotsID">
-        <button
-          className={`dot ${checkActive(1)}`}
-          onClick={() => setCurSlide(1)}
-        ></button>
-        <button
-          className={`dot ${checkActive(2)}`}
-          onClick={() => setCurSlide(2)}
-        ></button>
-        <button
-          className={`dot ${checkActive(3)}`}
-          onClick={() => setCurSlide(3)}
-        ></button>
-        <button
-          className={`dot ${checkActive(4)}`}
-          onClick={() => setCurSlide(4)}
-        ></button>
-        <button
-          className={`dot ${checkActive(5)}`}
-          onClick={() => setCurSlide(5)}
-        ></button>
+        {sliderImages.map((image: SliderImage, index: number) =>
+          index < sliderImages.length - 2 ? (
+            <Dot
+              key={`dot${index}`}
+              number={index + 1}
+              checkActive={checkActive}
+              setCurSlide={setCurSlide}
+            />
+          ) : (
+            windowWidth < 900 && (
+              <Dot
+                key={`dot${index}`}
+                number={index + 1}
+                checkActive={checkActive}
+                setCurSlide={setCurSlide}
+              />
+            )
+          ),
+        )}
       </div>
     </div>
   )
