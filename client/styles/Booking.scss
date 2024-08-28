@@ -1,0 +1,16 @@
+.booking-embed {
+  background-color: var(--primary);
+  margin: 20vh;
+  margin-top: 5vh;
+}
+
+.booking-container {
+  background-color: var(--primary);
+  padding-bottom: 1px;
+}
+
+@media only screen and (max-width: 1023px) {
+  .booking-embed {
+    margin: 0;
+  }
+}
