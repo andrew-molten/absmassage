@@ -1,4 +1,5 @@
 .header-logo {
+  z-index: 3;
   @apply w-1/5 self-start;
 }
 
@@ -12,4 +13,63 @@
 
 .footer-link {
   @apply mx-4;
+}
+
+.nav-bar {
+  @apply flex justify-between;
+}
+
+.menu-container {
+  @apply flex justify-between self-end;
+}
+
+.menu-btn {
+  z-index: 2;
+}
+
+// want to keep menu on the right but have the accordian options also come down from the right
+
+@media screen and (max-width: 690px) {
+  .nav-bar {
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .nav-link {
+    display: block;
+  }
+
+  .accordian {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    // transform: translateY(-250px); /* Initially scale the menu to 0 height */
+    transform-origin: top; /* Scale from the top */
+    // transition: transform 1s ease-in-out;
+    opacity: 0;
+    transition:
+      height 1s ease-in-out,
+      opacity 1s ease-in-out;
+    z-index: 1;
+    text-align: right;
+    height: 0px;
+  }
+
+  .menu-btn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+  }
+
+  .accordian.open {
+    height: 100%; /* or a fixed height */
+    opacity: 1;
+    // transform: translateY(0px); /* Scale the menu to full height */
+    transition:
+      height 1s ease-in-out,
+      opacity 1s ease-in-out;
+    // transition: transform 1s ease-out;
+  }
 }

@@ -1,59 +1,56 @@
 import { NavLink } from 'react-router-dom'
 import absmlogo from '../../../images/logos/andrew-bolton-sports-massage-logo.webp'
+import NavLinks from './NavLinks'
+import { useEffect, useState } from 'react'
 // import { FaBars } from "react-icons/fa6";
 
 function NavBar() {
-  return (
-    <div className="flex justify-between">
-      <NavLink
-        to={'/'}
-        className="header-logo nav-link"
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
+  const [screenSize, setScreenSize] = useState(window.innerWidth)
 
-        // className={({ isActive }) =>
-        //   isActive ? 'nav-link active-link' : 'nav-link'
-        // }
-      >
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenSize(window.innerWidth)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (screenSize < 690) {
+      setIsSmallScreen(true)
+    } else {
+      setIsSmallScreen(false)
+    }
+  }, [screenSize])
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  return (
+    <div className="nav-bar">
+      <NavLink to={'/'} className="header-logo nav-link">
         <img src={absmlogo} alt="Andrew Bolton Sports Massage logo" />
       </NavLink>
-      <div className="flex justify-between self-end">
-        <NavLink
-          to={'/massage-&-prices'}
-          className={({ isActive }) =>
-            isActive ? 'nav-link active-link' : 'nav-link'
-          }
-        >
-          Massage & Prices
-        </NavLink>
-        <NavLink
-          to={'/about'}
-          className={({ isActive }) =>
-            isActive ? 'nav-link active-link' : 'nav-link'
-          }
-        >
-          About
-        </NavLink>
-        <NavLink
-          to={'/faq'}
-          className={({ isActive }) =>
-            isActive ? 'nav-link active-link' : 'nav-link'
-          }
-        >
-          FAQ
-        </NavLink>
-        <NavLink
-          to={'/contact'}
-          className={({ isActive }) =>
-            isActive ? 'nav-link active-link' : 'nav-link'
-          }
-        >
-          Contact
-        </NavLink>
-        <a
-          className="nav-link"
-          href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
-        >
-          Book Now
-        </a>
+
+      <div className="menu-container">
+        {!isSmallScreen ? (
+          <NavLinks />
+        ) : (
+          <>
+            <button className="menu-btn" onClick={handleMenuToggle}>
+              Menu
+            </button>
+
+            <div className={`accordian ${isMenuOpen ? 'open' : ''}`}>
+              <NavLinks />
+            </div>
+          </>
+        )}
       </div>
     </div>
   )
