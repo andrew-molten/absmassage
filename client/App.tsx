@@ -8,17 +8,14 @@ function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(false)
 
   return (
-    <div className="app-container">
+    <div>
       <NavBar
         logoHeight={logoHeight}
         setLogoHeight={setLogoHeight}
         isSmallScreen={isSmallScreen}
         setIsSmallScreen={setIsSmallScreen}
       />
-      <div
-        className="page-container"
-        style={{ marginTop: `${isSmallScreen ? logoHeight : 0}px` }}
-      >
+      <div style={{ marginTop: `${isSmallScreen ? logoHeight : 0}px` }}>
         <Outlet />
       </div>
       <Footer />
