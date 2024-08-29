@@ -9,6 +9,14 @@
   padding-bottom: 1px;
 }
 
+.booking-heading {
+  // font-family: 'Caveat', cursive;
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+  @apply py-2;
+}
+
 @media only screen and (max-width: 1023px) {
   .booking-embed {
     margin: 0;

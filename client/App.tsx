@@ -15,7 +15,7 @@ function App() {
         isSmallScreen={isSmallScreen}
         setIsSmallScreen={setIsSmallScreen}
       />
-      <div style={{ marginTop: `${isSmallScreen ? logoHeight : 0}px` }}>
+      <div style={{ marginTop: `${logoHeight + 8}px` }}>
         <Outlet />
       </div>
       <Footer />

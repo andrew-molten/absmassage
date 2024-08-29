@@ -18,7 +18,8 @@
 .nav-bar {
   background-color: #fff;
   z-index: 1;
-  @apply fixed flex justify-between;
+  top: 0;
+  @apply fixed flex justify-between pb-2;
 }
 
 .menu-container {
@@ -31,7 +32,6 @@
   }
   .nav-bar {
     flex-direction: column; // displays menu below bar
-    top: 0;
     overflow: hidden; // hides links when menu closed
     transition: max-height 0.45s ease-out;
   }

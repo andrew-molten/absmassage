@@ -7,7 +7,8 @@
 
 // create colour variables for my brand using root css variables
 :root {
-  --primary: #000e57;
+  // --primary: #1f264c;
+  --primary: #1f4c3c;
 }
 
 body {
@@ -20,15 +21,55 @@ p {
   margin: 1.5rem 0 0 0;
 }
 
+h2 {
+  @apply text-3xl font-bold;
+}
+
+.active-link {
+  @apply underline;
+}
+
 .content-container {
   padding: 0 20%;
 }
 
-.handwritten {
-  font-family: 'Caveat', cursive;
-  color: white;
-  text-align: center;
+.heading-wrapper {
+  background-color: var(--primary);
+  @apply mb-10 py-6;
+}
+
+.heading {
+  color: #fff;
+  line-height: 1.6;
   font-size: 3rem;
+  margin-left: 1rem;
+  font-weight: 350;
+  @apply text-4xl font-semibold;
+}
+
+.row {
+  display: flex;
+  margin: 0 1em 0 1em;
+}
+.column {
+  flex: 50%;
+  padding: 0rem 1rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.image-column {
+  display: flex;
+  align-items: center;
+}
+.col-img {
+  display: block;
+  width: auto;
+  max-width: 80%;
+  height: auto;
+  margin: auto;
 }
 
 @media only screen and (max-width: 1350px) {
@@ -40,6 +81,26 @@ p {
 @media only screen and (max-width: 1023px) {
   .content-container {
     padding: 0 10%;
+  }
+}
+
+@media only screen and (max-width: 725px) {
+  .row {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 0;
+  }
+  .column-reverse {
+    flex-direction: column-reverse;
+  }
+  .column {
+    flex: 100%;
+    height: auto;
+    padding: 0;
+  }
+  .col-img {
+    margin: 2rem auto 0;
+    max-width: 50%;
   }
 }
 

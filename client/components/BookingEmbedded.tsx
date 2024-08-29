@@ -25,7 +25,9 @@ function BookingEmbedded() {
   return (
     <div className="booking-container">
       <div className="booking-embed">
-        <h3 className="handwritten">Book Appointment</h3>
+        <h3 className="booking-heading">
+          <em>Book Appointment</em>
+        </h3>
         <iframe
           id="cliniko-94087596"
           title="cliniko-booking"

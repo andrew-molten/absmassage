@@ -4,7 +4,7 @@ function Footer() {
   return (
     <div>
       <div className="flex justify-between">
-        <div className="flex">
+        <div className="flex  w-screen flex-wrap ">
           <NavLink to={'/'} className="footer-link">
             Home
           </NavLink>

@@ -1,4 +1,5 @@
 import BookingEmbedded from '../components/BookingEmbedded.tsx'
+// import Mailchimp from '../components/Mailchimp.tsx'
 import Slider from '../components/Slider.tsx'
 
 function Home() {
@@ -45,6 +46,7 @@ function Home() {
       <div className="elfsight-app-e536fd01-894d-49c4-a114-2518c253167c"></div>
       {/* Online Booking */}
       <BookingEmbedded />
+      {/* <Mailchimp /> */}
     </div>
   )
 }
