@@ -115,8 +115,6 @@ function Slider() {
     if (num === curSlide) return 'active'
   }
 
-  console.log('curSlide: ', curSlide)
-  // , ', index: ', index)
   function getSlideClass(index: number) {
     if (
       curSlide === index ||
@@ -138,17 +136,16 @@ function Slider() {
     else return ''
   }
 
-  console.log(getSlideClass(6))
-
   return (
     <div className="slider" style={{ maxHeight: `${minHeight}px` }}>
       {sliderImages.map((image: SliderImage, index: number) => (
+        // generate each slide
         <div
           key={`${index}+${image.image}`}
           className={`slide ${getSlideClass(index)}`}
           ref={(el) => (slides.current[index] = el!)}
         >
-          <img src={image.image} alt={`Add alt to the object array`} />
+          <img src={image.image} alt={image.alt} />
         </div>
       ))}
 

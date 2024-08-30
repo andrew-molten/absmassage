@@ -28,7 +28,7 @@ function NavBar({
 
     const logo = document.querySelector('.header-logo img') as HTMLImageElement
     logo.onload = () => {
-      setNavHeight(logo.offsetHeight)
+      setNavHeight(logo.offsetHeight + 9)
     }
     window.addEventListener('resize', handleResize)
     return () => {

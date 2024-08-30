@@ -37,7 +37,7 @@ function NavLinks() {
         Contact
       </NavLink>
       <a
-        className="nav-link"
+        className="nav-link nav-book-now"
         href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
       >
         Book Now

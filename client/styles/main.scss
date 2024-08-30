@@ -35,7 +35,7 @@ h2 {
 
 .heading-wrapper {
   background-color: var(--primary);
-  @apply mb-10 py-6;
+  @apply mb-10 py-3;
 }
 
 .heading {
@@ -44,7 +44,7 @@ h2 {
   font-size: 3rem;
   margin-left: 1rem;
   font-weight: 350;
-  @apply text-4xl font-semibold;
+  // @apply text-4xl font-semibold;
 }
 
 .row {
