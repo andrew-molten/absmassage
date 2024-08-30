@@ -4,18 +4,18 @@ import Footer from './components/Nav/Footer.tsx'
 import { useState } from 'react'
 
 function App() {
-  const [logoHeight, setLogoHeight] = useState(41)
+  const [navHeight, setNavHeight] = useState(41)
   const [isSmallScreen, setIsSmallScreen] = useState(false)
 
   return (
     <div>
       <NavBar
-        logoHeight={logoHeight}
-        setLogoHeight={setLogoHeight}
+        navHeight={navHeight}
+        setNavHeight={setNavHeight}
         isSmallScreen={isSmallScreen}
         setIsSmallScreen={setIsSmallScreen}
       />
-      <div style={{ marginTop: `${logoHeight + 8}px` }}>
+      <div style={{ marginTop: `${navHeight}px` }}>
         <Outlet />
       </div>
       <Footer />

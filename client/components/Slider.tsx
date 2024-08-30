@@ -115,6 +115,8 @@ function Slider() {
     if (num === curSlide) return 'active'
   }
 
+  console.log('curSlide: ', curSlide)
+  // , ', index: ', index)
   function getSlideClass(index: number) {
     if (
       curSlide === index ||
@@ -132,9 +134,11 @@ function Slider() {
       (curSlide + 5 === index && windowWidth < 900 && windowWidth > 600)
     )
       return 'sl0 vis'
-    if (curSlide + 1 < index) return 'sl4'
+    if (curSlide + 1 < index) return 'sl4 vis'
     else return ''
   }
+
+  console.log(getSlideClass(6))
 
   return (
     <div className="slider" style={{ maxHeight: `${minHeight}px` }}>

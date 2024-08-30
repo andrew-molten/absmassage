@@ -5,15 +5,15 @@ import { useEffect, useState } from 'react'
 // import { FaBars } from "react-icons/fa6";
 
 interface Props {
-  logoHeight: number
-  setLogoHeight: (height: number) => void
+  navHeight: number
+  setNavHeight: (height: number) => void
   isSmallScreen: boolean
   setIsSmallScreen: (bool: boolean) => void
 }
 
 function NavBar({
-  logoHeight,
-  setLogoHeight,
+  navHeight,
+  setNavHeight,
   isSmallScreen,
   setIsSmallScreen,
 }: Props) {
@@ -23,18 +23,18 @@ function NavBar({
   useEffect(() => {
     const handleResize = () => {
       setScreenSize(window.innerWidth)
-      setLogoHeight(logo.offsetHeight)
+      setNavHeight(logo.offsetHeight)
     }
 
     const logo = document.querySelector('.header-logo img') as HTMLImageElement
     logo.onload = () => {
-      setLogoHeight(logo.offsetHeight)
+      setNavHeight(logo.offsetHeight)
     }
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [setLogoHeight])
+  }, [setNavHeight])
 
   useEffect(() => {
     if (screenSize < 690) {
@@ -52,7 +52,7 @@ function NavBar({
     <div
       className={`nav-bar ${isMenuOpen && isSmallScreen ? 'open' : ''}`}
       style={{
-        maxHeight: `${!isMenuOpen && isSmallScreen ? logoHeight : 420}px`,
+        maxHeight: `${!isMenuOpen && isSmallScreen ? navHeight : 420}px`,
       }}
     >
       <NavLink to={'/'} className="header-logo nav-link">
