@@ -83,9 +83,36 @@ h2 {
   object-position: 50% 40%;
 }
 
+// CONTACT
+.loc_info {
+  margin: 2rem 0 0 0;
+}
+
+// GOOGLE MAP
+
+#location_gmap_canvas {
+  width: 600px;
+  height: 400px;
+  margin: 2rem 0 0 0;
+}
+.mapouter {
+  position: relative;
+  text-align: right;
+}
+.gmap_canvas {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: none !important;
+}
+
 @media only screen and (max-width: 1350px) {
   .content-container {
     padding: 0 15%;
+  }
+
+  .contact-container {
+    padding: 0 10%;
   }
 }
 
@@ -94,9 +121,15 @@ h2 {
     padding: 0 10%;
   }
 
-  // about
+  // ABOUT
   .central-img {
     height: 150px;
+  }
+
+  // GOOGLE MAP
+
+  #location_gmap_canvas {
+    width: 100%;
   }
 }
 
