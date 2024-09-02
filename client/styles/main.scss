@@ -72,6 +72,17 @@ h2 {
   margin: auto;
 }
 
+// ABOUT PAGE
+
+.central-img {
+  display: block;
+  height: 240px;
+  width: 80%;
+  object-fit: cover;
+  margin: 1rem auto;
+  object-position: 50% 40%;
+}
+
 @media only screen and (max-width: 1350px) {
   .content-container {
     padding: 0 15%;
@@ -82,9 +93,18 @@ h2 {
   .content-container {
     padding: 0 10%;
   }
+
+  // about
+  .central-img {
+    height: 150px;
+  }
 }
 
 @media only screen and (max-width: 725px) {
+  h2 {
+    margin-top: 1em;
+  }
+
   .row {
     display: flex;
     flex-flow: column wrap;
@@ -100,7 +120,12 @@ h2 {
   }
   .col-img {
     margin: 2rem auto 0;
-    max-width: 50%;
+    max-width: 80%;
+  }
+
+  // about
+  .central-img {
+    height: 100px;
   }
 }
 

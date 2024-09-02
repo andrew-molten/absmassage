@@ -1,11 +1,16 @@
 import { NavLink } from 'react-router-dom'
 
-function NavLinks() {
+interface Props {
+  handleOpenMenuClick: () => void
+}
+
+function NavLinks({ handleOpenMenuClick }: Props) {
   return (
     <>
       {' '}
       <NavLink
         to={'/massage-&-prices'}
+        onClick={handleOpenMenuClick}
         className={({ isActive }) =>
           isActive ? 'nav-link active-link' : 'nav-link'
         }
@@ -14,6 +19,7 @@ function NavLinks() {
       </NavLink>
       <NavLink
         to={'/about'}
+        onClick={handleOpenMenuClick}
         className={({ isActive }) =>
           isActive ? 'nav-link active-link' : 'nav-link'
         }
@@ -22,6 +28,7 @@ function NavLinks() {
       </NavLink>
       <NavLink
         to={'/faq'}
+        onClick={handleOpenMenuClick}
         className={({ isActive }) =>
           isActive ? 'nav-link active-link' : 'nav-link'
         }
@@ -30,6 +37,7 @@ function NavLinks() {
       </NavLink>
       <NavLink
         to={'/contact'}
+        onClick={handleOpenMenuClick}
         className={({ isActive }) =>
           isActive ? 'nav-link active-link' : 'nav-link'
         }

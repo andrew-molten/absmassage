@@ -1,12 +1,12 @@
 .booking-embed {
   background-color: var(--primary);
-  margin: 20vh;
+  margin: 0 20%;
   margin-top: 5vh;
 }
 
 .booking-container {
   background-color: var(--primary);
-  padding-bottom: 1px;
+  padding-bottom: 10px;
 }
 
 .booking-heading {
@@ -14,7 +14,13 @@
   color: white;
   text-align: center;
   font-size: 3rem;
-  @apply py-2;
+  @apply py-5;
+}
+
+@media only screen and (max-width: 1350px) {
+  .booking-embed {
+    margin: 0 15%;
+  }
 }
 
 @media only screen and (max-width: 1023px) {

@@ -17,7 +17,7 @@ function Home() {
         <p>
           <strong>{`I use a combination of techniques to help you achieve results, whether that's to:`}</strong>
         </p>
-        <ul className="ml-5">
+        <ul className="ml-5 text-left">
           <li>🦵 Overcome injury</li>
           <li>😌 Relieve pain</li>
           <li>🙌 Release soft tissue</li> <li>💆 Alleviate tension</li>

@@ -48,6 +48,12 @@ function NavBar({
     setIsMenuOpen(!isMenuOpen)
   }
 
+  const handleOpenMenuClick = () => {
+    if (isMenuOpen === true) {
+      setIsMenuOpen(false)
+    }
+  }
+
   return (
     <div
       className={`nav-bar ${isMenuOpen && isSmallScreen ? 'open' : ''}`}
@@ -55,7 +61,11 @@ function NavBar({
         maxHeight: `${!isMenuOpen && isSmallScreen ? navHeight : 420}px`,
       }}
     >
-      <NavLink to={'/'} className="header-logo nav-link">
+      <NavLink
+        to={'/'}
+        className="header-logo nav-link"
+        onClick={handleOpenMenuClick}
+      >
         <img src={absmlogo} alt="Andrew Bolton Sports Massage logo" />
       </NavLink>
 
@@ -68,11 +78,11 @@ function NavBar({
         className={`menu-container ${isMenuOpen && isSmallScreen ? 'open' : ''}`}
       >
         {!isSmallScreen ? (
-          <NavLinks />
+          <NavLinks handleOpenMenuClick={handleOpenMenuClick} />
         ) : (
           <div>
             <div className={`accordian ${isMenuOpen ? 'open' : ''}`}>
-              <NavLinks />
+              <NavLinks handleOpenMenuClick={handleOpenMenuClick} />
             </div>
           </div>
         )}
