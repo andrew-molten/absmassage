@@ -3,6 +3,7 @@ import andrewInTheStudio from '../../images/andrew/AndrewInTheStudio.webp'
 import yogaToes from '../../images/andrew/yoga-toes.webp'
 import crescentLunge from '../../images/andrew/Crescent-lunge.webp'
 import massageTable from '../../images/studio/massage-table.webp'
+import family from '../../images/andrew/Family.webp'
 
 function About() {
   return (
@@ -124,6 +125,41 @@ function About() {
               Especially if you can master relaxing the muscles being massaged
               with every exhale.
             </p>
+          </div>
+        </div>
+
+        <div className="row column-reverse">
+          <div className="column">
+            {/* <h2 className="text-xl">Movement</h2> */}
+            <p>
+              I live here in Redcliffs with my wife & our 3-year-old. We love
+              being close to the sea & the hills so try to get into them plenty.
+              We also love getting out in the garden (less for the weeding -
+              more for growing kai).
+            </p>
+            <p>
+              I’ve also been learning web development for a few years, I built
+              this site, I’m working on a gardening app with some friends:{' '}
+              <a
+                href="https://grow-grub.andrewmolten.com/"
+                className="font-medium underline"
+              >
+                Grow-grub
+              </a>
+              {'. '}
+              If you’re a language learner stay tuned for the language learning
+              app I’m building,{' '}
+              <a
+                href="https://languagebuddy.andrewmolten.com/"
+                className="font-medium underline"
+              >
+                this is the prototype
+              </a>
+              .
+            </p>
+          </div>
+          <div className="column image-column">
+            <img className="col-img" src={family} alt="andrew and his family" />
           </div>
         </div>
       </div>
