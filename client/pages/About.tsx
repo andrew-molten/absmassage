@@ -1,12 +1,14 @@
 import indiaAndrew from '../../images/slider/India2.webp'
 import andrewInTheStudio from '../../images/andrew/AndrewInTheStudio.webp'
 import yogaToes from '../../images/andrew/yoga-toes.webp'
+import crescentLunge from '../../images/andrew/Crescent-lunge.webp'
+import massageTable from '../../images/studio/massage-table.webp'
 
 function About() {
   return (
     <div>
       <div className="heading-wrapper">
-        <h1 className="heading">About Me</h1>
+        <h1 className="heading center italic">About Me</h1>
       </div>
 
       <div className="content-container">
@@ -79,7 +81,7 @@ function About() {
               To do that I incorporate these practices into my life: hikes,
               yoga, mobilisation, kettlebell & bodyweight workouts, pilates,
               skipping, slacklining, climbing, breathwork, dancing, massage,
-              self-massage, circus, cold plunges, sauna & rucking.
+              self-massage, circus, cold plunges, short runs, sauna & rucking.
             </p>
             <p>
               Our culture is sitting too much & so do I! I think we need to move
@@ -90,9 +92,38 @@ function About() {
           <div className="column image-column">
             <img
               className="col-img"
-              src={andrewInTheStudio}
-              alt="Andrew in the studio"
+              src={crescentLunge}
+              alt="crescent lunge yoga pose"
             />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="column image-column">
+            <img
+              className="col-img"
+              src={massageTable}
+              alt="Massage table in studio"
+            />
+          </div>
+          <div className="column">
+            <h2 className="text-xl">Ambience & Experience</h2>
+            <p>
+              I take care to create a cosy space surrounded by lush plants,
+              natural wood & relaxing fabric in the ceiling. I always have a
+              warm room for you & an electric blanket in the winter! Soft
+              lighting for relaxation, aided by some very chill music.
+            </p>
+            <p>
+              I love a good chat but also enjoy the quiet if that’s what you
+              prefer, which often helps you focus on fully relaxing into the
+              massage.
+            </p>
+            <p>
+              This ambient environment helps get the best out of a massage.
+              Especially if you can master relaxing the muscles being massaged
+              with every exhale.
+            </p>
           </div>
         </div>
       </div>

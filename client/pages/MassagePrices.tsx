@@ -8,9 +8,7 @@ function MassagePrices() {
   return (
     <div>
       <div className="heading-wrapper">
-        <h1 className="heading center">
-          <em>Massage</em>
-        </h1>
+        <h1 className="heading center italic">Massage</h1>
       </div>
       <div className="content-container">
         <div className="row">
