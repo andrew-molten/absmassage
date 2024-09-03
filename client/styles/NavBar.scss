@@ -12,7 +12,7 @@
 }
 
 .footer-link {
-  @apply mx-4;
+  @apply mx-4 my-2;
 }
 
 .nav-bar {
@@ -25,6 +25,16 @@
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-width: 1px;
   @apply fixed flex justify-between pb-2;
+}
+
+.footer {
+  background-color: var(--primary);
+  color: #fff;
+
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 5px 2px 0px -1px,
+    rgba(0, 0, 0, 0.3) 3px 1px 0px -1px;
+  @apply flex justify-center py-10;
 }
 
 .menu-container {

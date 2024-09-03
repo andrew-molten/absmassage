@@ -1,10 +1,30 @@
 import { NavLink } from 'react-router-dom'
 
-function Footer() {
+interface Props {
+  isSmallScreen: boolean
+}
+
+function Footer({ isSmallScreen }: Props) {
   return (
-    <div>
-      <div className="flex justify-between">
-        <div className="flex  w-screen flex-wrap ">
+    <div className="footer">
+      <div className="row">
+        {!isSmallScreen && (
+          <div className="flex  w-1/4">
+            <p className="mt-2">
+              27 Wakatu Ave,
+              <br />
+              Moncks Bay 8081,
+              <br />
+              Christchurch NZ
+              <br />
+              <br />
+              02041780923
+            </p>
+          </div>
+        )}
+        <div
+          className={`flex ${!isSmallScreen && 'w-1/2'} flex-wrap justify-center`}
+        >
           <NavLink to={'/'} className="footer-link">
             Home
           </NavLink>
@@ -19,6 +39,12 @@ function Footer() {
           </NavLink>
           <NavLink to={'/contact'} className="footer-link">
             Contact
+          </NavLink>
+          <NavLink to={'/refund-cancellations'} className="footer-link">
+            Refunds & Cancellations
+          </NavLink>
+          <NavLink to={'/privacy-policy'} className="footer-link">
+            Privacy Policy
           </NavLink>
           <a
             className="footer-link"

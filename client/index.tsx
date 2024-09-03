@@ -4,6 +4,13 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { RouterProvider } from 'react-router-dom'
 import router from './router.tsx'
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+  gtmId: 'G-5J6LSS9VEP',
+}
+
+TagManager.initialize(tagManagerArgs)
 
 const queryClient = new QueryClient()
 

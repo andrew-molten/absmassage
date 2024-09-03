@@ -18,7 +18,7 @@ function App() {
       <div style={{ marginTop: `${navHeight}px` }}>
         <Outlet />
       </div>
-      <Footer />
+      <Footer isSmallScreen={isSmallScreen} />
     </div>
   )
 }

@@ -7,6 +7,7 @@
 .booking-container {
   background-color: var(--primary);
   padding-bottom: 10px;
+  @apply mt-4;
 }
 
 .booking-heading {
