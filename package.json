@@ -21,6 +21,7 @@
   "author": "Dev Academy Aotearoa",
   "license": "ISC",
   "dependencies": {
+    "react-accessible-accordion": "^5.0.0",
     "superagent": "^8.1.2"
   },
   "devDependencies": {

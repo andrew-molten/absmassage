@@ -10,6 +10,7 @@ import MassagePrices from './pages/MassagePrices.tsx'
 import About from './pages/About.tsx'
 import FAQ from './pages/FAQ.tsx'
 import Contact from './pages/Contact.tsx'
+import RefundCancellations from './pages/Refund-Cancellations.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       <Route path="/about" element={<About />} />
       <Route path="/faq" element={<FAQ />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/refund-cancellations" element={<RefundCancellations />} />
     </Route>,
   ),
 )
