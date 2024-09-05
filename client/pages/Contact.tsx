@@ -34,12 +34,13 @@ function Contact() {
                 <a href="mailto:andrew@andrewboltonsportsmassage.com">
                   andrew@andrewboltonsportsmassage.com
                 </a>{' '}
-                <p>
-                  {' '}
-                  <span className="font-semibold">Phone:</span> <br /> 0204 178
-                  0923
-                </p>
               </p>
+              <p>
+                {' '}
+                <span className="font-semibold">Phone:</span> <br /> 0204 178
+                0923
+              </p>
+
               <p>Plenty of street parking available.</p>
             </div>
           </div>
@@ -51,10 +52,6 @@ function Contact() {
                   title="google map"
                   id="location_gmap_canvas"
                   src="https://maps.google.com/maps?q=27%20wakatu%20ave&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                  // frameBorder="0"
-                  // scrolling="no"
-                  // marginHeight={0}
-                  // marginWidth={0}
                 ></iframe>
                 {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
                 <a href="https://putlocker-is.org"></a>

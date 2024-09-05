@@ -1,12 +1,15 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 interface Props {
   isSmallScreen: boolean
 }
 
 function Footer({ isSmallScreen }: Props) {
+  const location = useLocation()
+  const isHome = location.pathname === '/'
+
   return (
-    <div className="footer">
+    <div className={`footer ${isHome && 'no-mt'}`}>
       <div className="row">
         {!isSmallScreen && (
           <div className="flex  w-1/4">

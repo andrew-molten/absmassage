@@ -37,6 +37,10 @@
   @apply mt-6 flex justify-center py-10;
 }
 
+.no-mt {
+  @apply mt-0;
+}
+
 .menu-container {
   @apply flex justify-between self-end;
 }
