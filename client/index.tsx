@@ -6,11 +6,14 @@ import { RouterProvider } from 'react-router-dom'
 import router from './router.tsx'
 import TagManager from 'react-gtm-module'
 
+// Google Tag Manager
+const gtag = import.meta.env.VITE_GTAG
 const tagManagerArgs = {
-  gtmId: 'G-5J6LSS9VEP',
+  gtmId: gtag,
 }
-
-TagManager.initialize(tagManagerArgs)
+if (gtag) {
+  TagManager.initialize(tagManagerArgs)
+}
 
 const queryClient = new QueryClient()
 
