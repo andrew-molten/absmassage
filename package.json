@@ -22,6 +22,7 @@
   "license": "ISC",
   "dependencies": {
     "react-accessible-accordion": "^5.0.0",
+    "react-elfsight-widget": "^1.1.1",
     "react-gtm-module": "^2.0.11",
     "superagent": "^8.1.2"
   },

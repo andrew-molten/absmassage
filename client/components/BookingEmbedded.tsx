@@ -34,7 +34,6 @@ function BookingEmbedded() {
           src={`https://andrew-bolton-massage-and-yoga.cliniko.com/bookings?embedded=true`}
           width="100%"
           height={height}
-          // frameBorder="0"
           scrolling="auto"
           style={{ pointerEvents: 'auto' }}
         />

@@ -1,4 +1,5 @@
 import BookingEmbedded from '../components/BookingEmbedded.tsx'
+import Reviews from '../components/Reviews.tsx'
 // import Mailchimp from '../components/Mailchimp.tsx'
 import Slider from '../components/Slider.tsx'
 
@@ -38,12 +39,7 @@ function Home() {
         </p>
       </div>
       {/* google-review-rating */}
-      <script
-        src="https://static.elfsight.com/platform/platform.js"
-        data-use-service-core
-        defer
-      ></script>
-      <div className="elfsight-app-e536fd01-894d-49c4-a114-2518c253167c"></div>
+      <Reviews />
       {/* Online Booking */}
       <BookingEmbedded />
       {/* <Mailchimp /> */}

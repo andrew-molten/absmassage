@@ -37,7 +37,7 @@ function NavBar({
   }, [setNavHeight])
 
   useEffect(() => {
-    if (screenSize < 690) {
+    if (screenSize < 805) {
       setIsSmallScreen(true)
     } else {
       setIsSmallScreen(false)

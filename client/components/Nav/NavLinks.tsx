@@ -9,6 +9,15 @@ function NavLinks({ handleOpenMenuClick }: Props) {
     <>
       {' '}
       <NavLink
+        to={'/'}
+        onClick={handleOpenMenuClick}
+        className={({ isActive }) =>
+          isActive ? 'nav-link active-link' : 'nav-link'
+        }
+      >
+        Home
+      </NavLink>
+      <NavLink
         to={'/massage-&-prices'}
         onClick={handleOpenMenuClick}
         className={({ isActive }) =>
