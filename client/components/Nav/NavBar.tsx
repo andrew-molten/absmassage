@@ -2,7 +2,8 @@ import { NavLink } from 'react-router-dom'
 import absmlogo from '../../../images/logos/andrew-bolton-sports-massage-logo.webp'
 import NavLinks from './NavLinks'
 import { useEffect, useState } from 'react'
-// import { FaBars } from "react-icons/fa6";
+import { FaBars } from 'react-icons/fa6'
+// import menuBars from '../../../images/icons/menu-bars.png'
 
 interface Props {
   navHeight: number
@@ -37,7 +38,7 @@ function NavBar({
   }, [setNavHeight])
 
   useEffect(() => {
-    if (screenSize < 805) {
+    if (screenSize < 820) {
       setIsSmallScreen(true)
     } else {
       setIsSmallScreen(false)
@@ -53,6 +54,10 @@ function NavBar({
       setIsMenuOpen(false)
     }
   }
+
+  const ATTRIBUTION = `
+  Icon by fontAwesome from https://fontawesome.com/ & React Icons, licensed under CC BY 4.0 License - https://creativecommons.org/licenses/by/4.0/.
+`
 
   return (
     <div
@@ -70,9 +75,19 @@ function NavBar({
       </NavLink>
 
       {isSmallScreen && (
-        <button className="menu-btn" onClick={handleMenuToggle}>
-          Menu
-        </button>
+        <div
+          className="menu-btn-container"
+          style={{
+            height: `${!isMenuOpen && isSmallScreen && navHeight}px`,
+            fontSize: `${!isMenuOpen && isSmallScreen && navHeight * 0.66}px`,
+            right: `${!isMenuOpen && isSmallScreen && navHeight * 0.5}px`,
+          }}
+        >
+          <button className="menu-btn" onClick={handleMenuToggle}>
+            <FaBars />
+            <div style={{ display: 'none' }}>{ATTRIBUTION}</div>
+          </button>
+        </div>
       )}
       <div
         className={`menu-container ${isMenuOpen && isSmallScreen ? 'open' : ''}`}
@@ -81,7 +96,12 @@ function NavBar({
           <NavLinks handleOpenMenuClick={handleOpenMenuClick} />
         ) : (
           <div>
-            <div className={`accordian ${isMenuOpen ? 'open' : ''}`}>
+            <div
+              className={`accordian ${isMenuOpen ? 'open' : ''}`}
+              style={{
+                marginRight: `${!isMenuOpen && isSmallScreen && navHeight * 0.5}px`,
+              }}
+            >
               <NavLinks handleOpenMenuClick={handleOpenMenuClick} />
             </div>
           </div>

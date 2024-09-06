@@ -2,6 +2,7 @@ import leafyMassageSpace from '../../images/slider/massage-space-leafy.webp'
 import andrewMassaging from '../../images/slider/andrew-massaging.webp'
 import neckMassage from '../../images/slider/Andrew-Bolton-Sports-Massage(sm).webp'
 import malasana from '../../images/andrew/Malasana.webp'
+import Reviews from '../components/Reviews'
 // import crescentLunge from '../../images/andrew/Crescent-lunge.webp'
 
 function MassagePrices() {
@@ -39,12 +40,12 @@ function MassagePrices() {
           </div>
         </div>
         {/* <!-- <div className="google-review-rating"> --> */}
-        <script
+        {/* <script
           src="https://static.elfsight.com/platform/platform.js"
           data-use-service-core
           defer
         ></script>
-        <div className="elfsight-app-e536fd01-894d-49c4-a114-2518c253167c"></div>
+        <div className="elfsight-app-e536fd01-894d-49c4-a114-2518c253167c"></div> */}
 
         <div className="row column-reverse pt-4">
           <div className="column">
@@ -147,37 +148,9 @@ function MassagePrices() {
             </p>
           </div>
         </div>
-        <div className="row column-reverse">
-          {/* <div className="column">
-            <h2>Group yoga classes</h2>
-            <p>
-              {`I have not been teaching many group yoga classes, as I can’t quite
-              fit them in amongst massages, family life & everyone elses
-              timetables - but I hope to get these back up and running in the
-              summer. They will be BYO mat as I don't have enough mats for a
-              group.`}
-            </p>
-            <p>
-              I can however guide private group yoga classes in the styles
-              Vinyasa, Gentle, Beginners, Hot yoga (26 & 2) or Yin yoga. And can
-              fit a class of 4 comfortably into the studio, 6 will work too, or
-              8 packed in like sardines.
-            </p>
-            <p>
-              {`If you're interested in the above,`} please
-              <a href="Contact.html">get in touch</a> with an outline of what
-              you have in mind and we can work together to make it happen.
-            </p>
-          </div> */}
-          {/* <div className="column image-column">
-            <img
-              className="col-img"
-              src={crescentLunge}
-              alt="Yoga pose - cresent lunge"
-            />
-          </div> */}
-        </div>
+        <div className="row column-reverse"></div>
       </div>
+      <Reviews />
     </div>
   )
 }
