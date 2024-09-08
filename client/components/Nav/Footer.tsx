@@ -70,6 +70,7 @@ function Footer({ isSmallScreen }: Props) {
                 <FaEnvelope /> andrew@andrewboltonsportsmassage.com
               </a>
             </p>
+
             <p>
               <FaPhone />{' '}
               <a href="tel:02041780923" target="_blank" rel="noreferrer">
@@ -91,6 +92,7 @@ function Footer({ isSmallScreen }: Props) {
                 Christchurch NZ
               </a>
             </p>
+            <div style={{ display: 'none' }}>{ATTRIBUTION}</div>
           </div>
         )}
       </div>

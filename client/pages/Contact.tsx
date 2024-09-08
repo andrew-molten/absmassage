@@ -1,4 +1,5 @@
 import BookingEmbedded from '../components/BookingEmbedded'
+import { FaEnvelope, FaPhone } from 'react-icons/fa6'
 
 function Contact() {
   return (
@@ -9,36 +10,47 @@ function Contact() {
       <div className="contact-container">
         <div className="row">
           <div className="column shrink">
-            <div className="loc_info center">
-              <h3 className="text-xl font-medium">27 Wakatu Ave,</h3>
+            <div className="loc_info">
+              {/* <h3 className="text-xl font-medium">27 Wakatu Ave,</h3>
               <h3 className="text-xl font-medium">Moncks Bay,</h3>
-              <h3 className="text-xl font-medium">Christchurch, NZ</h3>
+              <h3 className="text-xl font-medium">Christchurch, NZ</h3> */}
               <p>
                 <span className="font-semibold">
                   Open hours: <br />
                 </span>
-                Monday 9am - 7pm
+                Monday: 9am - 7pm
                 <br />
-                Tuesday 9am - 5pm
+                Tuesday: 9am - 5pm
                 <br />
-                Wednesday 9am - 5pm
+                Wednesday: 9am - 5pm
                 <br />
-                Thursday 9am - 7pm
+                Thursday: 9am - 7pm
                 <br />
-                Friday 9am - 5pm
+                Friday: 9am - 5pm
                 <br />
               </p>
 
               <p>
-                <span className="font-semibold">Email:</span>{' '}
-                <a href="mailto:andrew@andrewboltonsportsmassage.com">
+                <span>
+                  <FaEnvelope />
+                </span>
+
+                <a
+                  href="mailto:andrew@andrewboltonsportsmassage.com "
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   andrew@andrewboltonsportsmassage.com
-                </a>{' '}
+                </a>
               </p>
               <p>
-                {' '}
-                <span className="font-semibold">Phone:</span> <br /> 0204 178
-                0923
+                <span>
+                  <FaPhone />
+                </span>{' '}
+                <a href="tel:02041780923" target="_blank" rel="noreferrer">
+                  {' '}
+                  0204 178 0923
+                </a>
               </p>
 
               <p>Plenty of street parking available.</p>
