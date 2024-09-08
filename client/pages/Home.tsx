@@ -1,4 +1,5 @@
 import BookingEmbedded from '../components/BookingEmbedded.tsx'
+import Mailchimp from '../components/Mailchimp.tsx'
 import Reviews from '../components/Reviews.tsx'
 // import Mailchimp from '../components/Mailchimp.tsx'
 import Slider from '../components/Slider.tsx'
@@ -43,6 +44,7 @@ function Home() {
       {/* Online Booking */}
       <BookingEmbedded />
       {/* <Mailchimp /> */}
+      <Mailchimp />
     </div>
   )
 }
