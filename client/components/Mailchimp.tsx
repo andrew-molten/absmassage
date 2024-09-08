@@ -12,6 +12,8 @@ function Mailchimp() {
     FNAME: '',
   })
 
+  // styling from https://codepen.io/meodai/pen/rNedxBa
+
   return (
     <div>
       <div className="signup-form">
