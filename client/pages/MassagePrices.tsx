@@ -18,11 +18,11 @@ function MassagePrices() {
             <p>
               45 mins - $70
               <br />
-              60 mins - $90 - 3 for $240
+              60 mins - $90
               <br />
-              75 mins - $112 - 3 for $305
+              75 mins - $112
               <br />
-              90 mins - $135 - 3 for $375
+              90 mins - $135
               <br />
               120 mins - $180
             </p>
@@ -39,15 +39,9 @@ function MassagePrices() {
             </p>
           </div>
         </div>
-        {/* <!-- <div className="google-review-rating"> --> */}
-        {/* <script
-          src="https://static.elfsight.com/platform/platform.js"
-          data-use-service-core
-          defer
-        ></script>
-        <div className="elfsight-app-e536fd01-894d-49c4-a114-2518c253167c"></div> */}
+        <div className="break-line"></div>
 
-        <div className="row column-reverse pt-4">
+        <div className="row column-reverse">
           <div className="column">
             <h2>Deep Tissue Massage</h2>
             <p>
@@ -71,6 +65,8 @@ function MassagePrices() {
             />
           </div>
         </div>
+        <div className="break-line"></div>
+
         <div className="row">
           <div className="column image-column">
             <img
@@ -99,6 +95,8 @@ function MassagePrices() {
             </p>
           </div>
         </div>
+        <div className="break-line"></div>
+
         <div className="row column-reverse">
           <div className="column">
             <h2>Relaxing massage</h2>
@@ -124,6 +122,8 @@ function MassagePrices() {
             />
           </div>
         </div>
+        <div className="break-line"></div>
+
         <div className="row">
           <div className="column image-column">
             <img className="col-img" src={malasana} alt="Malasana in nature" />
@@ -148,8 +148,9 @@ function MassagePrices() {
             </p>
           </div>
         </div>
-        <div className="row column-reverse"></div>
+        <div className="break-line"></div>
       </div>
+
       <Reviews />
     </div>
   )
