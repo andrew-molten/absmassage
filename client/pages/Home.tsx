@@ -38,6 +38,7 @@ function Home() {
           your preferences, whether you prefer deep tissue work or a lighter
           touch.
         </p>
+        <div className="break-line"></div>
       </div>
       {/* google-review-rating */}
       <Reviews />

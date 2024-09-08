@@ -10,7 +10,9 @@ function Slider() {
   const [minHeight, setMinHeight] = useState(0)
   const [windowWidth, setWindowWidth] = useState(0)
   const slides = useRef<HTMLDivElement[]>([])
+  const sliderRef = useRef<HTMLDivElement>(null)
 
+  // IMAGE LOAD
   useEffect(() => {
     const images = document.querySelectorAll('.slide img')
     const heights: number[] = []
@@ -23,6 +25,7 @@ function Slider() {
       }
     })
 
+    // WINDOWRESIZE
     const handleResize = () => {
       const newHeights = Array.from(images).map(
         (image) => (image as HTMLImageElement).offsetHeight,
@@ -38,78 +41,46 @@ function Slider() {
     }
   }, [])
 
+  // SLIDER HEIGHT
   useEffect(() => {
     if (imageHeights.length > 0) {
       const min = Math.min(...imageHeights)
       setMinHeight(min)
     }
   }, [imageHeights])
-  // const sliderRef = useRef<HTMLDivElement>(null)
-  // let touchstartX
-  // const handleTouchStart = (e: TouchEvent) => {
-  //   const touchstartX = e.changedTouches[0].screenX
-  //   // store the touchstartX value in a state or ref
-  //   console.log(touchstartX)
-  // }
 
-  // const handleTouchMove = (e: TouchEvent) => {
-  //   const touchmoveX = e.changedTouches[0].screenX
-  //   // calculate the difference between touchmoveX and touchstartX
-  //   // to determine the direction of the swipe
-  // }
+  // SWIPE
+  useEffect(() => {
+    const slider = sliderRef.current
+    if (slider) {
+      slider.addEventListener('touchstart', handleTouchStart)
+      slider.addEventListener('touchend', handleTouchEnd)
+    }
+    return () => {
+      if (slider) {
+        slider.removeEventListener('touchstart', handleTouchStart)
+        slider.removeEventListener('touchend', handleTouchEnd)
+      }
+    }
+  })
 
-  // const handleTouchEnd = (e: TouchEvent) => {
-  //   const touchendX = e.changedTouches[0].screenX
-  //   // calculate the difference between touchendX and touchstartX
-  //   // to determine the direction of the swipe
-  //   if (touchendX < touchstartX) {
-  //     // swipe to the left
-  //     nextSlide()
-  //   } else if (touchstartX < touchendX) {
-  //     // swipe to the right
-  //     prevSlide()
-  //   }
-  // }
+  let touchstartX: number
+  const handleTouchStart = (e: TouchEvent) => {
+    touchstartX = e.changedTouches[0].screenX
+  }
 
-  // useEffect(() => {
-  //   if (sliderRef.current) {
-  //     sliderRef.current.addEventListener('touchstart', handleTouchStart)
-  //     sliderRef.current.addEventListener('touchmove', handleTouchMove)
-  //     sliderRef.current.addEventListener('touchend', handleTouchEnd)
-  //   }
-  //   return () => {
-  //     if (sliderRef.current) {
-  //       sliderRef.current.removeEventListener('touchstart', handleTouchStart)
-  //       sliderRef.current.removeEventListener('touchmove', handleTouchMove)
-  //       sliderRef.current.removeEventListener('touchend', handleTouchEnd)
-  //     }
-  //   }
-  // }, [])
-
-  // function handleSliderSwipe() {
-  //   if (touchendX < touchstartX) nextSlide()
-  //   if (touchstartX < touchendX) prevSlide()
-  // }
-
-  // slider.addEventListener('touchstart', (e) => {
-  //   touchstartX = e.changedTouches[0].screenX
-  // })
-  // slider.addEventListener('touchend', (e) => {
-  //   touchendX = e.changedTouches[0].screenX
-  //   handleSliderSwipe()
-  // })
-
-  // function adjustForScreenSize() {
-  //   if (x.matches) {
-  //     dotsID.insertAdjacentHTML(
-  //       'beforeend',
-  //       `<span class="dot" data-slide="6"></span>
-  //     <span class="dot" data-slide="7"></span>`,
-  //     )
-  //   }
-  //   const dots = document.querySelectorAll('.dot')
-  //   return dots
-  // }
+  const handleTouchEnd = (e: TouchEvent) => {
+    const touchendX = e.changedTouches[0].screenX
+    // SWIPE LEFT
+    if (touchendX < touchstartX) {
+      if (curSlide === 7) return setCurSlide(1)
+      setCurSlide(curSlide + 1)
+      // SWIPE RIGHT
+    } else if (touchstartX < touchendX) {
+      if (curSlide === 1) return setCurSlide(7)
+      setCurSlide(curSlide - 1)
+    }
+  }
 
   function checkActive(num: number) {
     if (num === curSlide) return 'active'
@@ -137,7 +108,11 @@ function Slider() {
   }
 
   return (
-    <div className="slider" style={{ maxHeight: `${minHeight}px` }}>
+    <div
+      className="slider"
+      style={{ maxHeight: `${minHeight}px` }}
+      ref={sliderRef}
+    >
       {sliderImages.map((image: SliderImage, index: number) => (
         // generate each slide
         <div
