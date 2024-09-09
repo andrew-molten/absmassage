@@ -32,6 +32,7 @@ function About() {
             <img className="col-img" src={indiaAndrew} alt="Andrew in India" />
           </div>
         </div>
+        <div className="break-line"></div>
 
         <div className="row">
           <div className="column image-column">
@@ -69,6 +70,7 @@ function About() {
           src={yogaToes}
           alt="yoga on a cliffs edge"
         />
+        <div className="break-line"></div>
 
         <div className="row column-reverse">
           <div className="column">
@@ -98,6 +100,7 @@ function About() {
             />
           </div>
         </div>
+        <div className="break-line"></div>
 
         <div className="row">
           <div className="column image-column">
@@ -127,6 +130,7 @@ function About() {
             </p>
           </div>
         </div>
+        <div className="break-line"></div>
 
         <div className="row column-reverse">
           <div className="column">

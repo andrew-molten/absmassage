@@ -29,7 +29,7 @@ h2 {
 
 .break-line {
   border-color: var(--primary);
-  @apply mt-4 rounded-xl border;
+  @apply mt-8 rounded-xl border;
 }
 
 .active-link {
@@ -57,7 +57,7 @@ h2 {
 .row {
   display: flex;
   margin: 0 1em 0 1em;
-  @apply pt-4;
+  @apply pt-8;
 }
 .column {
   flex: 50%;
@@ -164,6 +164,11 @@ h2 {
   h2 {
     margin-top: 1em;
   }
+
+  .heading-wrapper {
+    @apply mb-0;
+  }
+
   .break-line {
     margin-top: 2em;
   }
