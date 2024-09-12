@@ -81,10 +81,10 @@ function About() {
               best way to do that.
             </p>
             <p>
-              To do that I incorporate these practices into my life: hikes,
-              yoga, mobilisation, kettlebell & bodyweight workouts, pilates,
-              skipping, slacklining, climbing, breathwork, dancing, massage,
-              self-massage, circus, cold plunges, short runs, sauna & rucking.
+              My current movement practices include: hikes, yoga, mobilisation,
+              kettlebell & bodyweight workouts, pilates, skipping, slacklining,
+              climbing, breathwork, dancing, massage, self-massage, circus, cold
+              plunges, short runs, sauna & rucking.
             </p>
             <p>
               Our culture is sitting too much & so do I! I think we need to move

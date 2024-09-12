@@ -1,7 +1,6 @@
 import BookingEmbedded from '../components/BookingEmbedded.tsx'
 import Mailchimp from '../components/Mailchimp.tsx'
 import Reviews from '../components/Reviews.tsx'
-// import Mailchimp from '../components/Mailchimp.tsx'
 import Slider from '../components/Slider.tsx'
 
 function Home() {
@@ -9,7 +8,7 @@ function Home() {
     <div>
       <Slider />
       <div className="content-container">
-        <p>{`Hi, I’m Andrew, a massage therapist with 6 years of experience. I specialise in Deep Tissue, Sports, Relaxation, and Prenatal massage.`}</p>
+        <h1>{`Hi, I’m Andrew, a massage therapist with 6 years of experience. I specialise in Deep Tissue, Sports, Relaxation, and Prenatal massage.`}</h1>
         <p>
           My mission is to relieve your tension, heal your injuries and help you
           find lasting relief!
