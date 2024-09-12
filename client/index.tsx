@@ -1,4 +1,4 @@
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
@@ -18,11 +18,23 @@ if (gtag) {
 const queryClient = new QueryClient()
 
 document.addEventListener('DOMContentLoaded', () => {
-  createRoot(document.getElementById('app') as HTMLElement).render(
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+  const rootElement = document.getElementById('app')
+  if (rootElement && rootElement.hasChildNodes()) {
+    hydrateRoot(
+      rootElement,
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
 
-      {/* <ReactQueryDevtools /> */}
-    </QueryClientProvider>,
-  )
+        {/* <ReactQueryDevtools /> */}
+      </QueryClientProvider>,
+    )
+  } else {
+    createRoot(rootElement as HTMLElement).render(
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+
+        {/* <ReactQueryDevtools /> */}
+      </QueryClientProvider>,
+    )
+  }
 })
