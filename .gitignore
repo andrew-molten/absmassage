@@ -41,3 +41,8 @@ dev.sqlite3
 /dist
 
 .env
+
+# next
+.next
+next-env.d.ts
+dist
