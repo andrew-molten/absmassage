@@ -11,6 +11,11 @@
   --primary: #1f4c3c;
   --secondary: #251f4c;
   --tertiary: #4c1f2f;
+  --nav-height: 41px;
+}
+
+#root {
+  margin-top: var(--nav-height);
 }
 
 body {

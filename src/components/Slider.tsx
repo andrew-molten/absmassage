@@ -1,16 +1,19 @@
+'use client'
 import '../styles/Slider.scss'
 import { sliderImages } from '../../images/slider/sliderImages.ts'
 import { useRef, useState, useEffect } from 'react'
 import { SliderImage } from '../../models/mainModels.ts'
 import Dot from './Dot.tsx'
+import React from 'react'
 
 function Slider() {
   const [curSlide, setCurSlide] = useState(1)
   const [imageHeights, setImageHeights] = useState<number[]>([])
-  const [minHeight, setMinHeight] = useState(0)
+  const [minHeight, setMinHeight] = useState(200)
   const [windowWidth, setWindowWidth] = useState(0)
   const slides = useRef<HTMLDivElement[]>([])
   const sliderRef = useRef<HTMLDivElement>(null)
+  console.log('slider loaded')
 
   // IMAGE LOAD
   useEffect(() => {
@@ -18,13 +21,23 @@ function Slider() {
     const heights: number[] = []
     setWindowWidth(window.innerWidth)
 
+    // IMAGE LOAD
     images.forEach((image) => {
+      console.log('foreach')
       ;(image as HTMLImageElement).onload = () => {
         heights.push((image as HTMLImageElement).offsetHeight)
         setImageHeights(heights)
+        console.log('loaded images')
       }
     })
 
+    // SLIDER HEIGHT
+
+    if (imageHeights.length > 0) {
+      const min = Math.min(...imageHeights)
+      setMinHeight(min)
+      console.log('running')
+    }
     // WINDOWRESIZE
     const handleResize = () => {
       const newHeights = Array.from(images).map(
@@ -38,14 +51,6 @@ function Slider() {
 
     return () => {
       window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
-  // SLIDER HEIGHT
-  useEffect(() => {
-    if (imageHeights.length > 0) {
-      const min = Math.min(...imageHeights)
-      setMinHeight(min)
     }
   }, [imageHeights])
 
@@ -120,7 +125,7 @@ function Slider() {
           className={`slide ${getSlideClass(index)}`}
           ref={(el) => (slides.current[index] = el!)}
         >
-          <img src={image.image} alt={image.alt} />
+          <img src={image.image.src} alt={image.alt} />
         </div>
       ))}
 

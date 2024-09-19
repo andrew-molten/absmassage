@@ -1,3 +1,4 @@
+import React from 'react'
 import BookingEmbedded from '../components/BookingEmbedded.tsx'
 import Mailchimp from '../components/Mailchimp.tsx'
 import Reviews from '../components/Reviews.tsx'

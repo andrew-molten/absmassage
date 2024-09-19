@@ -1,44 +1,57 @@
-import { NavLink } from 'react-router-dom'
+'use client'
+
 import absmlogo from '../../../images/logos/andrew-bolton-sports-massage-logo.webp'
 import NavLinks from './NavLinks'
 import { useEffect, useState } from 'react'
 import { FaBars } from 'react-icons/fa6'
+import React from 'react'
 // import menuBars from '../../../images/icons/menu-bars.png'
+import Link from 'next/link'
 
-interface Props {
-  navHeight: number
-  setNavHeight: (height: number) => void
-  isSmallScreen: boolean
-  setIsSmallScreen: (bool: boolean) => void
-}
+// interface Props {
+//   navHeight: number
+//   setNavHeight: (height: number) => void
+//   isSmallScreen: boolean
+//   setIsSmallScreen: (bool: boolean) => void
+// }
 
-function NavBar({
-  navHeight,
-  setNavHeight,
-  isSmallScreen,
-  setIsSmallScreen,
-}: Props) {
+function NavBarSSR() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [screenSize, setScreenSize] = useState(window.innerWidth)
+  const [screenSize, setScreenSize] = useState<number>()
+  const [navHeight, setNavHeight] = useState(60)
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
-      setScreenSize(window.innerWidth)
-      setNavHeight(logo.offsetHeight)
+      if (typeof window !== 'undefined') {
+        setScreenSize(window.innerWidth)
+        setNavHeight(logo.offsetHeight)
+        document.documentElement.style.setProperty(
+          '--nav-height',
+          `${navHeight}px`,
+        )
+      }
     }
 
+    setScreenSize(window.innerWidth)
     const logo = document.querySelector('.header-logo img') as HTMLImageElement
-    logo.onload = () => {
-      setNavHeight(logo.offsetHeight + 9)
+    if (typeof window !== 'undefined') {
+      logo.onload = () => {
+        setNavHeight(logo.offsetHeight + 9)
+        document.documentElement.style.setProperty(
+          '--nav-height',
+          `${navHeight}px`,
+        )
+      }
     }
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [setNavHeight])
+  }, [setNavHeight, navHeight])
 
   useEffect(() => {
-    if (screenSize < 820) {
+    if (screenSize && screenSize < 820) {
       setIsSmallScreen(true)
     } else {
       setIsSmallScreen(false)
@@ -66,13 +79,13 @@ function NavBar({
         maxHeight: `${!isMenuOpen && isSmallScreen ? navHeight : 420}px`,
       }}
     >
-      <NavLink
-        to={'/'}
+      <Link
+        href={'/'}
         className="header-logo nav-link"
         onClick={handleOpenMenuClick}
       >
-        <img src={absmlogo} alt="Andrew Bolton Sports Massage logo" />
-      </NavLink>
+        <img src={absmlogo.src} alt="Andrew Bolton Sports Massage logo" />
+      </Link>
 
       {isSmallScreen && (
         <div
@@ -111,4 +124,4 @@ function NavBar({
   )
 }
 
-export default NavBar
+export default NavBarSSR

@@ -1,5 +1,7 @@
+'use client'
 import { useFormFields, useMailChimpForm } from 'use-mailchimp-form'
 import '../styles/Mailchimp.scss'
+import React from 'react'
 
 function Mailchimp() {
   const url =

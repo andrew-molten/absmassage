@@ -1,5 +1,7 @@
+'use client'
 import { useState, useEffect } from 'react'
 import '../styles/Booking.scss'
+import React from 'react'
 
 function BookingEmbedded() {
   const [height, setHeight] = useState('1000px')

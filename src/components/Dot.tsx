@@ -1,3 +1,5 @@
+import React from 'react'
+
 interface Props {
   number: number
   checkActive: (num: number) => string | undefined
