@@ -1,6 +1,7 @@
-import React from 'react'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from "react"
 
-function PrivacyPolicy() {
+function privacypolicy() {
   return (
     <>
       <div className="heading-wrapper">
@@ -211,4 +212,4 @@ function PrivacyPolicy() {
   )
 }
 
-export default PrivacyPolicy
+export default privacypolicy

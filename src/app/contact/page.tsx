@@ -1,8 +1,9 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
-import BookingEmbedded from '../components/BookingEmbedded'
+import BookingEmbedded from '../../components/BookingEmbedded'
 import { FaEnvelope, FaPhone } from 'react-icons/fa6'
 
-function Contact() {
+function contact() {
   return (
     <>
       <div className="heading-wrapper">
@@ -80,4 +81,4 @@ function Contact() {
     </>
   )
 }
-export default Contact
+export default contact

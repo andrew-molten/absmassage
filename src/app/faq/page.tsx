@@ -1,3 +1,4 @@
+'use client'
 import {
   Accordion,
   AccordionItem,
@@ -5,13 +6,20 @@ import {
   AccordionItemButton,
   AccordionItemPanel,
 } from 'react-accessible-accordion'
-import { FAQs } from '../data/FAQ.ts'
+import { FAQs } from '../../data/FAQ.ts'
 
 import 'react-accessible-accordion/dist/fancy-example.css'
-import { FAQdata } from '../../models/mainModels.ts'
-import { Link } from 'react-router-dom'
+import { FAQdata } from '../../../models/mainModels.ts'
+import Link from 'next/link'
 
-function FAQ() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from 'react'
+
+// export function generateStaticParams() {
+//   return [{ slug: ['faq'] }]
+// }
+
+function faq() {
   return (
     <>
       <div className="heading-wrapper">
@@ -29,7 +37,10 @@ function FAQ() {
                 {item.answer2 && <p>{item.answer2}</p>}
                 {item.answer3 && <p>{item.answer3}</p>}
                 {item.link && (
-                  <Link to={item.link.url} className="font-semibold underline">
+                  <Link
+                    href={item.link.url}
+                    className="font-semibold underline"
+                  >
                     {item.link.text}
                   </Link>
                 )}
@@ -41,4 +52,4 @@ function FAQ() {
     </>
   )
 }
-export default FAQ
+export default faq

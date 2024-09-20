@@ -13,7 +13,6 @@ function Slider() {
   const [windowWidth, setWindowWidth] = useState(0)
   const slides = useRef<HTMLDivElement[]>([])
   const sliderRef = useRef<HTMLDivElement>(null)
-  console.log('slider loaded')
 
   // IMAGE LOAD
   useEffect(() => {
@@ -23,11 +22,9 @@ function Slider() {
 
     // IMAGE LOAD
     images.forEach((image) => {
-      console.log('foreach')
       ;(image as HTMLImageElement).onload = () => {
         heights.push((image as HTMLImageElement).offsetHeight)
         setImageHeights(heights)
-        console.log('loaded images')
       }
     })
 
@@ -36,7 +33,6 @@ function Slider() {
     if (imageHeights.length > 0) {
       const min = Math.min(...imageHeights)
       setMinHeight(min)
-      console.log('running')
     }
     // WINDOWRESIZE
     const handleResize = () => {

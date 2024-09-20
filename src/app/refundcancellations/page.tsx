@@ -1,6 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 
-function RefundCancellations() {
+function refundcancellations() {
   return (
     <>
       <div className="heading-wrapper">
@@ -97,4 +98,4 @@ function RefundCancellations() {
   )
 }
 
-export default RefundCancellations
+export default refundcancellations

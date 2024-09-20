@@ -17,8 +17,29 @@
   @apply underline;
 }
 
+.twenty-percent {
+  width: 20%;
+}
+
+.forty-percent {
+  width: 40%;
+}
+
+.footer-link-container {
+  display: flex;
+  @apply flex-wrap justify-center;
+}
+
 .footer-link {
-  @apply mx-4 my-2 ease-in-out hover:scale-105 hover:cursor-pointer hover:opacity-85;
+  @apply mx-4 my-2;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.hover-link {
+  @apply ease-in-out hover:scale-105 hover:cursor-pointer hover:opacity-85;
 }
 
 .nav-bar {
@@ -42,7 +63,7 @@
   box-shadow:
     rgba(50, 50, 93, 0.25) 5px 2px 0px -1px,
     rgba(0, 0, 0, 0.3) 3px 1px 0px -1px;
-  @apply mt-10 flex justify-center py-10;
+  @apply mt-10 flex justify-center pb-5;
 }
 
 .no-mt {

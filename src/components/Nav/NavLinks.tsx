@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 import Link from 'next/link'
 
@@ -13,7 +14,7 @@ function NavLinks({ handleOpenMenuClick }: Props) {
         Home
       </Link>
       <Link
-        href={'/massage-&-prices'}
+        href={'/massageprices'}
         onClick={handleOpenMenuClick}
         className="nav-link"
       >

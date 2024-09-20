@@ -4,9 +4,9 @@ import Mailchimp from '../components/Mailchimp.tsx'
 import Reviews from '../components/Reviews.tsx'
 import Slider from '../components/Slider.tsx'
 
-export function generateStaticParams() {
-  return [{ slug: [''] }]
-}
+// export function generateStaticParams() {
+//   return [{ slug: [''] }]
+// }
 
 export default function Page() {
   return (

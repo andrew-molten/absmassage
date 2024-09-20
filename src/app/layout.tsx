@@ -8,6 +8,10 @@ const NavBarSSR = dynamic(() => import('../components/Nav/NavBarSSR.tsx'), {
   ssr: false,
 })
 
+const Footer = dynamic(() => import('../components/Nav/Footer.tsx'), {
+  ssr: false,
+})
+
 export default function RootLayout({
   children,
 }: {
@@ -19,13 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <title>Andrew Bolton Sports Massage</title>
-        {/* <link
-          rel="icon"
-          type="image/webp"
-          href="./images/logos/absm-shortcut-icon.webp"
-        /> */}
-        {/* <link rel="stylesheet" href="./client/styles/main.scss" /> */}
-        {/* <link rel="stylesheet" href="./client/styles/NavBar.scss" /> */}
+        {/* <link rel="favicon" type="image" href="./Logo3.png" sizes="any" /> */}
         <meta
           name="description"
           content="Professional, strong & effective massage to relieve your pain and tension now. Become relaxed, rejuvenated & pain free today."
@@ -36,6 +34,7 @@ export default function RootLayout({
         <NavBarSSR />
 
         <div id="root">{children}</div>
+        <Footer />
 
         {/* <script src="./client/index.tsx" type="module"></script>
         <script src="./client/cliniko.js" type="module"></script> */}

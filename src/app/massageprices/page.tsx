@@ -1,11 +1,15 @@
-import leafyMassageSpace from '../../images/slider/massage-space-leafy.webp'
-import andrewMassaging from '../../images/slider/andrew-massaging.webp'
-import neckMassage from '../../images/slider/Andrew-Bolton-Sports-Massage(sm).webp'
-import malasana from '../../images/andrew/Malasana.webp'
-import Reviews from '../components/Reviews'
-// import crescentLunge from '../../images/andrew/Crescent-lunge.webp'
+import leafyMassageSpace from '../../../images/slider/massage-space-leafy.webp'
+import andrewMassaging from '../../../images/slider/andrew-massaging.webp'
+import neckMassage from '../../../images/slider/Andrew-Bolton-Sports-Massage(sm).webp'
+import malasana from '../../../images/andrew/Malasana.webp'
+import Reviews from '../../components/Reviews'
+import React from 'react'
 
-function MassagePrices() {
+// export function generateStaticParams() {
+//   return [{ slug: ['massageprices'] }]
+// }
+
+export default function massageprices() {
   return (
     <div>
       <div className="heading-wrapper">
@@ -60,7 +64,7 @@ function MassagePrices() {
           <div className="column image-column">
             <img
               className="col-img"
-              src={leafyMassageSpace}
+              src={leafyMassageSpace.src}
               alt="Leafy massage space"
             />
           </div>
@@ -71,7 +75,7 @@ function MassagePrices() {
           <div className="column image-column">
             <img
               className="col-img"
-              src={andrewMassaging}
+              src={andrewMassaging.src}
               alt="Deep Tissue Massage"
             />
           </div>
@@ -117,7 +121,7 @@ function MassagePrices() {
           <div className="column image-column">
             <img
               className="col-img"
-              src={neckMassage}
+              src={neckMassage.src}
               alt="Calm relaxing massage"
             />
           </div>
@@ -126,7 +130,11 @@ function MassagePrices() {
 
         <div className="row">
           <div className="column image-column">
-            <img className="col-img" src={malasana} alt="Malasana in nature" />
+            <img
+              className="col-img"
+              src={malasana.src}
+              alt="Malasana in nature"
+            />
           </div>
           <div className="column">
             <h2>Private yoga session</h2>
@@ -155,4 +163,3 @@ function MassagePrices() {
     </div>
   )
 }
-export default MassagePrices
