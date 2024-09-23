@@ -1,12 +1,9 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 import BookingEmbedded from '../components/BookingEmbedded.tsx'
 import Mailchimp from '../components/Mailchimp.tsx'
 import Reviews from '../components/Reviews.tsx'
 import Slider from '../components/Slider.tsx'
-
-// export function generateStaticParams() {
-//   return [{ slug: [''] }]
-// }
 
 export default function Page() {
   return (

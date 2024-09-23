@@ -6,10 +6,12 @@ import massageTable from '../../../images/studio/massage-table.webp'
 import family from '../../../images/andrew/Family.webp'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
+import type { Metadata } from 'next'
 
-// export function generateStaticParams() {
-//   return [{ slug: ['about'] }]
-// }
+export const metadata: Metadata = {
+  title: 'About - Andrew Bolton Sports Massage',
+  description: `I'm passionate about pain-free living and creating habits to improve life for better well-being so we can all feel better and have more fun!`,
+}
 
 function About() {
   return (

@@ -1,5 +1,12 @@
+import { Metadata } from 'next/types'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React from "react"
+import React from 'react'
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy - Andrew Bolton Sports Massage',
+  description:
+    'Professional, strong & effective massage to relieve your pain and tension now. Become relaxed, rejuvenated & pain free today.',
+}
 
 function privacypolicy() {
   return (

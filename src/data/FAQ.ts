@@ -49,7 +49,7 @@ export const FAQs = [
     answer: `Please see: `,
     link: {
       text: 'My Refunds & Cancellations page.',
-      url: '/Refund-Cancellations',
+      url: '/refundcancellations',
     },
   },
   {

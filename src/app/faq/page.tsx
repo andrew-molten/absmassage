@@ -1,23 +1,17 @@
-'use client'
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel,
-} from 'react-accessible-accordion'
 import { FAQs } from '../../data/FAQ.ts'
-
-import 'react-accessible-accordion/dist/fancy-example.css'
-import { FAQdata } from '../../../models/mainModels.ts'
-import Link from 'next/link'
+import RenderAccordian from './RenderAccordian.tsx'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
+import { Metadata } from 'next/types/index'
 
-// export function generateStaticParams() {
-//   return [{ slug: ['faq'] }]
-// }
+export const metadata: Metadata = {
+  title: 'FAQ - Andrew Bolton Sports Massage',
+  description:
+    'Get answers to common questions about massage therapy, including injury advice, session length, frequency, post-massage exercise, and more. Find out how massage can help your recovery and well-being.',
+}
+
+// Adding this as a separate component which can be use Client.
 
 function faq() {
   return (
@@ -26,28 +20,7 @@ function faq() {
         <h1 className="heading">Frequently Asked Questions</h1>
       </div>
       <div className="contact-container">
-        <Accordion allowZeroExpanded preExpanded={['54d302df']}>
-          {FAQs.map((item: FAQdata) => (
-            <AccordionItem key={item.uuid} uuid={item.uuid}>
-              <AccordionItemHeading>
-                <AccordionItemButton>{item.question}</AccordionItemButton>
-              </AccordionItemHeading>
-              <AccordionItemPanel>
-                {item.answer && <p className="mt-0">{item.answer}</p>}
-                {item.answer2 && <p>{item.answer2}</p>}
-                {item.answer3 && <p>{item.answer3}</p>}
-                {item.link && (
-                  <Link
-                    href={item.link.url}
-                    className="font-semibold underline"
-                  >
-                    {item.link.text}
-                  </Link>
-                )}
-              </AccordionItemPanel>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <RenderAccordian FAQs={FAQs} />
       </div>
     </>
   )

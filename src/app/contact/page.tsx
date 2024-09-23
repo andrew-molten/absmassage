@@ -2,6 +2,13 @@
 import React from 'react'
 import BookingEmbedded from '../../components/BookingEmbedded'
 import { FaEnvelope, FaPhone } from 'react-icons/fa6'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Contact - Andrew Bolton Sports Massage',
+  description:
+    'Get in touch with Andrew Bolton Sports Massage in Christchurch, NZ. Find our contact details, hours of operation, and location on the map. Street parking available.',
+}
 
 function contact() {
   return (

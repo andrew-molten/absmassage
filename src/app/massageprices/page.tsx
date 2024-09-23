@@ -3,12 +3,15 @@ import andrewMassaging from '../../../images/slider/andrew-massaging.webp'
 import neckMassage from '../../../images/slider/Andrew-Bolton-Sports-Massage(sm).webp'
 import malasana from '../../../images/andrew/Malasana.webp'
 import Reviews from '../../components/Reviews'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
+import { Metadata } from 'next/types'
 
-// export function generateStaticParams() {
-//   return [{ slug: ['massageprices'] }]
-// }
-
+export const metadata: Metadata = {
+  title: 'Massage & Prices - Andrew Bolton Sports Massage',
+  description:
+    'Explore professional massage services with options like deep tissue, sports, and relaxing massages. Affordable prices from $55 for 30 minutes to $90 for 60 minutes. Intro offer available. Book now for a personalized experience tailored to your needs.',
+}
 export default function massageprices() {
   return (
     <div>
@@ -20,6 +23,8 @@ export default function massageprices() {
           <div className="column center">
             <h2>Massage Prices</h2>
             <p>
+              30 mins - $55
+              <br />
               45 mins - $70
               <br />
               60 mins - $90

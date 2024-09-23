@@ -1,5 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
+import { Metadata } from 'next/types'
+
+export const metadata: Metadata = {
+  title: 'Refunds & Cancellations - Andrew Bolton Sports Massage',
+  description:
+    'Professional, strong & effective massage to relieve your pain and tension now. Become relaxed, rejuvenated & pain free today.',
+}
 
 function refundcancellations() {
   return (
