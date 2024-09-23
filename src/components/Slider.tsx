@@ -1,5 +1,4 @@
 'use client'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 import '../styles/Slider.scss'
 import { sliderImages } from '../../images/slider/sliderImages.ts'

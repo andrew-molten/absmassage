@@ -7,7 +7,6 @@ import {
   AccordionItemPanel,
 } from 'react-accessible-accordion'
 import Link from 'next/link'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 import { FAQdata } from '../../../models/mainModels.ts'
 import 'react-accessible-accordion/dist/fancy-example.css'

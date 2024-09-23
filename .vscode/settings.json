@@ -1,1 +1,8 @@
-{ "scss.lint.unknownAtRules": "ignore" }
+{
+  "scss.lint.unknownAtRules": "ignore",
+  "eslint.options": {
+    "rules": {
+      "@typescript-eslint/no-unused-vars": "off"
+    }
+  }
+}

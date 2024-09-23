@@ -4,7 +4,6 @@ import yogaToes from '../../../images/andrew/yoga-toes.webp'
 import crescentLunge from '../../../images/andrew/Crescent-lunge.webp'
 import massageTable from '../../../images/studio/massage-table.webp'
 import family from '../../../images/andrew/Family.webp'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 import type { Metadata } from 'next'
 

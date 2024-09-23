@@ -1,7 +1,6 @@
 import { FAQs } from '../../data/FAQ.ts'
 import RenderAccordian from './RenderAccordian.tsx'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 import { Metadata } from 'next/types/index'
 

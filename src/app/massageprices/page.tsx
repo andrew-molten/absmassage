@@ -3,7 +3,6 @@ import andrewMassaging from '../../../images/slider/andrew-massaging.webp'
 import neckMassage from '../../../images/slider/Andrew-Bolton-Sports-Massage(sm).webp'
 import malasana from '../../../images/andrew/Malasana.webp'
 import Reviews from '../../components/Reviews'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 import { Metadata } from 'next/types'
 

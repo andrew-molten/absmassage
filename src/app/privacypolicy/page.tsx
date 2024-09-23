@@ -1,5 +1,4 @@
 import { Metadata } from 'next/types'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 
 export const metadata: Metadata = {

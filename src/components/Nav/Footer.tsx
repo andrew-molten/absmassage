@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import absmlogo from '../../../images/logos/andrew-bolton-sports-massage-logo.webp'
 import { FaEnvelope, FaPhone, FaLocationDot } from 'react-icons/fa6'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useEffect, useState } from 'react'
 
 function Footer() {

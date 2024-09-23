@@ -4,9 +4,7 @@ import absmlogo from '../../../images/logos/andrew-bolton-sports-massage-logo.we
 import NavLinks from './NavLinks'
 import { useEffect, useState } from 'react'
 import { FaBars } from 'react-icons/fa6'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
-// import menuBars from '../../../images/icons/menu-bars.png'
 import Link from 'next/link'
 
 // interface Props {
