@@ -1,10 +1,11 @@
 'use client'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from 'react'
 import '../styles/Slider.scss'
 import { sliderImages } from '../../images/slider/sliderImages.ts'
 import { useRef, useState, useEffect } from 'react'
 import { SliderImage } from '../../models/mainModels.ts'
 import Dot from './Dot.tsx'
-import React from 'react'
 
 function Slider() {
   const [curSlide, setCurSlide] = useState(1)
@@ -119,7 +120,11 @@ function Slider() {
         <div
           key={`${index}+${image.image}`}
           className={`slide ${getSlideClass(index)}`}
-          ref={(el) => (slides.current[index] = el!)}
+          ref={(el) => {
+            if (el) {
+              slides.current[index] = el
+            }
+          }}
         >
           <img src={image.image.src} alt={image.alt} />
         </div>
