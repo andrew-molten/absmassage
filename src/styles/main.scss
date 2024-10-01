@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Lato&family=Life+Savers&family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// create colour variables for my brand using root css variables
+:root {
+  // --primary: #1f264c;
+  --primary: #1f4c3c;
+  --secondary: #251f4c;
+  --tertiary: #4c1f2f;
+  --nav-height: 41px;
+}
+
+#root {
+  margin-top: var(--nav-height);
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  text-align: justify;
+}
+p {
+  margin: 1.5rem 0 0 0;
+}
+
+h2 {
+  @apply text-center text-3xl font-bold;
+}
+
+.break-line {
+  border-color: var(--primary);
+  @apply mt-8 rounded-xl border;
+}
+
+.active-link {
+  @apply underline;
+}
+
+.content-container {
+  margin-top: 1.5rem;
+  padding: 0 20%;
+}
+
+.heading-wrapper {
+  background-color: var(--primary);
+  @apply mb-10 py-3;
+}
+
+.heading {
+  color: #fff;
+  line-height: 1.6;
+  font-size: 3rem;
+  margin-left: 1rem;
+  font-weight: 350;
+  @apply text-center italic;
+}
+
+.row {
+  display: flex;
+  margin: 0 1em 0 1em;
+  @apply pt-8;
+}
+.column {
+  flex: 50%;
+  padding: 0rem 1rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.image-column {
+  display: flex;
+  align-items: center;
+}
+.col-img {
+  display: block;
+  width: auto;
+  max-width: 80%;
+  height: auto;
+  margin: auto;
+}
+
+// ABOUT PAGE
+
+.central-img {
+  display: block;
+  height: 240px;
+  width: 80%;
+  object-fit: cover;
+  margin: 1rem auto;
+  object-position: 50% 40%;
+}
+
+// CONTACT
+.loc_info {
+  margin: 2rem 0 0 0;
+}
+
+// GOOGLE MAP
+
+#location_gmap_canvas {
+  width: 600px;
+  height: 400px;
+  margin: 2rem 0 0 0;
+}
+.mapouter {
+  position: relative;
+  text-align: right;
+}
+.gmap_canvas {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: none !important;
+}
+
+// REVIEWS
+
+.reviews-container {
+  width: 80%;
+  margin: auto;
+  @apply mt-8;
+}
+
+.reviews-iframe {
+  width: 100%;
+  height: 520px;
+}
+
+@media only screen and (max-width: 1350px) {
+  .content-container {
+    padding: 0 15%;
+  }
+
+  .contact-container {
+    padding: 0 10%;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .content-container {
+    padding: 0 10%;
+  }
+
+  // ABOUT
+  .central-img {
+    height: 150px;
+  }
+
+  // GOOGLE MAP
+
+  #location_gmap_canvas {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .reviews-container {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 725px) {
+  h2 {
+    margin-top: 1em;
+  }
+
+  .heading-wrapper {
+    @apply mb-0;
+  }
+
+  .break-line {
+    margin-top: 2em;
+  }
+
+  .row {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 0;
+  }
+  .column-reverse {
+    flex-direction: column-reverse;
+  }
+  .column {
+    flex: 100%;
+    height: auto;
+    padding: 0;
+  }
+  .col-img {
+    margin: 2rem auto 0;
+    max-width: 80%;
+  }
+
+  // about
+  .central-img {
+    height: 100px;
+  }
+}
+
+// @media screen and (max-width: 690px) {
+
+// }

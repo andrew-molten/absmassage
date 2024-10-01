@@ -1,5 +1,7 @@
+import { StaticImageData } from 'next/image'
+
 export interface SliderImage {
-  image: string
+  image: StaticImageData
   alt: string
 }
 

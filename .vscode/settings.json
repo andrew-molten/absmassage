@@ -1,1 +1,9 @@
-{ "scss.lint.unknownAtRules": "ignore" }
+{
+  "scss.lint.unknownAtRules": "ignore",
+  "eslint.options": {
+    "extends": ["next", "next/core-web-vitals"],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": "off"
+    }
+  }
+}
