@@ -36,7 +36,7 @@ function NavBarSSR() {
     setScreenSize(window.innerWidth)
     const logo = document.querySelector('.header-logo img') as HTMLImageElement
     if (typeof window !== 'undefined') {
-      logo.onload = () => {
+      if (logo.complete) {
         setNavHeight(logo.offsetHeight)
         document.documentElement.style.setProperty(
           '--nav-height',
@@ -49,7 +49,7 @@ function NavBarSSR() {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [setNavHeight, navHeight])
+  }, [navHeight])
 
   useEffect(() => {
     if (screenSize && screenSize < 820) {
