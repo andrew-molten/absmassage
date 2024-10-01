@@ -4,6 +4,7 @@ import '../styles/NavBar.scss'
 // import NavBarSSR from '../components/Nav/NavBar'
 import dynamic from 'next/dynamic'
 import type { Metadata } from 'next'
+import { GoogleTagManager } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   title: 'Andrew Bolton Sports Massage',
@@ -26,13 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        {/* <title>Andrew Bolton Sports Massage</title> */}
-        {/* <meta
-          name="description"
-          content="Professional, strong & effective massage to relieve your pain and tension now. Become relaxed, rejuvenated & pain free today."
-        /> */}
-      </head>
+      <GoogleTagManager gtmId="GTM-PSTX555" />
 
       <body>
         <NavBarSSR />

@@ -9,7 +9,7 @@ import Dot from './Dot.tsx'
 function Slider() {
   const [curSlide, setCurSlide] = useState(1)
   const [imageHeights, setImageHeights] = useState<number[]>([])
-  const [minHeight, setMinHeight] = useState(200)
+  const [minHeight, setMinHeight] = useState(225)
   const [windowWidth, setWindowWidth] = useState(0)
   const slides = useRef<HTMLDivElement[]>([])
   const sliderRef = useRef<HTMLDivElement>(null)
@@ -17,30 +17,35 @@ function Slider() {
   // IMAGE LOAD
   useEffect(() => {
     const images = document.querySelectorAll('.slide img')
-    const heights: number[] = []
+
+    const handleImageLoad = () => {
+      const loadedHeights = Array.from(images).map(
+        (image) => (image as HTMLImageElement).offsetHeight,
+      )
+      setImageHeights(loadedHeights)
+    }
+
     setWindowWidth(window.innerWidth)
 
-    // IMAGE LOAD
+    // Attach load event listeners to images
     images.forEach((image) => {
-      ;(image as HTMLImageElement).onload = () => {
-        heights.push((image as HTMLImageElement).offsetHeight)
-        setImageHeights(heights)
+      if ((image as HTMLImageElement).complete) {
+        handleImageLoad() // If image already loaded
+      } else {
+        ;(image as HTMLImageElement).onload = handleImageLoad
       }
     })
 
-    // SLIDER HEIGHT
-
+    // SLIDER HEIGHT UPDATE
     if (imageHeights.length > 0) {
       const min = Math.min(...imageHeights)
       setMinHeight(min)
     }
-    // WINDOWRESIZE
+
+    // WINDOW RESIZE HANDLING
     const handleResize = () => {
-      const newHeights = Array.from(images).map(
-        (image) => (image as HTMLImageElement).offsetHeight,
-      )
-      setImageHeights(newHeights)
       setWindowWidth(window.innerWidth)
+      handleImageLoad()
     }
 
     window.addEventListener('resize', handleResize)
@@ -48,7 +53,7 @@ function Slider() {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [imageHeights])
+  }, [windowWidth])
 
   // SWIPE
   useEffect(() => {

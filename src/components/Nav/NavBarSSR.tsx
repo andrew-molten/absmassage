@@ -29,6 +29,7 @@ function NavBarSSR() {
           '--nav-height',
           `${navHeight}px`,
         )
+        console.log('navHeight', navHeight)
       }
     }
 
@@ -36,11 +37,12 @@ function NavBarSSR() {
     const logo = document.querySelector('.header-logo img') as HTMLImageElement
     if (typeof window !== 'undefined') {
       logo.onload = () => {
-        setNavHeight(logo.offsetHeight + 9)
+        setNavHeight(logo.offsetHeight)
         document.documentElement.style.setProperty(
           '--nav-height',
           `${navHeight}px`,
         )
+        console.log('navHeight', navHeight)
       }
     }
     window.addEventListener('resize', handleResize)
