@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Massage & Prices - Andrew Bolton Sports Massage',
   description:
     'Explore professional massage services with options like deep tissue, sports, and relaxing massages. Affordable prices from $55 for 30 minutes to $90 for 60 minutes. Intro offer available. Book now for a personalized experience tailored to your needs.',
+  alternates: {
+    canonical: 'https://andrewboltonsportsmassage.com/massageprices',
+  },
 }
 export default function massageprices() {
   return (
@@ -38,11 +41,11 @@ export default function massageprices() {
           <div className="column center">
             <h2>Intro offer</h2>
             <p>
-              60 mins - $75
+              60 mins - $79
               <br />
-              75 mins - $95
+              75 mins - $99
               <br />
-              90 mins - $115
+              90 mins - $119
               <br />
             </p>
           </div>

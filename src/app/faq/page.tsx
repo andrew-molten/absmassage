@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: 'FAQ - Andrew Bolton Sports Massage',
   description:
     'Get answers to common questions about massage therapy, including injury advice, session length, frequency, post-massage exercise, and more. Find out how massage can help your recovery and well-being.',
+  alternates: {
+    canonical: 'https://andrewboltonsportsmassage.com/faq',
+  },
 }
 
 // Adding this as a separate component which can be use Client.

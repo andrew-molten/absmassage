@@ -5,11 +5,14 @@ export const metadata: Metadata = {
   title: 'Refunds & Cancellations - Andrew Bolton Sports Massage',
   description:
     'Professional, strong & effective massage to relieve your pain and tension now. Become relaxed, rejuvenated & pain free today.',
+  alternates: {
+    canonical: 'https://andrewboltonsportsmassage.com/refundcancellations',
+  },
 }
 
 function refundcancellations() {
   return (
-    <>
+    <div>
       <div className="heading-wrapper">
         <h1 className="heading">Refund & Cancellation Policy</h1>
       </div>
@@ -100,7 +103,7 @@ function refundcancellations() {
           massaging.
         </p>
       </div>
-    </>
+    </div>
   )
 }
 

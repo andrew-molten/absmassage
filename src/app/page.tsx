@@ -3,6 +3,13 @@ import BookingEmbedded from '../components/BookingEmbedded.tsx'
 import Mailchimp from '../components/Mailchimp.tsx'
 import Reviews from '../components/Reviews.tsx'
 import Slider from '../components/Slider.tsx'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://andrewboltonsportsmassage.com',
+  },
+}
 
 export default function Page() {
   return (

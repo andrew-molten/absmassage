@@ -25,11 +25,6 @@ function NavBarSSR() {
       if (typeof window !== 'undefined') {
         setScreenSize(window.innerWidth)
         setNavHeight(logo.offsetHeight)
-        document.documentElement.style.setProperty(
-          '--nav-height',
-          `${navHeight}px`,
-        )
-        console.log('navHeight', navHeight)
       }
     }
 
@@ -38,16 +33,26 @@ function NavBarSSR() {
     if (typeof window !== 'undefined') {
       if (logo.complete) {
         setNavHeight(logo.offsetHeight)
-        document.documentElement.style.setProperty(
-          '--nav-height',
-          `${navHeight}px`,
-        )
-        console.log('navHeight', navHeight)
+      } else if (logo) {
+        // Wait for load
+        logo.onload = () => {
+          setNavHeight(logo.offsetHeight)
+        }
       }
     }
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
+    }
+  }, [navHeight])
+
+  // update css when navHeight changes
+  useEffect(() => {
+    if (navHeight) {
+      document.documentElement.style.setProperty(
+        '--nav-height',
+        `${navHeight}px`,
+      )
     }
   }, [navHeight])
 

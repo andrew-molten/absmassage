@@ -10,6 +10,9 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'About - Andrew Bolton Sports Massage',
   description: `I'm passionate about pain-free living and creating habits to improve life for better well-being so we can all feel better and have more fun!`,
+  alternates: {
+    canonical: 'https://andrewboltonsportsmassage.com/about',
+  },
 }
 
 function About() {

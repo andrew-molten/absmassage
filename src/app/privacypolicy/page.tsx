@@ -5,11 +5,14 @@ export const metadata: Metadata = {
   title: 'Privacy Policy - Andrew Bolton Sports Massage',
   description:
     'Professional, strong & effective massage to relieve your pain and tension now. Become relaxed, rejuvenated & pain free today.',
+  alternates: {
+    canonical: 'https://andrewboltonsportsmassage.com/privacypolicy',
+  },
 }
 
 function privacypolicy() {
   return (
-    <>
+    <div>
       <div className="heading-wrapper">
         <h1 className="heading">Privacy Policy</h1>
       </div>
@@ -214,7 +217,7 @@ function privacypolicy() {
           contact.
         </p>
       </div>
-    </>
+    </div>
   )
 }
 

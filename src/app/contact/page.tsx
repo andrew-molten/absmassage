@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: 'Contact - Andrew Bolton Sports Massage',
   description:
     'Get in touch with Andrew Bolton Sports Massage in Christchurch, NZ. Find our contact details, hours of operation, and location on the map. Street parking available.',
+  alternates: {
+    canonical: 'https://andrewboltonsportsmassage.com/contact',
+  },
 }
 
 function contact() {
