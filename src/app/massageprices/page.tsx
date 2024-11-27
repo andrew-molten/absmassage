@@ -25,27 +25,27 @@ export default function massageprices() {
           <div className="column center">
             <h2>Massage Prices</h2>
             <p>
-              30 mins - $55
+              30 mins - $60
               <br />
-              45 mins - $70
+              45 mins - $80
               <br />
-              60 mins - $90
+              60 mins - $100
               <br />
-              75 mins - $112
+              75 mins - $120
               <br />
-              90 mins - $135
+              90 mins - $140
               <br />
-              120 mins - $180
+              120 mins - $190
             </p>
           </div>
           <div className="column center">
             <h2>Intro offer</h2>
             <p>
-              60 mins - $79
+              60 mins - $89
               <br />
-              75 mins - $99
+              75 mins - $109
               <br />
-              90 mins - $119
+              90 mins - $130
               <br />
             </p>
           </div>
