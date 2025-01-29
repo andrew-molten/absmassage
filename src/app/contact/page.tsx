@@ -1,6 +1,6 @@
 import React from 'react'
 import BookingEmbedded from '../../components/BookingEmbedded'
-import { FaEnvelope, FaPhone } from 'react-icons/fa6'
+import { FaEnvelope, FaPhone, FaLocationDot } from 'react-icons/fa6'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -22,9 +22,16 @@ function contact() {
         <div className="row">
           <div className="column shrink">
             <div className="loc_info">
-              {/* <h3 className="text-xl font-medium">27 Wakatu Ave,</h3>
-              <h3 className="text-xl font-medium">Moncks Bay,</h3>
-              <h3 className="text-xl font-medium">Christchurch, NZ</h3> */}
+              <p>
+                <span>
+                  <FaLocationDot />
+                </span>
+                21 Laing Crescent,
+                <br />
+                Heathcote Valley,
+                <br />
+                Christchurch, NZ
+              </p>
               <p>
                 <span className="font-semibold">
                   Open hours: <br />
@@ -74,7 +81,8 @@ function contact() {
                 <iframe
                   title="google map"
                   id="location_gmap_canvas"
-                  src="https://maps.google.com/maps?q=27%20wakatu%20ave&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  // src="https://maps.google.com/maps?q=27%20wakatu%20ave&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=21 laing crescent&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                 ></iframe>
                 {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
                 <a href="https://putlocker-is.org"></a>

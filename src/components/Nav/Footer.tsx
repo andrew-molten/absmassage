@@ -118,9 +118,9 @@ function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                27 Wakatu Ave,
+                21 Laing Crescent,
                 <br />
-                Moncks Bay 8081,
+                Heathcote Valley 8022,
                 <br />
                 Christchurch NZ
               </a>

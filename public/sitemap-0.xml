@@ -1,59 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-  <url>
-    <loc>https://andrewboltonsportsmassage.com/icon.png</loc>
-    <lastmod>2024-10-01T02:39:59.891Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.1</priority>
-    <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com/icon.png" />
-  </url>
-  <url>
-    <loc>https://andrewboltonsportsmassage.com</loc>
-    <lastmod>2024-10-01T02:39:59.891Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com" />
-  </url>
-  <url>
-    <loc>https://andrewboltonsportsmassage.com/about</loc>
-    <lastmod>2024-10-01T02:39:59.891Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com/about" />
-  </url>
-  <url>
-    <loc>https://andrewboltonsportsmassage.com/contact</loc>
-    <lastmod>2024-10-01T02:39:59.891Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com/contact" />
-  </url>
-  <url>
-    <loc>https://andrewboltonsportsmassage.com/faq</loc>
-    <lastmod>2024-10-01T02:39:59.891Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com/faq" />
-  </url>
-  <url>
-    <loc>https://andrewboltonsportsmassage.com/massageprices</loc>
-    <lastmod>2024-10-01T02:39:59.891Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com/massageprices" />
-  </url>
-  <url>
-    <loc>https://andrewboltonsportsmassage.com/privacypolicy</loc>
-    <lastmod>2024-10-01T02:39:59.891Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.2</priority>
-    <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com/privacypolicy" />
-  </url>
-  <url>
-    <loc>https://andrewboltonsportsmassage.com/refundcancellations</loc>
-    <lastmod>2024-10-01T02:39:59.891Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.2</priority>
-    <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com/refundcancellations" />
-  </url>
+<url><loc>https://www.andrewboltonsportsmassage.com/icon.png</loc><lastmod>2025-01-29T03:10:49.635Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.andrewboltonsportsmassage.com/about</loc><lastmod>2025-01-29T03:10:49.635Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.andrewboltonsportsmassage.com/contact</loc><lastmod>2025-01-29T03:10:49.635Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.andrewboltonsportsmassage.com/faq</loc><lastmod>2025-01-29T03:10:49.635Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.andrewboltonsportsmassage.com/massageprices</loc><lastmod>2025-01-29T03:10:49.635Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.andrewboltonsportsmassage.com</loc><lastmod>2025-01-29T03:10:49.635Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.andrewboltonsportsmassage.com/privacypolicy</loc><lastmod>2025-01-29T03:10:49.635Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.andrewboltonsportsmassage.com/refundcancellations</loc><lastmod>2025-01-29T03:10:49.635Z</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

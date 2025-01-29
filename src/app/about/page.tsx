@@ -150,10 +150,9 @@ function About() {
           <div className="column">
             {/* <h2 className="text-xl">Movement</h2> */}
             <p>
-              I live here in Redcliffs with my wife & our 3-year-old. We love
+              I live in Heathcote Valley with my wife & our 3-year-old. We love
               being close to the sea & the hills so try to get into them plenty.
-              We also love getting out in the garden (less for the weeding -
-              more for growing kai).
+              We also love getting into the garden & growing veggies.
             </p>
             <p>
               I’ve also been learning web development for a few years, I built
