@@ -1,4 +1,4 @@
-import leafyMassageSpace from '../../../images/slider/massage-space-leafy.webp'
+import massageSpace from '../../../images/slider/massage-space.webp'
 import andrewMassaging from '../../../images/slider/andrew-massaging.webp'
 import neckMassage from '../../../images/slider/Andrew-Bolton-Sports-Massage(sm).webp'
 import malasana from '../../../images/andrew/Malasana.webp'
@@ -71,7 +71,7 @@ export default function massageprices() {
           <div className="column image-column">
             <img
               className="col-img"
-              src={leafyMassageSpace.src}
+              src={massageSpace.src}
               alt="Leafy massage space"
             />
           </div>

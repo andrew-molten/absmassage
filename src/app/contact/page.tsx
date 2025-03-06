@@ -81,8 +81,7 @@ function contact() {
                 <iframe
                   title="google map"
                   id="location_gmap_canvas"
-                  // src="https://maps.google.com/maps?q=27%20wakatu%20ave&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                  src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=21 laing crescent&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                  src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=21 laing crescent&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;center=-43.64578000,172.74586000&amp;output=embed"
                 ></iframe>
                 {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
                 <a href="https://putlocker-is.org"></a>
