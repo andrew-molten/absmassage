@@ -22,6 +22,7 @@ function Slider() {
       const loadedHeights = Array.from(images).map(
         (image) => (image as HTMLImageElement).offsetHeight,
       )
+      console.log(loadedHeights)
       setImageHeights(loadedHeights)
     }
 
