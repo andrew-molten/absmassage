@@ -16,12 +16,9 @@ export default function Page() {
     <div>
       <Slider />
       <div className="content-container">
-        <h1>{`Hi, I’m Andrew, a massage therapist with 6 years of experience. I specialise in Deep Tissue, Sports, Relaxation, and Prenatal massage.`}</h1>
-        <p>
-          My mission is to relieve your tension, heal your injuries and help you
-          find lasting relief!
-        </p>
-        <p>{`Most people come to me because I'm strong, attentive & have a good sense of the perfect pressure. My space is always warm & you will leave feeling lighter than when you came in.`}</p>
+        <h1>{`Hi, I’m Andrew, I have 6 years of massage experience. I specialise in Deep Tissue, Sports, Relaxation, and Prenatal massage.`}</h1>
+        <p>Relieve your tension, heal your injuries & find lasting relief!</p>
+        <p>{`I'm both strong & sensitive so I have a good sense of the perfect pressure but can always ease off or work deeper when needed. My space is always warm & you will leave feeling lighter than when you came in.`}</p>
 
         <p>
           <strong>{`I use a combination of techniques to help you achieve results, whether that's to:`}</strong>
