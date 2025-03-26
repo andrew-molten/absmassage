@@ -5,6 +5,7 @@ import '../styles/NavBar.scss'
 import dynamic from 'next/dynamic'
 import type { Metadata } from 'next'
 import { GoogleTagManager } from '@next/third-parties/google'
+import { Analytics } from '@vercel/analytics/react'
 
 export const metadata: Metadata = {
   title: 'Andrew Bolton Sports Massage',
@@ -33,6 +34,7 @@ export default function RootLayout({
         <NavBarSSR />
 
         <div id="root">{children}</div>
+        <Analytics />
         <Footer />
 
         {/* <script src="./client/index.tsx" type="module"></script>

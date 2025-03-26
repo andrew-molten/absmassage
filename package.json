@@ -24,6 +24,7 @@
   "license": "ISC",
   "dependencies": {
     "@next/third-parties": "^14.2.13",
+    "@vercel/analytics": "^1.5.0",
     "next": "^14.2.13",
     "next-sitemap": "^4.2.3",
     "react-accessible-accordion": "^5.0.0",
