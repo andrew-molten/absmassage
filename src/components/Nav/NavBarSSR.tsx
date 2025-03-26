@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { FaBars } from 'react-icons/fa6'
 import React from 'react'
 import Link from 'next/link'
+import { track } from '@vercel/analytics'
 
 // interface Props {
 //   navHeight: number
@@ -66,6 +67,7 @@ function NavBarSSR() {
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen)
+    track('My Event', {}, { flags: ['accordion-menu'] })
   }
 
   const handleOpenMenuClick = () => {
