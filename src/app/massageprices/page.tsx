@@ -42,7 +42,7 @@ export default function massageprices() {
           </div>
           <div className="column center">
             <h2 className="p-heading">Intro offer</h2>
-            <p>
+            <p className="text-xl">
               60 mins - $89
               <br />
               75 mins - $109

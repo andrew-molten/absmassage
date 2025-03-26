@@ -4,6 +4,7 @@ import Mailchimp from '../components/Mailchimp.tsx'
 import Reviews from '../components/Reviews.tsx'
 import Slider from '../components/Slider.tsx'
 import { Metadata } from 'next'
+import Map from '../components/Map.tsx'
 
 export const metadata: Metadata = {
   alternates: {
@@ -66,11 +67,49 @@ export default function Page() {
         </p> */}
         <div className="break-line"></div>
       </div>
-      {/* google-review-rating */}
       <Reviews />
-      {/* Online Booking */}
+      <div className="content-container remove-top-margin">
+        <div className="break-line"></div>
+        <div className="row">
+          <div className="column center">
+            <h2 className="p-heading remove-top-margin">Prices</h2>
+            <p>
+              30 mins - $60
+              <br />
+              45 mins - $80
+              <br />
+              60 mins - $100
+              <br />
+              75 mins - $120
+              <br />
+              90 mins - $140
+              <br />
+              120 mins - $190
+            </p>
+          </div>
+          <div className="column center">
+            <h2 className="p-heading">Intro offer</h2>
+            <p className="text-xl">
+              60 mins - $89
+              <br />
+              75 mins - $109
+              <br />
+              90 mins - $129
+              <br />
+            </p>
+          </div>
+        </div>
+        <div className="break-line"></div>
+
+        <a
+          className="book-now-btn"
+          href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
+        >
+          Book Now
+        </a>
+      </div>
+      <Map page="home" />
       <BookingEmbedded />
-      {/* <Mailchimp /> */}
       <Mailchimp />
     </div>
   )
