@@ -35,7 +35,7 @@ function privacypolicy() {
           to time. When we do, we'll update this version located at
           https://www.andrewboltonsportsmassage.com/privacy-policy`}
         </p>
-        <h2 className="mt-2">Personal information we collect</h2>
+        <h2 className="p-heading mt-2">Personal information we collect</h2>
         <p>
           We collect personal data in a couple of different ways—directly and
           indirectly.
@@ -102,7 +102,7 @@ function privacypolicy() {
             anonymous traffic data.
           </li>
         </ul>
-        <h2 className="mt-2">How this information is used</h2>
+        <h2 className="p-heading mt-2">How this information is used</h2>
         <p>
           In general, personal information we collect is used by us to inform
           our decision making in how to best look after the client. The personal
@@ -142,7 +142,7 @@ function privacypolicy() {
             policies or be illegal.
           </li>
         </ul>
-        <h2 className="mt-2">How information is disclosed</h2>
+        <h2 className="p-heading mt-2">How information is disclosed</h2>
         <p>
           Except as described in this Privacy Policy, Andrew Bolton Sports
           Massage will not share, sell, or rent personal information with anyone
@@ -174,7 +174,9 @@ function privacypolicy() {
           assets of Andrew Bolton Sports Massage were to be transferred to
           another party.
         </p>
-        <h2 className="mt-2">The security of your Personal Information</h2>
+        <h2 className="p-heading mt-2">
+          The security of your Personal Information
+        </h2>
         <p>
           We take security seriously, and so do our third party services. Data
           is encrypted, stored in state-of-the-art facilities, access is
@@ -209,7 +211,7 @@ function privacypolicy() {
           for legal reasons, which will be notified to you, if applicable, at
           the time of your request.`}
         </p>
-        <h2 className="mt-2">Questions or complaints</h2>
+        <h2 className="p-heading mt-2">Questions or complaints</h2>
         <p>
           If you have any questions or complaints about our Privacy Policy or
           the way we handle your personal information, you can contact us at

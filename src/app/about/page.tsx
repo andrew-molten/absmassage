@@ -25,7 +25,7 @@ function About() {
       <div className="content-container">
         <div className="row column-reverse">
           <div className="column">
-            <h2 className="text-xl">
+            <h2 className="p-heading text-xl">
               {`I'm passionate about pain-free living and creating habits to
                 improve life & well-being!`}
             </h2>
@@ -57,7 +57,9 @@ function About() {
             />
           </div>
           <div className="column">
-            <h2 className="text-xl">My journey into massage and yoga</h2>
+            <h2 className=" p-heading text-xl">
+              My journey into massage and yoga
+            </h2>
             <p>
               I started practising yoga in 2011 because I had a sore back &
               needed more movement in my life. I got my first-ever massage then
@@ -88,7 +90,7 @@ function About() {
 
         <div className="row column-reverse">
           <div className="column">
-            <h2 className="text-xl">Movement</h2>
+            <h2 className=" p-heading text-xl">Movement</h2>
             <p>
               My main goals are to avoid injuries, improve overall functionality
               & age well. I believe that having a diversity of movement is the
@@ -125,7 +127,7 @@ function About() {
             />
           </div>
           <div className="column">
-            <h2 className="text-xl">Ambience & Experience</h2>
+            <h2 className=" p-heading text-xl">Ambience & Experience</h2>
             <p>
               I take care to create a cosy space surrounded by lush plants,
               natural wood & relaxing fabric in the ceiling. I always have a
@@ -148,7 +150,7 @@ function About() {
 
         <div className="row column-reverse">
           <div className="column">
-            {/* <h2 className="text-xl">Movement</h2> */}
+            {/* <h2 className=" p-heading text-xl">Movement</h2> */}
             <p>
               I live in Heathcote Valley with my wife & our 3-year-old. We love
               being close to the sea & the hills so try to get into them plenty.

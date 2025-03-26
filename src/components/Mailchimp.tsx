@@ -19,7 +19,7 @@ function Mailchimp() {
   return (
     <div>
       <div className="signup-form">
-        <h2 className="mailchimp-header">
+        <h2 className="mailchimp-header p-heading">
           Subscribe for maintenance tips & available appointments.
         </h2>
         <div className="input-container">

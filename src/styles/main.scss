@@ -27,8 +27,11 @@ body {
 p {
   margin: 1.5rem 0 0 0;
 }
-
 h2 {
+  margin-top: 1.5rem;
+}
+
+.p-heading {
   @apply text-center text-3xl font-bold;
 }
 

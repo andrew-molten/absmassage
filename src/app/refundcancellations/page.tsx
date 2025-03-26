@@ -17,7 +17,7 @@ function refundcancellations() {
         <h1 className="heading">Refund & Cancellation Policy</h1>
       </div>
       <div className="content-container">
-        <h2>Refunds</h2>
+        <h2 className='p-heading'>Refunds</h2>
         <p>
           If you cancel your appointment, and can give at least 24 hours notice
           before the massage, we can reschedule your appointment or (if needed)
@@ -34,7 +34,7 @@ function refundcancellations() {
             here.
           </a>
         </p>
-        <h2>24 hours notice</h2>
+        <h2 className='p-heading'>24 hours notice</h2>
         <p>
           In most cases you should be able to give me 24 hours notice. The more
           notice the better and it is greatly appreciated as it makes it easier
@@ -58,7 +58,7 @@ function refundcancellations() {
           If I manage to fill your appointment slot, then I won’t charge you the
           cancellation fee. 🙂
         </p>
-        <h2>No-shows</h2>
+        <h2 className='p-heading'>No-shows</h2>
         <p>
           Unfortunately I will have to charge you the smaller amount of: $50 or
           50% of the appointment price.
@@ -67,7 +67,7 @@ function refundcancellations() {
           No-shows hurt the most, because I can’t fill the appointment, and I
           spend my time getting ready for your massage.
         </p>
-        <h2>Late to your appointment</h2>
+        <h2 className='p-heading'>Late to your appointment</h2>
         <p>
           {` If you're late then you will still be charged the price of the
         appointment you booked and the appointment will finish at its planned

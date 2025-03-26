@@ -23,7 +23,7 @@ export default function massageprices() {
       <div className="content-container">
         <div className="row">
           <div className="column center">
-            <h2>Massage Prices</h2>
+            <h2 className="p-heading">Massage Prices</h2>
             <p>
               30 mins - $60
               <br />
@@ -39,7 +39,7 @@ export default function massageprices() {
             </p>
           </div>
           <div className="column center">
-            <h2>Intro offer</h2>
+            <h2 className="p-heading">Intro offer</h2>
             <p>
               60 mins - $89
               <br />
@@ -54,7 +54,7 @@ export default function massageprices() {
 
         <div className="row column-reverse">
           <div className="column">
-            <h2>Deep Tissue Massage</h2>
+            <h2 className="p-heading">Deep Tissue Massage</h2>
             <p>
               Deep tissue massage uses firm pressure with slow strokes to work
               deeply into tense areas and those around them releasing chronic
@@ -87,7 +87,7 @@ export default function massageprices() {
             />
           </div>
           <div className="column">
-            <h2>Sports Massage</h2>
+            <h2 className="p-heading">Sports Massage</h2>
             <p>
               Sports massage can be more dynamic, often borrowing deep tissue
               and other techniques such as kneading, compressions & circular
@@ -110,7 +110,7 @@ export default function massageprices() {
 
         <div className="row column-reverse">
           <div className="column">
-            <h2>Relaxing massage</h2>
+            <h2 className="p-heading">Relaxing massage</h2>
             <p>
               A whole-body therapeutic massage using long rhythmic strokes to
               relax your muscles & joints, stimulate blood flow and calm your
@@ -144,7 +144,7 @@ export default function massageprices() {
             />
           </div>
           <div className="column">
-            <h2>Private yoga session</h2>
+            <h2 className="p-heading">Private yoga session</h2>
 
             <p>{`I've been practising yoga since 2010 & teaching since 2016.`}</p>
             <p>
