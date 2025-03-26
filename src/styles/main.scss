@@ -31,6 +31,23 @@ h2 {
   margin-top: 1.5rem;
 }
 
+.book-now-btn {
+  border-radius: 20px;
+  border-width: 1px;
+  border-color: #ff7b00;
+  background-color: #ff5e00;
+  color: #fff;
+  box-shadow:
+    rgba(17, 17, 26, 0.1) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px,
+    rgba(17, 17, 26, 0.1) 0px 16px 48px;
+  padding: 0.25rem 0.75rem;
+  display: block;
+  font-size: 1.5rem;
+  max-width: 280px;
+  @apply mx-auto mt-7 text-center;
+}
+
 .p-heading {
   @apply text-center text-3xl font-bold;
 }

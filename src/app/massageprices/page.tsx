@@ -4,6 +4,8 @@ import neckMassage from '../../../images/slider/Andrew-Bolton-Sports-Massage(sm)
 import malasana from '../../../images/andrew/Malasana.webp'
 import Reviews from '../../components/Reviews'
 import React from 'react'
+import BookingEmbedded from '../../components/BookingEmbedded.tsx'
+
 import { Metadata } from 'next/types'
 
 export const metadata: Metadata = {
@@ -50,23 +52,30 @@ export default function massageprices() {
             </p>
           </div>
         </div>
+
+        <div className="break-line"></div>
+        <a
+          className="book-now-btn"
+          href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
+        >
+          Book Now
+        </a>
+
         <div className="break-line"></div>
 
         <div className="row column-reverse">
           <div className="column">
             <h2 className="p-heading">Deep Tissue Massage</h2>
             <p>
-              Deep tissue massage uses firm pressure with slow strokes to work
-              deeply into tense areas and those around them releasing chronic
-              tension. Especially effective for persistent tightness in your
-              body.
+              Firm pressure with slow strokes working deeply to release chronic
+              tension.
             </p>
             <p>
-              Not just a “hard massage”, the specific lengthening & the deep
-              work into muscles, fascia & tendons throughout the body improve
-              joint movement, tension, posture & overall well-being, or to aid
-              in a quick recovery from injury.
+              The specific lengthening & deep work into muscles, fascia &
+              tendons improves joint movement, tension, posture & overall
+              well-being.
             </p>
+            <p>Especially effective for persistent tension.</p>
           </div>
           <div className="column image-column">
             <img
@@ -89,20 +98,17 @@ export default function massageprices() {
           <div className="column">
             <h2 className="p-heading">Sports Massage</h2>
             <p>
-              Sports massage can be more dynamic, often borrowing deep tissue
-              and other techniques such as kneading, compressions & circular
-              friction depending on what you need.
+              More dynamic, combining deep tissue techniques with kneading,
+              compressions & circular friction depending on what you need.
             </p>
 
             <p>
-              It’s beneficial for athletes, active people & anybody with
-              tension. Used to overcome injury, help with training, increase
-              flexibility, relieve tension and reduce fatigue, injury & delayed
-              onset muscle soreness.
+              Used to overcome injury, aid training, increase flexibility &
+              relieve tension.
             </p>
+            <p>Can reduce fatigue, injury & DOMs.</p>
             <p>
-              We might target specific problem areas or do a general full-body
-              massage. Either way, I tailor each massage to your needs.
+              Beneficial for athletes, active people & anybody with tension.
             </p>
           </div>
         </div>
@@ -113,17 +119,13 @@ export default function massageprices() {
             <h2 className="p-heading">Relaxing massage</h2>
             <p>
               A whole-body therapeutic massage using long rhythmic strokes to
-              relax your muscles & joints, stimulate blood flow and calm your
-              nervous system.
+              relax your muscles & joints and calm your nervous system.
             </p>
             <p>
-              I use pressure according to your preference, with relaxing music
-              playing. Your choice to have a chat or go quiet.
+              Pressure according to your preference, with relaxing music
+              playing. Your choice to chat or go quiet.
             </p>
-            <p>
-              You can request areas you want to focus on and I will work to
-              relax any tension away.
-            </p>
+            <p>Can still focus on particular areas if you like.</p>
           </div>
           <div className="column image-column">
             <img
@@ -133,6 +135,12 @@ export default function massageprices() {
             />
           </div>
         </div>
+        <div className="break-line"></div>
+      </div>
+      <Reviews />
+
+      <BookingEmbedded />
+      <div className="content-container">
         <div className="break-line"></div>
 
         <div className="row">
@@ -157,16 +165,11 @@ export default function massageprices() {
               Learn how to align your body, moving with the breath in a safe way
               to build strength & improve mobility.
             </p>
-            <p>
-              This is a great space to do yoga in, with the freedom to focus on
-              your yoga goals, get in touch if you have any questions.
-            </p>
+            <p>Get in touch if you have any questions.</p>
           </div>
         </div>
         <div className="break-line"></div>
       </div>
-
-      <Reviews />
     </div>
   )
 }
