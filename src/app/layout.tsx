@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 import type { Metadata } from 'next'
 import { GoogleTagManager } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
   title: 'Andrew Bolton Sports Massage',
@@ -35,6 +36,7 @@ export default function RootLayout({
 
         <div id="root">{children}</div>
         <Analytics />
+        <SpeedInsights />
         <Footer />
 
         {/* <script src="./client/index.tsx" type="module"></script>
