@@ -38,6 +38,7 @@ function BookingEmbedded() {
           height={height}
           scrolling="auto"
           style={{ pointerEvents: 'auto' }}
+          loading="lazy"
         />
       </div>
     </div>

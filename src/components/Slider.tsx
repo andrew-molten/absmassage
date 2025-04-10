@@ -22,7 +22,6 @@ function Slider() {
       const loadedHeights = Array.from(images).map(
         (image) => (image as HTMLImageElement).offsetHeight,
       )
-      console.log(loadedHeights)
       setImageHeights(loadedHeights)
     }
 
@@ -131,7 +130,11 @@ function Slider() {
             }
           }}
         >
-          <img src={image.image.src} alt={image.alt} />
+          <img
+            src={image.image.src}
+            alt={image.alt}
+            loading={index > 2 ? 'lazy' : 'eager'}
+          />
         </div>
       ))}
 

@@ -19,7 +19,7 @@ const NavBarSSR = dynamic(() => import('../components/Nav/NavBarSSR.tsx'), {
 })
 
 const Footer = dynamic(() => import('../components/Nav/Footer.tsx'), {
-  ssr: false,
+  ssr: true,
 })
 
 export default function RootLayout({
