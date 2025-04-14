@@ -17,7 +17,7 @@ import Link from 'next/link'
 function NavBarSSR() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [screenSize, setScreenSize] = useState<number>()
-  const [navHeight, setNavHeight] = useState(60)
+  const [navHeight, setNavHeight] = useState(window.innerwidth < 820 ? 45 : 65)
   const [isSmallScreen, setIsSmallScreen] = useState(false)
 
   useEffect(() => {
