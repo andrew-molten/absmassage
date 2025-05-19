@@ -1,19 +1,11 @@
-/**
- * Represents the reviewer's information.
- * Based on the typical structure from Google My Business API.
- */
 export interface Reviewer {
   displayName: string
-  profilePhotoUrl?: string | null // URL to the reviewer's profile photo, can be null or undefined
+  profilePhotoUrl?: string | null
 }
 
-/**
- * Represents a single review.
- * Structure is designed to be compatible with Google My Business API responses.
- */
 export interface Review {
-  name: string // Unique identifier for the review, e.g., "accounts/xxx/locations/yyy/reviews/zzz"
-  reviewId?: string // Optional shorter review ID
+  name: string
+  reviewId?: string
   reviewer: Reviewer
   starRating:
     | 'FIVE_STAR'
@@ -21,15 +13,12 @@ export interface Review {
     | 'THREE_STAR'
     | 'TWO_STAR'
     | 'ONE_STAR'
-    | number // Star rating as string from API or a number
-  comment?: string | null // The text content of the review, can be null or undefined
-  createTime: string // ISO 8601 timestamp string for when the review was created
-  updateTime?: string // ISO 8601 timestamp string for when the review was last updated (optional)
+    | number
+  comment?: string | null
+  createTime: string
+  updateTime?: string
 }
 
-/**
- * Props for the StarRating component.
- */
 export interface StarRatingProps {
   rating:
     | 'FIVE_STAR'
@@ -37,21 +26,16 @@ export interface StarRatingProps {
     | 'THREE_STAR'
     | 'TWO_STAR'
     | 'ONE_STAR'
-    | number // Star rating value
-  starSize?: string // Optional Tailwind CSS classes for star size (e.g., "h-5 w-5")
+    | number
+  starSize?: string
+  label?: string
 }
 
-/**
- * Props for the ReviewCard component.
- */
 export interface ReviewCardProps {
   review: Review
 }
 
-/**
- * Props for the main GoogleReviewsWidget component.
- */
 export interface GoogleReviewsWidgetProps {
-  reviews: Review[] // An array of review objects
-  writeReviewUrl: string // URL for users to write a new review
+  reviews: Review[]
+  writeReviewUrl: string
 }
