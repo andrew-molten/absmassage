@@ -5,12 +5,16 @@ import Reviews from '../components/Reviews.tsx'
 import Slider from '../components/Slider.tsx'
 import { Metadata } from 'next'
 import Map from '../components/Map.tsx'
+import sampleApiReviews from '../data/reviews.json'
+import GoogleReviewsWidget from '../components/GoogleReviewsWidget.tsx'
 
 export const metadata: Metadata = {
   alternates: {
     canonical: 'https://andrewboltonsportsmassage.com',
   },
 }
+
+const writeReviewUrl = 'https://g.page/AndrewBoltonSportsMassage/review?gm'
 
 export default function Page() {
   return (
@@ -67,6 +71,10 @@ export default function Page() {
         </p> */}
         <div className="break-line"></div>
       </div>
+      <GoogleReviewsWidget
+        reviews={sampleApiReviews}
+        writereviewUrl={writeReviewUrl}
+      />
       <Reviews />
       <div className="content-container remove-top-margin">
         <div className="break-line"></div>
