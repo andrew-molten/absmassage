@@ -33,6 +33,8 @@ export interface StarRatingProps {
 
 export interface ReviewCardProps {
   review: Review
+  // Pass reviewsPerPage to calculate card width if needed, or manage width via parent flex/grid
+  cardWidthClass?: string
 }
 
 export interface GoogleReviewsWidgetProps {

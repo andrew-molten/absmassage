@@ -1,12 +1,106 @@
 'use client'
 
-import React, { useState, useEffect, FC, useCallback, useMemo } from 'react'
+import React, {
+  useState,
+  useEffect,
+  FC,
+  useCallback,
+  useMemo,
+  useRef,
+} from 'react'
 import {
   GoogleReviewsWidgetProps,
   Review,
   ReviewCardProps,
   StarRatingProps,
 } from '../../models/reviews'
+
+const themeConfig = {
+  widgetBg: 'bg-slate-50', // Background for the entire widget area
+  headerTextColor: 'text-gray-800', // Color for "Google Reviews" title
+  ratingTextColor: 'text-gray-700', // Color for the average rating number
+  basedOnTextColor: 'text-gray-500', // Color for "based on X reviews"
+  writeReviewButton:
+    'bg-blue-600 text-white px-5 py-2.5 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors',
+  arrowButtonBg: 'bg-white/60 hover:bg-white/90', // Background for prev/next arrows
+  arrowButtonIconColor: 'text-gray-700',
+  cardBg: 'bg-white',
+  cardBorder: 'border-gray-200',
+  cardReviewerNameColor: 'text-gray-800',
+  cardDateColor: 'text-gray-500',
+  cardCommentColor: 'text-gray-600',
+  cardReadMoreColor: 'text-blue-600 hover:underline',
+  starColorFilled: 'text-yellow-400',
+  starColorEmpty: 'text-gray-300',
+  googleIconColor: 'text-gray-400', // For the small Google G on cards
+  fontFamily: 'font-sans', // Overall font family
+  // Sizing and Gap Configuration (in pixels)
+  cardWidthPx: 290, // Nominal width of a single review card
+  cardGapPx: 16, // Gap between review cards (Tailwind space-4 = 1rem = 16px)
+}
+
+const GoogleLogoFull: FC<{ className?: string }> = ({
+  className = 'h-6 w-auto mr-2',
+}) => (
+  <svg
+    className={className}
+    viewBox="0 0 77 25"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-labelledby="googleLogoTitle"
+  >
+    <title id="googleLogoTitle">Google Logo</title>
+    <path
+      d="M24.2002 12.1773C24.2002 13.8491 24.0511 15.3295 23.7621 16.6273H12.3047V9.96591H21.5091C21.5091 8.125 20.7636 6.60227 19.5114 5.56818L23.3409 1.99432C26.3091 4.63068 28.0023 8.08523 28.0023 12.1773C28.0023 12.9886 27.9277 13.7614 27.7784 14.5114V14.5057H12.3047V21.9886H24.0136C21.5841 24.0625 18.3091 25.0011 14.6205 25.0011C8.38864 25.0011 3.40909 20.1489 3.40909 14.0807C3.40909 8.0125 8.38864 3.16023 14.6205 3.16023C18.0932 3.16023 21.0136 4.30682 23.3409 6.375L19.5523 9.92045C17.8807 8.52841 16.3807 7.84773 14.6205 7.84773C10.9318 7.84773 7.96364 10.6773 7.96364 14.0807C7.96364 17.4841 10.9318 20.3136 14.6205 20.3136C18.7295 20.3136 20.9818 17.5284 21.5091 15.2045H14.5818V12.1773H24.2002Z"
+      fill="#4285F4"
+    />
+    <path
+      d="M34.0586 24.6091V7.80227H29.9223V3.56364H42.3518V7.80227H38.2155V24.6091H34.0586Z"
+      fill="#34A853"
+    />
+    <path
+      d="M50.4841 24.6091V10.8136C50.4841 8.78523 49.4227 7.43295 47.0977 7.43295C44.9216 7.43295 43.6318 8.70000 43.0659 9.8875L43.0227 7.80227H39.0977V24.6091H43.2341V15.8307C43.2341 13.092 44.5239 11.8477 46.2841 11.8477C47.9341 11.8477 48.5239 12.8818 48.5239 15.0295V24.6091H50.4841Z"
+      fill="#FBBC05"
+    />
+    <path
+      d="M50.7909 24.6091V7.80227H54.9273V9.60341L55.0136 9.60341C55.7159 8.52841 57.2591 7.43295 59.2705 7.43295C62.5886 7.43295 64.5091 9.60341 64.5091 13.4045V24.6091H60.3727V14.1318C60.3727 11.6943 59.1659 10.5182 57.0545 10.5182C55.1341 10.5182 53.9614 11.7341 53.3716 12.9216L53.2852 12.9216V24.6091H50.7909Z"
+      fill="#EA4335"
+    />
+    <path
+      d="M76.0159 14.0807C76.0159 20.1909 71.0364 25.0011 64.8045 25.0011C58.5727 25.0011 53.5932 20.1909 53.5932 14.0807C53.5932 7.97045 58.5727 3.16023 64.8045 3.16023C71.0364 3.16023 76.0159 7.97045 76.0159 14.0807ZM71.8795 14.0807C71.8795 10.6341 68.875 7.84773 64.8045 7.84773C60.7341 7.84773 57.7295 10.6341 57.7295 14.0807C57.7295 17.5284 60.7341 20.3136 64.8045 20.3136C68.875 20.3136 71.8795 17.5284 71.8795 14.0807Z"
+      fill="#4285F4"
+    />
+  </svg>
+)
+
+const GoogleGIcon: FC<{ className?: string }> = ({ className = 'h-5 w-5' }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    // width="800px"
+    // height="800px"
+    viewBox="0 0 300 300
+  "
+    // preserveAspectRatio="xMidYMid"
+  >
+    <path
+      d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
+      fill="#4285F4"
+    />
+    <path
+      d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"
+      fill="#34A853"
+    />
+    <path
+      d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"
+      fill="#FBBC05"
+    />
+    <path
+      d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
+      fill="#EB4335"
+    />
+  </svg>
+)
 
 const StarRating: FC<StarRatingProps> = ({
   rating,
@@ -34,7 +128,6 @@ const StarRating: FC<StarRatingProps> = ({
         numericRating = 1
         break
       default:
-        // Attempt to parse if it's a numeric string like "4.5"
         const parsedRating = parseFloat(rating)
         numericRating = isNaN(parsedRating)
           ? 0
@@ -55,7 +148,7 @@ const StarRating: FC<StarRatingProps> = ({
       {[...Array(totalStars)].map((_, index) => (
         <svg
           key={index}
-          className={`${starSize} ${index < numericRating ? 'text-yellow-400' : 'text-gray-300'} ${index < Math.ceil(numericRating) && index >= Math.floor(numericRating) && numericRating % 1 !== 0 ? 'text-yellow-400 opacity-50' : ''}`} // Basic half-star attempt, may need more complex SVG for true half stars
+          className={`${starSize} ${index < numericRating ? themeConfig.starColorFilled : themeConfig.starColorEmpty} ${index < Math.ceil(numericRating) && index >= Math.floor(numericRating) && numericRating % 1 !== 0 ? `${themeConfig.starColorFilled} opacity-50` : ''}`}
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -69,6 +162,7 @@ const StarRating: FC<StarRatingProps> = ({
 }
 
 const formatDate = (dateString?: string | null): string => {
+  // (Implementation remains the same as previous version)
   if (!dateString) return ''
   const date: Date = new Date(dateString)
   if (isNaN(date.getTime())) return 'a while ago'
@@ -121,7 +215,16 @@ const ReviewCard: FC<ReviewCardProps> = ({ review }) => {
   }, [profilePhotoUrl])
 
   return (
-    <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-white p-4 shadow-md md:p-5">
+    // Card has a fixed width defined by themeConfig.cardWidthPx
+    // Height is h-full to stretch within its parent if the parent controls height (e.g. in a grid row)
+    // For flex track, height will be determined by content or a fixed height on the track.
+    <div
+      className={`${themeConfig.cardBg} rounded-lg border p-4 md:p-5 ${themeConfig.cardBorder} flex flex-col shadow-md`}
+      style={{
+        width: `${themeConfig.cardWidthPx}px`,
+        minHeight: '280px' /* Ensure a minimum card height */,
+      }}
+    >
       <div className="mb-3 flex items-start">
         {profilePhotoUrl && !imgError ? (
           <img
@@ -138,7 +241,7 @@ const ReviewCard: FC<ReviewCardProps> = ({ review }) => {
         )}
         <div className="min-w-0 flex-grow">
           <p
-            className="truncate text-sm font-semibold text-gray-800"
+            className={`font-semibold ${themeConfig.cardReviewerNameColor} truncate text-sm`}
             title={reviewerName}
           >
             {reviewerName}
@@ -150,15 +253,13 @@ const ReviewCard: FC<ReviewCardProps> = ({ review }) => {
           />
         </div>
       </div>
-      <p className="mb-2 text-xs text-gray-500">
+      <p className={`text-xs ${themeConfig.cardDateColor} mb-2`}>
         {formatDate(review.createTime || review.updateTime)}
       </p>
       <div
-        className="mb-2 flex-grow overflow-y-auto whitespace-pre-line text-sm text-gray-600"
+        className={`text-sm ${themeConfig.cardCommentColor} mb-2 flex-grow overflow-y-auto whitespace-pre-line`}
         style={{ maxHeight: '100px' }}
       >
-        {' '}
-        {/* Added maxHeight for scroll */}
         {comment.length <= MAX_LENGTH || isExpanded
           ? comment
           : `${comment.substring(0, MAX_LENGTH)}...`}
@@ -166,28 +267,14 @@ const ReviewCard: FC<ReviewCardProps> = ({ review }) => {
       {comment.length > MAX_LENGTH && (
         <button
           onClick={toggleReadMore}
-          className="mt-1 self-start text-sm text-blue-600 hover:underline"
+          className={`text-sm ${themeConfig.cardReadMoreColor} mt-1 self-start`}
           aria-expanded={isExpanded}
         >
           {isExpanded ? 'Read less' : 'Read more'}
         </button>
       )}
       <div className="mt-auto flex justify-end pt-2">
-        <svg
-          aria-label="Google icon"
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-gray-400"
-          viewBox="0 0 48 48"
-        >
-          <path
-            fill="#4285F4"
-            d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"
-          />
-          <path
-            fill="#34A853"
-            d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8V36c6.627 0 12-5.373 12-12c0-3.059-1.154-5.842-3.039-7.961l-5.657 5.657C33.947 23.947 34 24.5 34 25s-.053 1.053-.117 1.583l5.728-5.728C41.332 20.205 42.668 20 43.611 20.083z"
-          />
-        </svg>
+        <GoogleGIcon className={`h-5 w-5 ${themeConfig.googleIconColor}`} />
       </div>
     </div>
   )
@@ -200,26 +287,41 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
   const [averageRating, setAverageRating] = useState<number>(0)
   const [totalReviewsCount, setTotalReviewsCount] = useState<number>(0)
   const [shuffledReviews, setShuffledReviews] = useState<Review[]>([])
-  const [currentIndex, setCurrentIndex] = useState<number>(0)
-  const [reviewsPerPage, setReviewsPerPage] = useState<number>(3)
+  const [currentIndex, setCurrentIndex] = useState<number>(0) // Index of the first card in view
+  const [reviewsActuallyVisible, setReviewsActuallyVisible] =
+    useState<number>(1) // How many cards fit
 
-  const calculateRpp = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth < 768) return 1
-      if (window.innerWidth < 1280) return 3
-      return 3 // Can be 4 if card width allows. Adjust ReviewCard min-width or grid gap if using 4.
+  const viewportRef = useRef<HTMLDivElement>(null)
+
+  // Calculate how many cards can actually fit in the viewport
+  const updateVisibleCardsCount = useCallback(() => {
+    if (viewportRef.current) {
+      const viewportWidth = viewportRef.current.offsetWidth
+      const numFit = Math.max(
+        1,
+        Math.floor(
+          (viewportWidth + themeConfig.cardGapPx) /
+            (themeConfig.cardWidthPx + themeConfig.cardGapPx),
+        ),
+      )
+
+      let rpp = 1
+      if (typeof window !== 'undefined') {
+        if (window.innerWidth < 768)
+          rpp = 1 // Mobile
+        else if (window.innerWidth < 1280)
+          rpp = Math.min(numFit, 3) // Tablet
+        else rpp = Math.min(numFit, 4) // Desktop, max 4 or what fits
+      }
+      setReviewsActuallyVisible(rpp)
     }
-    return 3
   }, [])
 
   useEffect(() => {
-    const handleResize = () => {
-      setReviewsPerPage(calculateRpp())
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [calculateRpp])
+    updateVisibleCardsCount()
+    window.addEventListener('resize', updateVisibleCardsCount)
+    return () => window.removeEventListener('resize', updateVisibleCardsCount)
+  }, [updateVisibleCardsCount])
 
   useEffect(() => {
     if (reviews.length > 0) {
@@ -238,6 +340,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
   }, [reviews])
 
   useEffect(() => {
+    // (Average rating calculation remains the same as previous version)
     if (shuffledReviews.length > 0) {
       const sumOfRatings = shuffledReviews.reduce((acc, reviewItem) => {
         let numericRating = 0
@@ -266,7 +369,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
         } else if (typeof reviewItem.starRating === 'number') {
           numericRating = reviewItem.starRating
         }
-        return acc + Math.max(0, Math.min(numericRating, 5)) // Ensure rating is within 0-5
+        return acc + Math.max(0, Math.min(numericRating, 5))
       }, 0)
       setAverageRating(
         parseFloat((sumOfRatings / shuffledReviews.length).toFixed(1)),
@@ -276,19 +379,20 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
     }
   }, [shuffledReviews])
 
+  // Ensure currentIndex doesn't go out of bounds
   useEffect(() => {
-    if (shuffledReviews.length > 0) {
+    if (shuffledReviews.length > 0 && reviewsActuallyVisible > 0) {
       const maxPossibleIndex = Math.max(
         0,
-        shuffledReviews.length - reviewsPerPage,
+        shuffledReviews.length - reviewsActuallyVisible,
       )
       if (currentIndex > maxPossibleIndex) {
         setCurrentIndex(maxPossibleIndex)
       }
-    } else {
+    } else if (shuffledReviews.length === 0) {
       setCurrentIndex(0)
     }
-  }, [currentIndex, reviewsPerPage, shuffledReviews])
+  }, [currentIndex, reviewsActuallyVisible, shuffledReviews])
 
   const handlePrev = () => {
     setCurrentIndex((prev) => Math.max(0, prev - 1))
@@ -296,35 +400,36 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
 
   const handleNext = () => {
     setCurrentIndex((prev) =>
-      Math.min(prev + 1, shuffledReviews.length - reviewsPerPage),
+      Math.min(prev + 1, shuffledReviews.length - reviewsActuallyVisible),
     )
   }
 
-  const currentReviews = useMemo(() => {
-    if (shuffledReviews.length === 0) return []
-    return shuffledReviews.slice(currentIndex, currentIndex + reviewsPerPage)
-  }, [shuffledReviews, currentIndex, reviewsPerPage])
+  const slideOffsetPx =
+    -currentIndex * (themeConfig.cardWidthPx + themeConfig.cardGapPx)
 
   const canShowPrev = currentIndex > 0
   const canShowNext =
     shuffledReviews.length > 0 &&
-    currentIndex < shuffledReviews.length - reviewsPerPage
+    currentIndex < shuffledReviews.length - reviewsActuallyVisible
 
   if (shuffledReviews.length === 0) {
     return (
-      <div className="reviews-container bg-slate-50 py-8 font-sans">
+      <div className={`${themeConfig.widgetBg} py-8 ${themeConfig.fontFamily}`}>
         <div className="mx-auto max-w-6xl px-4 text-center">
-          <h2 className="mb-2 text-2xl font-bold text-gray-800">
-            Google Reviews
-          </h2>
-          <p className="text-gray-500">
+          <div className="mb-2 flex items-center justify-center">
+            <GoogleLogoFull className={`mr-2 h-7 w-auto`} />
+            <h2 className={`text-2xl font-bold ${themeConfig.headerTextColor}`}>
+              Reviews
+            </h2>
+          </div>
+          <p className={`${themeConfig.basedOnTextColor}`}>
             Loading reviews or no reviews to display.
           </p>
           <a
             href={writeReviewUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-block rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+            className={`mt-4 inline-block ${themeConfig.writeReviewButton}`}
           >
             Be the first to write a review
           </a>
@@ -334,32 +439,33 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
   }
 
   return (
-    <div className="reviews-container bg-slate-50 py-8 font-sans">
+    <div className={`${themeConfig.widgetBg} py-8 ${themeConfig.fontFamily}`}>
       <div className="mx-auto max-w-6xl px-4">
-        <div className="mb-6 flex flex-col items-center justify-between px-2 sm:flex-row">
-          <div>
-            <h2 className="text-2xl font-bold text-gray-800">Google Reviews</h2>
-            {totalReviewsCount > 0 && (
-              <div className="mt-1 flex items-center">
-                <span
-                  className="mr-1 text-lg font-bold text-gray-700"
-                  aria-label={`Average rating: ${averageRating.toFixed(1)} out of 5 stars`}
-                >
-                  {averageRating.toFixed(1)}
-                </span>
-                <StarRating rating={averageRating} starSize="h-5 w-5" />
-                <span className="ml-2 text-sm text-gray-500">
-                  based on {totalReviewsCount} review
-                  {totalReviewsCount === 1 ? '' : 's'}
-                </span>
-              </div>
-            )}
+        <div className="mb-6 flex flex-col items-center justify-between sm:flex-row">
+          <div className="flex items-center">
+            <GoogleLogoFull />
+            {/* Removed "Reviews" text as logo implies it, or add back if preferred */}
           </div>
+          {totalReviewsCount > 0 && (
+            <div className="mt-2 flex items-center sm:mt-0">
+              <span
+                className={`text-lg font-bold ${themeConfig.ratingTextColor} mr-1`}
+                aria-label={`Average rating: ${averageRating.toFixed(1)} out of 5 stars`}
+              >
+                {averageRating.toFixed(1)}
+              </span>
+              <StarRating rating={averageRating} starSize="h-5 w-5" />
+              <span className={`ml-2 text-sm ${themeConfig.basedOnTextColor}`}>
+                based on {totalReviewsCount} review
+                {totalReviewsCount === 1 ? '' : 's'}
+              </span>
+            </div>
+          )}
           <a
             href={writeReviewUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700 sm:mt-0"
+            className={`mt-4 sm:mt-0 ${themeConfig.writeReviewButton}`}
           >
             Write a review
           </a>
@@ -370,7 +476,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
             <button
               onClick={handlePrev}
               aria-label="Previous reviews"
-              className="absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/60 p-2 opacity-80 shadow-lg transition-all hover:bg-white/90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:-left-4 md:-left-5"
+              className={`absolute left-0 top-1/2 z-20 -translate-y-1/2 p-2 sm:-left-3 md:-left-4 ${themeConfig.arrowButtonBg} rounded-full opacity-80 shadow-lg transition-all hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -378,7 +484,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className="h-5 w-5 text-gray-700 sm:h-6 sm:w-6"
+                className={`h-5 w-5 sm:h-6 sm:w-6 ${themeConfig.arrowButtonIconColor}`}
               >
                 <path
                   strokeLinecap="round"
@@ -389,20 +495,23 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
             </button>
           )}
 
-          <div
-            className={`mx-auto max-w-xs overflow-hidden sm:max-w-none md:mx-8`}
-          >
+          <div ref={viewportRef} className="mx-auto overflow-hidden">
             <div
-              className={`grid items-stretch gap-4 transition-transform duration-300 ease-in-out sm:gap-6`}
+              className={`flex transition-transform duration-500 ease-in-out space-x-${themeConfig.cardGapPx === 16 ? '4' : themeConfig.cardGapPx === 8 ? '2' : '4'}`} // Use Tailwind space-x for gap
               style={{
-                gridTemplateColumns: `repeat(${reviewsPerPage}, minmax(0, 1fr))`,
-                // transform: `translateX(-${(100 / reviewsPerPage) * (currentIndex % reviewsPerPage)}%)` // This transform approach is for continuous scroll, not needed for simple slice
+                transform: `translateX(${slideOffsetPx}px)`,
+                // Add padding to the track itself to ensure first/last cards are fully visible if viewport is edge-to-edge
+                // This padding should be roughly half the gap if space-x is used, or handled by viewport margins
+                paddingLeft: `${themeConfig.cardGapPx / 2}px`,
+                paddingRight: `${themeConfig.cardGapPx / 2}px`,
+                // To make the track itself have a margin for the arrows, if viewportRef is full width
+                // marginLeft: '20px', marginRight: '20px'
               }}
             >
-              {currentReviews.map((reviewItem) => (
+              {shuffledReviews.map((reviewItem) => (
                 <div
                   key={reviewItem.name || reviewItem.reviewId}
-                  className="min-w-0"
+                  className="flex-shrink-0" // Card itself will have fixed width
                 >
                   <ReviewCard review={reviewItem} />
                 </div>
@@ -414,7 +523,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
             <button
               onClick={handleNext}
               aria-label="Next reviews"
-              className="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/60 p-2 opacity-80 shadow-lg transition-all hover:bg-white/90 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:-right-4 md:-right-5"
+              className={`absolute right-0 top-1/2 z-20 -translate-y-1/2 p-2 sm:-right-3 md:-right-4 ${themeConfig.arrowButtonBg} rounded-full opacity-80 shadow-lg transition-all hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -422,7 +531,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className="h-5 w-5 text-gray-700 sm:h-6 sm:w-6"
+                className={`h-5 w-5 sm:h-6 sm:w-6 ${themeConfig.arrowButtonIconColor}`}
               >
                 <path
                   strokeLinecap="round"
