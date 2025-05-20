@@ -1,13 +1,6 @@
 'use client'
 
-import React, {
-  useState,
-  useEffect,
-  FC,
-  useCallback,
-  useMemo,
-  useRef,
-} from 'react'
+import React, { useState, useEffect, FC, useCallback, useRef } from 'react'
 import {
   GoogleReviewsWidgetProps,
   Review,
@@ -16,15 +9,15 @@ import {
 } from '../../models/reviews'
 
 const themeConfig = {
-  widgetBg: 'bg-slate-50', // Background for the entire widget area
+  widgetBg: 'bg-white', // Background for the entire widget area
   headerTextColor: 'text-gray-800', // Color for "Google Reviews" title
   ratingTextColor: 'text-gray-700', // Color for the average rating number
   basedOnTextColor: 'text-gray-500', // Color for "based on X reviews"
   writeReviewButton:
-    'bg-blue-600 text-white px-5 py-2.5 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors',
-  arrowButtonBg: 'bg-white/60 hover:bg-white/90', // Background for prev/next arrows
-  arrowButtonIconColor: 'text-gray-700',
-  cardBg: 'bg-white',
+    'bg-green-900 text-white px-5 py-2.5 rounded-3xl text-md font-medium hover:bg-blue-700 transition-colors',
+  arrowButtonBg: 'bg-green-900/80 hover:bg-white/90', // Background for prev/next arrows
+  arrowButtonIconColor: 'text-gray-100',
+  cardBg: 'reviews-bg',
   cardBorder: 'border-gray-200',
   cardReviewerNameColor: 'text-gray-800',
   cardDateColor: 'text-gray-500',
@@ -40,36 +33,42 @@ const themeConfig = {
 }
 
 const GoogleLogoFull: FC<{ className?: string }> = ({
-  className = 'h-6 w-auto mr-2',
+  className = 'h-6 w-auto mr-2 inline',
 }) => (
   <svg
-    className={className}
-    viewBox="0 0 77 25"
-    fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    aria-labelledby="googleLogoTitle"
+    fill="none"
+    viewBox="0 0 85 36"
+    className={className}
   >
-    <title id="googleLogoTitle">Google Logo</title>
-    <path
-      d="M24.2002 12.1773C24.2002 13.8491 24.0511 15.3295 23.7621 16.6273H12.3047V9.96591H21.5091C21.5091 8.125 20.7636 6.60227 19.5114 5.56818L23.3409 1.99432C26.3091 4.63068 28.0023 8.08523 28.0023 12.1773C28.0023 12.9886 27.9277 13.7614 27.7784 14.5114V14.5057H12.3047V21.9886H24.0136C21.5841 24.0625 18.3091 25.0011 14.6205 25.0011C8.38864 25.0011 3.40909 20.1489 3.40909 14.0807C3.40909 8.0125 8.38864 3.16023 14.6205 3.16023C18.0932 3.16023 21.0136 4.30682 23.3409 6.375L19.5523 9.92045C17.8807 8.52841 16.3807 7.84773 14.6205 7.84773C10.9318 7.84773 7.96364 10.6773 7.96364 14.0807C7.96364 17.4841 10.9318 20.3136 14.6205 20.3136C18.7295 20.3136 20.9818 17.5284 21.5091 15.2045H14.5818V12.1773H24.2002Z"
-      fill="#4285F4"
-    />
-    <path
-      d="M34.0586 24.6091V7.80227H29.9223V3.56364H42.3518V7.80227H38.2155V24.6091H34.0586Z"
-      fill="#34A853"
-    />
-    <path
-      d="M50.4841 24.6091V10.8136C50.4841 8.78523 49.4227 7.43295 47.0977 7.43295C44.9216 7.43295 43.6318 8.70000 43.0659 9.8875L43.0227 7.80227H39.0977V24.6091H43.2341V15.8307C43.2341 13.092 44.5239 11.8477 46.2841 11.8477C47.9341 11.8477 48.5239 12.8818 48.5239 15.0295V24.6091H50.4841Z"
-      fill="#FBBC05"
-    />
-    <path
-      d="M50.7909 24.6091V7.80227H54.9273V9.60341L55.0136 9.60341C55.7159 8.52841 57.2591 7.43295 59.2705 7.43295C62.5886 7.43295 64.5091 9.60341 64.5091 13.4045V24.6091H60.3727V14.1318C60.3727 11.6943 59.1659 10.5182 57.0545 10.5182C55.1341 10.5182 53.9614 11.7341 53.3716 12.9216L53.2852 12.9216V24.6091H50.7909Z"
-      fill="#EA4335"
-    />
-    <path
-      d="M76.0159 14.0807C76.0159 20.1909 71.0364 25.0011 64.8045 25.0011C58.5727 25.0011 53.5932 20.1909 53.5932 14.0807C53.5932 7.97045 58.5727 3.16023 64.8045 3.16023C71.0364 3.16023 76.0159 7.97045 76.0159 14.0807ZM71.8795 14.0807C71.8795 10.6341 68.875 7.84773 64.8045 7.84773C60.7341 7.84773 57.7295 10.6341 57.7295 14.0807C57.7295 17.5284 60.7341 20.3136 64.8045 20.3136C68.875 20.3136 71.8795 17.5284 71.8795 14.0807Z"
-      fill="#4285F4"
-    />
+    <g clip-path="url(#a-15)">
+      <path
+        fill="#4285F4"
+        d="M20.778 13.43h-9.862v2.927h6.994c-.345 4.104-3.76 5.854-6.982 5.854-4.123 0-7.72-3.244-7.72-7.791 0-4.43 3.429-7.841 7.73-7.841 3.317 0 5.272 2.115 5.272 2.115l2.049-2.122s-2.63-2.928-7.427-2.928C4.725 3.644 0 8.8 0 14.367c0 5.457 4.445 10.777 10.988 10.777 5.756 0 9.969-3.942 9.969-9.772 0-1.23-.179-1.941-.179-1.941Z"
+      ></path>
+      <path
+        fill="#EA4335"
+        d="M28.857 11.312c-4.047 0-6.947 3.163-6.947 6.853 0 3.744 2.813 6.966 6.994 6.966 3.786 0 6.887-2.893 6.887-6.886 0-4.576-3.607-6.933-6.934-6.933Zm.04 2.714c1.99 0 3.876 1.609 3.876 4.201 0 2.538-1.878 4.192-3.885 4.192-2.205 0-3.945-1.766-3.945-4.212 0-2.394 1.718-4.181 3.954-4.181Z"
+      ></path>
+      <path
+        fill="#FBBC05"
+        d="M43.965 11.312c-4.046 0-6.946 3.163-6.946 6.853 0 3.744 2.813 6.966 6.994 6.966 3.785 0 6.886-2.893 6.886-6.886 0-4.576-3.607-6.933-6.934-6.933Zm.04 2.714c1.99 0 3.876 1.609 3.876 4.201 0 2.538-1.877 4.192-3.885 4.192-2.205 0-3.945-1.766-3.945-4.212 0-2.394 1.718-4.181 3.955-4.181Z"
+      ></path>
+      <path
+        fill="#4285F4"
+        d="M58.783 11.319c-3.714 0-6.634 3.253-6.634 6.904 0 4.16 3.385 6.918 6.57 6.918 1.97 0 3.017-.782 3.79-1.68v1.363c0 2.384-1.448 3.812-3.633 3.812-2.11 0-3.169-1.57-3.537-2.46l-2.656 1.11c.943 1.992 2.839 4.07 6.215 4.07 3.693 0 6.508-2.327 6.508-7.205V11.734h-2.897v1.17c-.89-.96-2.109-1.585-3.726-1.585Zm.269 2.709c1.821 0 3.69 1.554 3.69 4.21 0 2.699-1.865 4.187-3.73 4.187-1.98 0-3.823-1.608-3.823-4.161 0-2.653 1.914-4.236 3.863-4.236Z"
+      ></path>
+      <path
+        fill="#EA4335"
+        d="M78.288 11.302c-3.504 0-6.446 2.788-6.446 6.901 0 4.353 3.28 6.934 6.782 6.934 2.924 0 4.718-1.6 5.789-3.032l-2.389-1.59c-.62.962-1.656 1.902-3.385 1.902-1.943 0-2.836-1.063-3.39-2.094l9.266-3.845-.48-1.126c-.896-2.207-2.984-4.05-5.747-4.05Zm.12 2.658c1.263 0 2.171.671 2.557 1.476l-6.187 2.586c-.267-2.002 1.63-4.062 3.63-4.062Z"
+      ></path>
+      <path fill="#34A853" d="M67.425 24.727h3.044V4.359h-3.044v20.368Z"></path>
+    </g>
+    <defs>
+      <clipPath id="a-15">
+        <path fill="#fff" d="M0 0h84.515v36H0z"></path>
+      </clipPath>
+    </defs>
   </svg>
 )
 
@@ -443,21 +442,20 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-6 flex flex-col items-center justify-between sm:flex-row">
           <div className="flex items-center">
-            <GoogleLogoFull />
+            <span
+              className={`text-4xl font-bold ${themeConfig.ratingTextColor} mr-1`}
+              aria-label={`Average rating: ${averageRating.toFixed(1)} out of 5 stars`}
+            >
+              {averageRating.toFixed(1)}
+            </span>
             {/* Removed "Reviews" text as logo implies it, or add back if preferred */}
           </div>
           {totalReviewsCount > 0 && (
             <div className="mt-2 flex items-center sm:mt-0">
-              <span
-                className={`text-lg font-bold ${themeConfig.ratingTextColor} mr-1`}
-                aria-label={`Average rating: ${averageRating.toFixed(1)} out of 5 stars`}
-              >
-                {averageRating.toFixed(1)}
-              </span>
               <StarRating rating={averageRating} starSize="h-5 w-5" />
               <span className={`ml-2 text-sm ${themeConfig.basedOnTextColor}`}>
-                based on {totalReviewsCount} review
-                {totalReviewsCount === 1 ? '' : 's'}
+                {totalReviewsCount} review
+                {totalReviewsCount === 1 ? '' : 's'} on <GoogleLogoFull />
               </span>
             </div>
           )}
