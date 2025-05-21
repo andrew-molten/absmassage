@@ -28,7 +28,7 @@ const themeConfig = {
   googleIconColor: 'text-gray-400', // For the small Google G on cards
   fontFamily: 'font-sans', // Overall font family
   // Sizing and Gap Configuration (in pixels)
-  cardWidthPx: 290, // Nominal width of a single review card
+  cardWidthPx: 235, // Nominal width of a single review card
   cardGapPx: 16, // Gap between review cards (Tailwind space-4 = 1rem = 16px)
 }
 
