@@ -7,39 +7,33 @@ import {
   Review,
   ReviewCardProps as OriginalReviewCardProps, // Rename to avoid conflict if we redefine
   StarRatingProps,
-  Reviewer, // Make sure Reviewer is exported if it's a separate interface
-} from '../../models/reviews' // Adjust path as necessary
+  // Reviewer, // Make sure Reviewer is exported if it's a separate interface
+} from '../../models/reviews'
 
-// #region Theme Configuration (User's version)
 const themeConfig = {
-  widgetBg: 'bg-white', // Background for the entire widget area
-  headerTextColor: 'text-gray-800', // Color for "Google Reviews" title
-  ratingTextColor: 'text-gray-700', // Color for the average rating number
-  basedOnTextColor: 'text-gray-500', // Color for "based on X reviews"
+  widgetBg: 'bg-white',
+  headerTextColor: 'text-gray-800', //"Google Reviews" title
+  ratingTextColor: 'text-gray-700', // average rating number
+  basedOnTextColor: 'text-gray-500', // "based on X reviews"
   writeReviewButton:
     'bg-green-900 text-white px-5 py-2.5 rounded-3xl text-md font-medium hover:bg-blue-700 transition-colors',
-  arrowButtonBg: 'bg-green-900/80 hover:bg-white/90', // Background for prev/next arrows
-  arrowButtonIconColor: 'text-gray-100',
+  arrowButtonBg: 'bg-green-900/80 hover:bg-black/90', // Background for prev/next arrows
+  arrowButtonIconColor: 'text-gray-50',
   cardBg: 'reviews-bg', // User's custom class
   cardBorder: 'border-gray-200',
   cardReviewerNameColor: 'text-gray-800',
   cardDateColor: 'text-gray-500',
   cardCommentColor: 'text-gray-600',
-  cardReadMoreColor: 'text-blue-600 hover:underline',
+  cardReadMoreColor: 'text-emerald-600 hover:underline',
   starColorFilled: 'text-yellow-400',
   starColorEmpty: 'text-gray-300',
   googleIconColor: 'text-gray-400', // For the small Google G on cards
   fontFamily: 'font-sans', // Overall font family
   cardBaseWidthPx: 200, // Base/Minimum width of a single review card
   cardGapPx: 16, // Gap between review cards (Tailwind space-4 = 1rem = 16px)
-  // Extra 40px for gaps consideration (as per user request, though cardGapPx will be primary for calculation)
-  // This might be interpreted as overall padding for the container, or additional space for arrows.
-  // For now, focusing on cardGapPx for inter-card spacing.
   extraSpaceThresholdPx: 40,
 }
-// #endregion
 
-// #region SVG Icons (User's versions)
 const GoogleLogoFull: FC<{ className?: string }> = ({
   className = 'h-6 w-auto mr-2 inline',
 }) => (
@@ -231,13 +225,16 @@ const ReviewCard: FC<ReviewCardPropsWithWidth> = ({
 
   return (
     <div
-      className={`${themeConfig.cardBg} flex flex-col rounded-3xl  p-4 md:p-5`}
+      className={`${themeConfig.cardBg} flex flex-col rounded-3xl p-4 md:p-5`}
       style={{
-        width: `${actualCardWidthPx}px`, // Use dynamically calculated width
-        minHeight: '280px',
+        width: `${actualCardWidthPx}px`,
+        minHeight: '280px', // Or adjust as needed, can also be dynamic
       }}
     >
       <div className="mb-3 flex items-start">
+        {' '}
+        {/* Main row for avatar + text info */}
+        {/* Avatar Image/Initials Div */}
         {profilePhotoUrl && !imgError ? (
           <img
             src={profilePhotoUrl}
@@ -251,26 +248,30 @@ const ReviewCard: FC<ReviewCardPropsWithWidth> = ({
             {getInitials(reviewerName)}
           </div>
         )}
-        <div className="min-w-0 flex-grow">
+        {/* Text content: Name, Date, Stars */}
+        {/* This div is next to the avatar */}
+        <div className="flex flex-col ">
           <p
-            className={`font-semibold ${themeConfig.cardReviewerNameColor} truncate text-sm`}
+            className={`font-semibold ${themeConfig.cardReviewerNameColor} mb-0 mt-0 truncate text-sm`}
             title={reviewerName}
           >
             {reviewerName}
           </p>
-          <StarRating
-            rating={review.starRating}
-            starSize="h-4 w-4"
-            label={`Rating by ${reviewerName}: ${review.starRating}`}
-          />
+          <p
+            className={`text-xs ${themeConfig.cardDateColor} mt-0 whitespace-nowrap`}
+            // You might also consider adding mt-0 here if there are global styles affecting <p> top margins
+          >
+            {formatDate(review.createTime || review.updateTime)}
+          </p>
         </div>
       </div>
-      <p className={`text-xs ${themeConfig.cardDateColor} mb-2`}>
-        {formatDate(review.createTime || review.updateTime)}
-      </p>
+      <StarRating
+        rating={review.starRating}
+        starSize="h-6 w-6"
+        label={`Rating by ${reviewerName}: ${review.starRating}`}
+      />
       <div
-        className={`text-sm ${themeConfig.cardCommentColor} mb-2 flex-grow overflow-y-auto whitespace-pre-line`}
-        // style={{ maxHeight: '100px' }}
+        className={`text-md ${themeConfig.cardCommentColor} mb-0 flex-grow overflow-y-auto whitespace-pre-line `}
       >
         {comment.length <= MAX_LENGTH || isExpanded
           ? comment
@@ -279,14 +280,14 @@ const ReviewCard: FC<ReviewCardPropsWithWidth> = ({
       {comment.length > MAX_LENGTH && (
         <button
           onClick={toggleReadMore}
-          className={`text-sm ${themeConfig.cardReadMoreColor} mt-1 self-start`}
+          className={`text-sm ${themeConfig.cardReadMoreColor} mt-0 self-start`}
           aria-expanded={isExpanded}
         >
           {isExpanded ? 'Read less' : 'Read more'}
         </button>
       )}
       <div className="mt-auto flex justify-end pt-2">
-        <GoogleGIcon className={`h-5 w-5 ${themeConfig.googleIconColor}`} />
+        <GoogleGIcon className={`h-7 w-7 ${themeConfig.googleIconColor}`} />
       </div>
     </div>
   )
@@ -361,12 +362,6 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
       }
     }
   }, [])
-
-  // useEffect(() => {
-  //   updateLayoutMetrics() // Initial calculation
-  //   window.addEventListener('resize', updateLayoutMetrics)
-  //   return () => window.removeEventListener('resize', updateLayoutMetrics)
-  // }, [updateLayoutMetrics])
 
   useEffect(() => {
     if (reviews.length > 0) {
@@ -497,7 +492,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
     <div className={`${themeConfig.widgetBg} py-8 ${themeConfig.fontFamily}`}>
       <div className="mx-auto max-w-6xl px-4">
         {/* Header (User's version) */}
-        <div className="mb-6 flex flex-col items-center justify-between text-center sm:flex-row sm:text-left">
+        <div className="reviews-bg mb-6 flex flex-col items-center justify-between rounded-3xl p-6 text-center sm:flex-row sm:text-left">
           <div className="flex items-center">
             <span
               className={`text-4xl font-bold ${themeConfig.ratingTextColor} mr-2`}
@@ -506,14 +501,14 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
               {averageRating.toFixed(1)}
             </span>
             <div className="flex flex-col items-start">
-              <StarRating rating={averageRating} starSize="h-5 w-5" />
+              <StarRating rating={averageRating} starSize="h-6 w-6" />
               {totalReviewsCount > 0 && (
                 <span
                   className={`text-sm ${themeConfig.basedOnTextColor} mt-1`}
                 >
-                  Based on {totalReviewsCount} review
+                  {totalReviewsCount} review
                   {totalReviewsCount === 1 ? '' : 's'} on{' '}
-                  <GoogleLogoFull className="inline h-4 w-auto align-middle" />
+                  <GoogleLogoFull className="inline h-6 w-auto align-middle" />
                 </span>
               )}
             </div>
@@ -533,7 +528,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
             <button
               onClick={handlePrev}
               aria-label="Previous reviews"
-              className={`absolute left-0 top-1/2 z-20 -translate-y-1/2 p-2 sm:-left-3 md:-left-4 ${themeConfig.arrowButtonBg} rounded-full opacity-80 shadow-lg transition-all hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
+              className={`absolute left-0 top-1/2 z-20 -translate-y-1/2 p-2 sm:-left-3 md:-left-4 ${themeConfig.arrowButtonBg} rounded-full opacity-80 shadow-lg transition-all hover:opacity-100 focus:outline-none  focus:ring-offset-2`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -541,7 +536,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className={`h-5 w-5 sm:h-6 sm:w-6 ${themeConfig.arrowButtonIconColor}`}
+                className={`h-4 w-4 sm:h-5 sm:w-5 ${themeConfig.arrowButtonIconColor}`}
               >
                 <path
                   strokeLinecap="round"
@@ -586,7 +581,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
             <button
               onClick={handleNext}
               aria-label="Next reviews"
-              className={`absolute right-0 top-1/2 z-20 -translate-y-1/2 p-2 sm:-right-3 md:-right-4 ${themeConfig.arrowButtonBg} rounded-full opacity-80 shadow-lg transition-all hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
+              className={`absolute right-0 top-1/2 z-20 -translate-y-1/2 p-2 sm:-right-3 md:-right-4 ${themeConfig.arrowButtonBg} rounded-full opacity-80 shadow-lg transition-all hover:opacity-100 focus:outline-none  focus:ring-offset-2`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -594,7 +589,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className={`h-5 w-5 sm:h-6 sm:w-6 ${themeConfig.arrowButtonIconColor}`}
+                className={`h-4 w-4 sm:h-5 sm:w-5 ${themeConfig.arrowButtonIconColor}`}
               >
                 <path
                   strokeLinecap="round"
