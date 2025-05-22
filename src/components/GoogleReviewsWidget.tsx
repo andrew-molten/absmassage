@@ -362,11 +362,11 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
     }
   }, [])
 
-  useEffect(() => {
-    updateLayoutMetrics() // Initial calculation
-    window.addEventListener('resize', updateLayoutMetrics)
-    return () => window.removeEventListener('resize', updateLayoutMetrics)
-  }, [updateLayoutMetrics])
+  // useEffect(() => {
+  //   updateLayoutMetrics() // Initial calculation
+  //   window.addEventListener('resize', updateLayoutMetrics)
+  //   return () => window.removeEventListener('resize', updateLayoutMetrics)
+  // }, [updateLayoutMetrics])
 
   useEffect(() => {
     if (reviews.length > 0) {
@@ -436,6 +436,19 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
       setCurrentIndex(0)
     }
   }, [currentIndex, cardsToDisplay, shuffledReviews])
+
+  useEffect(() => {
+    // Use setTimeout to ensure DOM is ready
+    const timer = setTimeout(() => {
+      updateLayoutMetrics()
+    }, 100)
+
+    window.addEventListener('resize', updateLayoutMetrics)
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener('resize', updateLayoutMetrics)
+    }
+  }, [updateLayoutMetrics])
 
   const handlePrev = () => {
     setCurrentIndex((prev) => Math.max(0, prev - 1))
