@@ -30,7 +30,7 @@ const themeConfig = {
   starColorEmpty: 'text-gray-300',
   googleIconColor: 'text-gray-400', // For the small Google G on cards
   fontFamily: 'font-sans', // Overall font family
-  cardBaseWidthPx: 235, // Base/Minimum width of a single review card
+  cardBaseWidthPx: 200, // Base/Minimum width of a single review card
   cardGapPx: 16, // Gap between review cards (Tailwind space-4 = 1rem = 16px)
   // Extra 40px for gaps consideration (as per user request, though cardGapPx will be primary for calculation)
   // This might be interpreted as overall padding for the container, or additional space for arrows.
@@ -231,7 +231,7 @@ const ReviewCard: FC<ReviewCardPropsWithWidth> = ({
 
   return (
     <div
-      className={`${themeConfig.cardBg} rounded-lg border p-4 md:p-5 ${themeConfig.cardBorder} flex flex-col shadow-md`}
+      className={`${themeConfig.cardBg} flex flex-col rounded-3xl  p-4 md:p-5`}
       style={{
         width: `${actualCardWidthPx}px`, // Use dynamically calculated width
         minHeight: '280px',
@@ -270,7 +270,7 @@ const ReviewCard: FC<ReviewCardPropsWithWidth> = ({
       </p>
       <div
         className={`text-sm ${themeConfig.cardCommentColor} mb-2 flex-grow overflow-y-auto whitespace-pre-line`}
-        style={{ maxHeight: '100px' }}
+        // style={{ maxHeight: '100px' }}
       >
         {comment.length <= MAX_LENGTH || isExpanded
           ? comment
@@ -306,62 +306,32 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
   const [actualCardWidthPx, setActualCardWidthPx] = useState<number>(
     themeConfig.cardBaseWidthPx,
   )
+  const [cardGapPx, setCardGapPx] = useState<number>(themeConfig.cardGapPx)
 
   const viewportRef = useRef<HTMLDivElement>(null)
-
-  // const updateLayoutMetrics = useCallback(() => {
-  //   if (viewportRef.current) {
-  //     const viewportWidth = viewportRef.current.offsetWidth;
-  //     const { cardBaseWidthPx, cardGapPx, extraSpaceThresholdPx } = themeConfig;
-
-  //     // Determine max cards based on screen size category first
-  //     let maxCardsForBreakpoint = 1;
-  //     if (typeof window !== 'undefined') {
-  //       if (window.innerWidth >= 1280) maxCardsForBreakpoint = 4; // Desktop
-  //       else if (window.innerWidth >= 768) maxCardsForBreakpoint = 3; // Tablet
-  //     }
-
-  //     // How many cards can fit at their base width?
-  //     let numFitAtBase = Math.max(1, Math.floor( (viewportWidth + cardGapPx - extraSpaceThresholdPx) / (cardBaseWidthPx + cardGapPx) ));
-
-  //     // The actual number of cards to display is the minimum of what fits and the breakpoint max
-  //     const currentCardsToDisplay = Math.min(numFitAtBase, maxCardsForBreakpoint);
-  //     setCardsToDisplay(currentCardsToDisplay);
-
-  //     // Calculate the width for these cards
-  //     if (currentCardsToDisplay > 0) {
-  //       const totalGapWidth = (currentCardsToDisplay - 1) * cardGapPx;
-  //       // Subtract a bit more for overall padding/arrow space (extraSpaceThresholdPx)
-  //       const availableWidthForCards = viewportWidth - totalGapWidth - extraSpaceThresholdPx;
-  //       const calculatedCardWidth = Math.max(cardBaseWidthPx, availableWidthForCards / currentCardsToDisplay);
-  //       setActualCardWidthPx(calculatedCardWidth);
-  //     } else {
-  //       setActualCardWidthPx(cardBaseWidthPx); // Fallback
-  //     }
-  //   }
-  // }, []);
 
   const updateLayoutMetrics = useCallback(() => {
     if (viewportRef.current) {
       const viewportWidth = viewportRef.current.offsetWidth
-      const { cardBaseWidthPx, cardGapPx, extraSpaceThresholdPx } = themeConfig
-
+      console.log('viewportWidth', viewportWidth)
+      const { cardBaseWidthPx, extraSpaceThresholdPx } = themeConfig
       // Determine max cards based on screen size breakpoints
       let maxCardsForBreakpoint = 1
       if (typeof window !== 'undefined') {
         if (window.innerWidth >= 1280)
           maxCardsForBreakpoint = 4 // Desktop
-        else if (window.innerWidth >= 768)
+        else if (window.innerWidth >= 760)
           maxCardsForBreakpoint = 3 // Tablet
+        else if (window.innerWidth >= 450)
+          maxCardsForBreakpoint = 2 // Tablet
         else maxCardsForBreakpoint = 1 // Mobile
       }
 
       // Calculate how many cards can fit fully within the viewport
       // Include gaps between cards and extra space for padding/arrows
-      const availableWidth = viewportWidth - extraSpaceThresholdPx
-      const cardWidthWithGap = cardBaseWidthPx + cardGapPx
+      const cardWithGapWidth = cardBaseWidthPx + cardGapPx
       // Use floor to ensure only full cards are counted (no partials)
-      let numCardsFit = Math.floor(availableWidth / cardWidthWithGap)
+      let numCardsFit = Math.floor(viewportWidth / cardWithGapWidth)
 
       // Ensure at least one card and respect breakpoint maximum
       const currentCardsToDisplay = Math.max(
@@ -369,14 +339,16 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
         Math.min(numCardsFit, maxCardsForBreakpoint),
       )
       setCardsToDisplay(currentCardsToDisplay)
-
+      console.log('currentCardsToDisplay', currentCardsToDisplay)
       // Calculate actual card width to fill the available space
-      if (currentCardsToDisplay > 0) {
+      if (currentCardsToDisplay > 1) {
         // Total gap width for (currentCardsToDisplay - 1) gaps
         const totalGapWidth = (currentCardsToDisplay - 1) * cardGapPx
+        console.log('totalGapWidth', totalGapWidth)
+        // setCardGapPx(extraSpaceThresholdPx / (currentCardsToDisplay - 1))
+        console.log('cardGapPx', cardGapPx)
         // Available width for cards after accounting for gaps and padding
-        const availableWidthForCards =
-          viewportWidth - totalGapWidth - extraSpaceThresholdPx
+        const availableWidthForCards = viewportWidth - totalGapWidth
         // Distribute available width across cards, but not below base width
         const calculatedCardWidth = Math.max(
           cardBaseWidthPx,
@@ -385,7 +357,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
         setActualCardWidthPx(calculatedCardWidth)
       } else {
         // Fallback to base width if no cards can be displayed
-        setActualCardWidthPx(cardBaseWidthPx)
+        setActualCardWidthPx(viewportWidth)
       }
     }
   }, [])
@@ -475,8 +447,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
     )
   }
 
-  const slideOffsetPx =
-    -currentIndex * (actualCardWidthPx + themeConfig.cardGapPx)
+  const slideOffsetPx = -currentIndex * (actualCardWidthPx + cardGapPx)
 
   const canShowPrev = currentIndex > 0
   const canShowNext =
@@ -585,7 +556,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
                     // Or, more simply, apply margin-right to all but the last one in the whole track
                     marginRight:
                       index < shuffledReviews.length - 1
-                        ? `${themeConfig.cardGapPx}px`
+                        ? `${cardGapPx}px`
                         : '0px',
                   }}
                 >
