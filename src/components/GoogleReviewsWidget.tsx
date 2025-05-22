@@ -35,7 +35,7 @@ const themeConfig = {
   // Extra 40px for gaps consideration (as per user request, though cardGapPx will be primary for calculation)
   // This might be interpreted as overall padding for the container, or additional space for arrows.
   // For now, focusing on cardGapPx for inter-card spacing.
-  extraSpaceThresholdPx: 40, 
+  extraSpaceThresholdPx: 40,
 }
 // #endregion
 
@@ -120,11 +120,21 @@ const StarRating: FC<StarRatingProps> = ({
 
   if (typeof rating === 'string') {
     switch (rating) {
-      case 'FIVE_STAR': numericRating = 5; break
-      case 'FOUR_STAR': numericRating = 4; break
-      case 'THREE_STAR': numericRating = 3; break
-      case 'TWO_STAR': numericRating = 2; break
-      case 'ONE_STAR': numericRating = 1; break
+      case 'FIVE_STAR':
+        numericRating = 5
+        break
+      case 'FOUR_STAR':
+        numericRating = 4
+        break
+      case 'THREE_STAR':
+        numericRating = 3
+        break
+      case 'TWO_STAR':
+        numericRating = 2
+        break
+      case 'ONE_STAR':
+        numericRating = 1
+        break
       default:
         const parsedRating = parseFloat(rating)
         numericRating = isNaN(parsedRating)
@@ -184,10 +194,13 @@ const formatDate = (dateString?: string | null): string => {
 
 // Redefine ReviewCardProps to include actualCardWidthPx
 interface ReviewCardPropsWithWidth extends OriginalReviewCardProps {
-  actualCardWidthPx: number;
+  actualCardWidthPx: number
 }
 
-const ReviewCard: FC<ReviewCardPropsWithWidth> = ({ review, actualCardWidthPx }) => {
+const ReviewCard: FC<ReviewCardPropsWithWidth> = ({
+  review,
+  actualCardWidthPx,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false)
   const [imgError, setImgError] = useState(false)
   const MAX_LENGTH = 120
@@ -221,7 +234,7 @@ const ReviewCard: FC<ReviewCardPropsWithWidth> = ({ review, actualCardWidthPx })
       className={`${themeConfig.cardBg} rounded-lg border p-4 md:p-5 ${themeConfig.cardBorder} flex flex-col shadow-md`}
       style={{
         width: `${actualCardWidthPx}px`, // Use dynamically calculated width
-        minHeight: '280px', 
+        minHeight: '280px',
       }}
     >
       <div className="mb-3 flex items-start">
@@ -288,126 +301,187 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
   const [totalReviewsCount, setTotalReviewsCount] = useState<number>(0)
   const [shuffledReviews, setShuffledReviews] = useState<Review[]>([])
   const [currentIndex, setCurrentIndex] = useState<number>(0)
-  
-  const [cardsToDisplay, setCardsToDisplay] = useState<number>(1);
-  const [actualCardWidthPx, setActualCardWidthPx] = useState<number>(themeConfig.cardBaseWidthPx);
+
+  const [cardsToDisplay, setCardsToDisplay] = useState<number>(1)
+  const [actualCardWidthPx, setActualCardWidthPx] = useState<number>(
+    themeConfig.cardBaseWidthPx,
+  )
 
   const viewportRef = useRef<HTMLDivElement>(null)
 
+  // const updateLayoutMetrics = useCallback(() => {
+  //   if (viewportRef.current) {
+  //     const viewportWidth = viewportRef.current.offsetWidth;
+  //     const { cardBaseWidthPx, cardGapPx, extraSpaceThresholdPx } = themeConfig;
+
+  //     // Determine max cards based on screen size category first
+  //     let maxCardsForBreakpoint = 1;
+  //     if (typeof window !== 'undefined') {
+  //       if (window.innerWidth >= 1280) maxCardsForBreakpoint = 4; // Desktop
+  //       else if (window.innerWidth >= 768) maxCardsForBreakpoint = 3; // Tablet
+  //     }
+
+  //     // How many cards can fit at their base width?
+  //     let numFitAtBase = Math.max(1, Math.floor( (viewportWidth + cardGapPx - extraSpaceThresholdPx) / (cardBaseWidthPx + cardGapPx) ));
+
+  //     // The actual number of cards to display is the minimum of what fits and the breakpoint max
+  //     const currentCardsToDisplay = Math.min(numFitAtBase, maxCardsForBreakpoint);
+  //     setCardsToDisplay(currentCardsToDisplay);
+
+  //     // Calculate the width for these cards
+  //     if (currentCardsToDisplay > 0) {
+  //       const totalGapWidth = (currentCardsToDisplay - 1) * cardGapPx;
+  //       // Subtract a bit more for overall padding/arrow space (extraSpaceThresholdPx)
+  //       const availableWidthForCards = viewportWidth - totalGapWidth - extraSpaceThresholdPx;
+  //       const calculatedCardWidth = Math.max(cardBaseWidthPx, availableWidthForCards / currentCardsToDisplay);
+  //       setActualCardWidthPx(calculatedCardWidth);
+  //     } else {
+  //       setActualCardWidthPx(cardBaseWidthPx); // Fallback
+  //     }
+  //   }
+  // }, []);
+
   const updateLayoutMetrics = useCallback(() => {
     if (viewportRef.current) {
-      const viewportWidth = viewportRef.current.offsetWidth;
-      const { cardBaseWidthPx, cardGapPx, extraSpaceThresholdPx } = themeConfig;
+      const viewportWidth = viewportRef.current.offsetWidth
+      const { cardBaseWidthPx, cardGapPx, extraSpaceThresholdPx } = themeConfig
 
-      // Determine max cards based on screen size category first
-      let maxCardsForBreakpoint = 1;
+      // Determine max cards based on screen size breakpoints
+      let maxCardsForBreakpoint = 1
       if (typeof window !== 'undefined') {
-        if (window.innerWidth >= 1280) maxCardsForBreakpoint = 4; // Desktop
-        else if (window.innerWidth >= 768) maxCardsForBreakpoint = 3; // Tablet
+        if (window.innerWidth >= 1280)
+          maxCardsForBreakpoint = 4 // Desktop
+        else if (window.innerWidth >= 768)
+          maxCardsForBreakpoint = 3 // Tablet
+        else maxCardsForBreakpoint = 1 // Mobile
       }
-      
-      // How many cards can fit at their base width?
-      let numFitAtBase = Math.max(1, Math.floor( (viewportWidth + cardGapPx - extraSpaceThresholdPx) / (cardBaseWidthPx + cardGapPx) ));
-      
-      // The actual number of cards to display is the minimum of what fits and the breakpoint max
-      const currentCardsToDisplay = Math.min(numFitAtBase, maxCardsForBreakpoint);
-      setCardsToDisplay(currentCardsToDisplay);
 
-      // Calculate the width for these cards
+      // Calculate how many cards can fit fully within the viewport
+      // Include gaps between cards and extra space for padding/arrows
+      const availableWidth = viewportWidth - extraSpaceThresholdPx
+      const cardWidthWithGap = cardBaseWidthPx + cardGapPx
+      // Use floor to ensure only full cards are counted (no partials)
+      let numCardsFit = Math.floor(availableWidth / cardWidthWithGap)
+
+      // Ensure at least one card and respect breakpoint maximum
+      const currentCardsToDisplay = Math.max(
+        1,
+        Math.min(numCardsFit, maxCardsForBreakpoint),
+      )
+      setCardsToDisplay(currentCardsToDisplay)
+
+      // Calculate actual card width to fill the available space
       if (currentCardsToDisplay > 0) {
-        const totalGapWidth = (currentCardsToDisplay - 1) * cardGapPx;
-        // Subtract a bit more for overall padding/arrow space (extraSpaceThresholdPx)
-        const availableWidthForCards = viewportWidth - totalGapWidth - extraSpaceThresholdPx; 
-        const calculatedCardWidth = Math.max(cardBaseWidthPx, availableWidthForCards / currentCardsToDisplay);
-        setActualCardWidthPx(calculatedCardWidth);
+        // Total gap width for (currentCardsToDisplay - 1) gaps
+        const totalGapWidth = (currentCardsToDisplay - 1) * cardGapPx
+        // Available width for cards after accounting for gaps and padding
+        const availableWidthForCards =
+          viewportWidth - totalGapWidth - extraSpaceThresholdPx
+        // Distribute available width across cards, but not below base width
+        const calculatedCardWidth = Math.max(
+          cardBaseWidthPx,
+          availableWidthForCards / currentCardsToDisplay,
+        )
+        setActualCardWidthPx(calculatedCardWidth)
       } else {
-        setActualCardWidthPx(cardBaseWidthPx); // Fallback
+        // Fallback to base width if no cards can be displayed
+        setActualCardWidthPx(cardBaseWidthPx)
       }
     }
-  }, []);
-
+  }, [])
 
   useEffect(() => {
-    updateLayoutMetrics(); // Initial calculation
-    window.addEventListener('resize', updateLayoutMetrics);
-    return () => window.removeEventListener('resize', updateLayoutMetrics);
-  }, [updateLayoutMetrics]);
+    updateLayoutMetrics() // Initial calculation
+    window.addEventListener('resize', updateLayoutMetrics)
+    return () => window.removeEventListener('resize', updateLayoutMetrics)
+  }, [updateLayoutMetrics])
 
   useEffect(() => {
     if (reviews.length > 0) {
-      const newArray = [...reviews];
+      const newArray = [...reviews]
       for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
       }
-      setShuffledReviews(newArray);
-      setTotalReviewsCount(newArray.length);
+      setShuffledReviews(newArray)
+      setTotalReviewsCount(newArray.length)
     } else {
-      setShuffledReviews([]);
-      setTotalReviewsCount(0);
+      setShuffledReviews([])
+      setTotalReviewsCount(0)
     }
-    setCurrentIndex(0);
-  }, [reviews]);
+    setCurrentIndex(0)
+  }, [reviews])
 
   useEffect(() => {
     if (shuffledReviews.length > 0) {
       const sumOfRatings = shuffledReviews.reduce((acc, reviewItem) => {
-        let numericRating = 0;
+        let numericRating = 0
         if (typeof reviewItem.starRating === 'string') {
           switch (reviewItem.starRating) {
-            case 'FIVE_STAR': numericRating = 5; break;
-            case 'FOUR_STAR': numericRating = 4; break;
-            case 'THREE_STAR': numericRating = 3; break;
-            case 'TWO_STAR': numericRating = 2; break;
-            case 'ONE_STAR': numericRating = 1; break;
+            case 'FIVE_STAR':
+              numericRating = 5
+              break
+            case 'FOUR_STAR':
+              numericRating = 4
+              break
+            case 'THREE_STAR':
+              numericRating = 3
+              break
+            case 'TWO_STAR':
+              numericRating = 2
+              break
+            case 'ONE_STAR':
+              numericRating = 1
+              break
             default:
-              const parsedRating = parseFloat(reviewItem.starRating);
-              numericRating = isNaN(parsedRating) ? 0 : parsedRating;
-              break;
+              const parsedRating = parseFloat(reviewItem.starRating)
+              numericRating = isNaN(parsedRating) ? 0 : parsedRating
+              break
           }
         } else if (typeof reviewItem.starRating === 'number') {
-          numericRating = reviewItem.starRating;
+          numericRating = reviewItem.starRating
         }
-        return acc + Math.max(0, Math.min(numericRating, 5));
-      }, 0);
+        return acc + Math.max(0, Math.min(numericRating, 5))
+      }, 0)
       setAverageRating(
         parseFloat((sumOfRatings / shuffledReviews.length).toFixed(1)),
-      );
+      )
     } else {
-      setAverageRating(0);
+      setAverageRating(0)
     }
-  }, [shuffledReviews]);
+  }, [shuffledReviews])
 
   useEffect(() => {
     if (shuffledReviews.length > 0 && cardsToDisplay > 0) {
       const maxPossibleIndex = Math.max(
         0,
         shuffledReviews.length - cardsToDisplay,
-      );
+      )
       if (currentIndex > maxPossibleIndex) {
-        setCurrentIndex(maxPossibleIndex);
+        setCurrentIndex(maxPossibleIndex)
       }
     } else if (shuffledReviews.length === 0) {
-      setCurrentIndex(0);
+      setCurrentIndex(0)
     }
-  }, [currentIndex, cardsToDisplay, shuffledReviews]);
+  }, [currentIndex, cardsToDisplay, shuffledReviews])
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => Math.max(0, prev - 1));
-  };
+    setCurrentIndex((prev) => Math.max(0, prev - 1))
+  }
 
   const handleNext = () => {
     setCurrentIndex((prev) =>
       Math.min(prev + 1, shuffledReviews.length - cardsToDisplay),
-    );
-  };
+    )
+  }
 
-  const slideOffsetPx = -currentIndex * (actualCardWidthPx + themeConfig.cardGapPx);
+  const slideOffsetPx =
+    -currentIndex * (actualCardWidthPx + themeConfig.cardGapPx)
 
-  const canShowPrev = currentIndex > 0;
+  const canShowPrev = currentIndex > 0
   const canShowNext =
     shuffledReviews.length > 0 &&
-    currentIndex < shuffledReviews.length - cardsToDisplay;
+    currentIndex < shuffledReviews.length - cardsToDisplay
 
   if (shuffledReviews.length === 0) {
     return (
@@ -432,7 +506,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
           </a>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -448,12 +522,16 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
               {averageRating.toFixed(1)}
             </span>
             <div className="flex flex-col items-start">
-                <StarRating rating={averageRating} starSize="h-5 w-5" />
-                {totalReviewsCount > 0 && (
-                    <span className={`text-sm ${themeConfig.basedOnTextColor} mt-1`}>
-                        Based on {totalReviewsCount} review{totalReviewsCount === 1 ? '' : 's'} on <GoogleLogoFull className="h-4 w-auto inline align-middle" />
-                    </span>
-                )}
+              <StarRating rating={averageRating} starSize="h-5 w-5" />
+              {totalReviewsCount > 0 && (
+                <span
+                  className={`text-sm ${themeConfig.basedOnTextColor} mt-1`}
+                >
+                  Based on {totalReviewsCount} review
+                  {totalReviewsCount === 1 ? '' : 's'} on{' '}
+                  <GoogleLogoFull className="inline h-4 w-auto align-middle" />
+                </span>
+              )}
             </div>
           </div>
           <a
@@ -505,10 +583,16 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
                   style={{
                     // Apply margin for gap, except for the first item in the visible set if it's also the first overall
                     // Or, more simply, apply margin-right to all but the last one in the whole track
-                    marginRight: index < shuffledReviews.length -1 ? `${themeConfig.cardGapPx}px` : '0px',
+                    marginRight:
+                      index < shuffledReviews.length - 1
+                        ? `${themeConfig.cardGapPx}px`
+                        : '0px',
                   }}
                 >
-                  <ReviewCard review={reviewItem} actualCardWidthPx={actualCardWidthPx} />
+                  <ReviewCard
+                    review={reviewItem}
+                    actualCardWidthPx={actualCardWidthPx}
+                  />
                 </div>
               ))}
             </div>
