@@ -228,7 +228,7 @@ const ReviewCard: FC<ReviewCardPropsWithWidth> = ({
       className={`${themeConfig.cardBg} flex flex-col rounded-3xl p-4 md:p-5`}
       style={{
         width: `${actualCardWidthPx}px`,
-        minHeight: '280px', // Or adjust as needed, can also be dynamic
+        minHeight: '100px', // Or adjust as needed, can also be dynamic
       }}
     >
       <div className="mb-3 flex items-start">
