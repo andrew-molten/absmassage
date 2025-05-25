@@ -489,7 +489,9 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
   }
 
   return (
-    <div className={`${themeConfig.widgetBg} py-8 ${themeConfig.fontFamily}`}>
+    <div
+      className={`${themeConfig.widgetBg} py-8 ${themeConfig.fontFamily} reviews-container`}
+    >
       <div className="mx-auto max-w-6xl px-4">
         {/* Header (User's version) */}
         <div className="reviews-bg mb-6 flex flex-col items-center justify-between rounded-3xl p-6 text-center sm:flex-row sm:text-left">

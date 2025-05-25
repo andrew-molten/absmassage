@@ -77,12 +77,10 @@ export default function Page() {
         </p> */}
         <div className="break-line"></div>
       </div>
-      <div className="reviews-container">
-        <GoogleReviewsWidget
-          reviews={typedReviews}
-          writeReviewUrl={writeReviewUrl}
-        />
-      </div>
+      <GoogleReviewsWidget
+        reviews={typedReviews}
+        writeReviewUrl={writeReviewUrl}
+      />
       <div className="content-container remove-top-margin">
         <div className="break-line"></div>
         <div className="row">

@@ -5,8 +5,11 @@ import malasana from '../../../images/andrew/Malasana.webp'
 import Reviews from '../../components/Reviews'
 import React from 'react'
 import BookingEmbedded from '../../components/BookingEmbedded.tsx'
+import reviewData from '../../data/reviews.json'
+import { Review } from '../../../models/reviews.ts'
 
 import { Metadata } from 'next/types'
+import GoogleReviewsWidget from '../../components/GoogleReviewsWidget.tsx'
 
 export const metadata: Metadata = {
   title: 'Massage & Prices - Andrew Bolton Sports Massage',
@@ -16,7 +19,13 @@ export const metadata: Metadata = {
     canonical: 'https://andrewboltonsportsmassage.com/massageprices',
   },
 }
+const writeReviewUrl = 'https://g.page/AndrewBoltonSportsMassage/review?gm'
 export default function massageprices() {
+  const typedReviews: Review[] = reviewData.map((review) => ({
+    ...review,
+    // Assert that this specific property matches your 'Review' interface
+    starRating: review.starRating as Review['starRating'],
+  }))
   return (
     <div>
       <div className="heading-wrapper">
@@ -137,7 +146,10 @@ export default function massageprices() {
         </div>
         <div className="break-line"></div>
       </div>
-      <Reviews />
+      <GoogleReviewsWidget
+        reviews={typedReviews}
+        writeReviewUrl={writeReviewUrl}
+      />
 
       <BookingEmbedded />
       <div className="content-container">
