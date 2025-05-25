@@ -83,7 +83,6 @@ export default function Page() {
           writeReviewUrl={writeReviewUrl}
         />
       </div>
-      <Reviews />
       <div className="content-container remove-top-margin">
         <div className="break-line"></div>
         <div className="row">
