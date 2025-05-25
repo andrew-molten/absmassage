@@ -5,8 +5,9 @@ import Reviews from '../components/Reviews.tsx'
 import Slider from '../components/Slider.tsx'
 import { Metadata } from 'next'
 import Map from '../components/Map.tsx'
-import sampleApiReviews from '../data/reviews.json'
+import reviewData from '../data/reviews.json'
 import GoogleReviewsWidget from '../components/GoogleReviewsWidget.tsx'
+import { Review } from '../../models/reviews.ts'
 
 export const metadata: Metadata = {
   alternates: {
@@ -17,6 +18,11 @@ export const metadata: Metadata = {
 const writeReviewUrl = 'https://g.page/AndrewBoltonSportsMassage/review?gm'
 
 export default function Page() {
+  const typedReviews: Review[] = reviewData.map((review) => ({
+    ...review,
+    // Assert that this specific property matches your 'Review' interface
+    starRating: review.starRating as Review['starRating'],
+  }))
   return (
     <div>
       <Slider />
@@ -73,8 +79,8 @@ export default function Page() {
       </div>
       <div className="reviews-container">
         <GoogleReviewsWidget
-          reviews={sampleApiReviews}
-          writereviewUrl={writeReviewUrl}
+          reviews={typedReviews}
+          writeReviewUrl={writeReviewUrl}
         />
       </div>
       <Reviews />

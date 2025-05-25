@@ -16,7 +16,7 @@ const themeConfig = {
   ratingTextColor: 'text-gray-700', // average rating number
   basedOnTextColor: 'text-gray-500', // "based on X reviews"
   writeReviewButton:
-    'bg-green-900 text-white px-5 py-2.5 rounded-3xl text-md font-medium hover:bg-blue-700 transition-colors',
+    'bg-green-900 text-white px-5 py-2.5 rounded-3xl text-md font-medium hover:bg-green-900/80 transition-colors',
   arrowButtonBg: 'bg-green-900/80 hover:bg-black/90', // Background for prev/next arrows
   arrowButtonIconColor: 'text-gray-50',
   cardBg: 'reviews-bg', // User's custom class
