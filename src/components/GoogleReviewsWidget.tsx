@@ -28,7 +28,7 @@ const themeConfig = {
   starColorFilled: 'text-yellow-400',
   starColorEmpty: 'text-gray-300',
   googleIconColor: 'text-gray-400', // For the small Google G on cards
-  fontFamily: 'font-sans', // Overall font family
+  fontFamily: 'Raleway', // Overall font family
   cardBaseWidthPx: 200, // Base/Minimum width of a single review card
   cardGapPx: 16, // Gap between review cards (Tailwind space-4 = 1rem = 16px)
   extraSpaceThresholdPx: 40,
