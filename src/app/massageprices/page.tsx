@@ -40,9 +40,9 @@ export default function massageprices() {
               <br />
               45 mins - $80
               <br />
-              60 mins - $100
+              60 mins - $99
               <br />
-              75 mins - $120
+              75 mins - $119
               <br />
               90 mins - $135
               <br />
