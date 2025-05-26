@@ -1,13 +1,11 @@
 'use client'
 
 import React, { useState, useEffect, FC, useCallback, useRef } from 'react'
-// Assuming your models/reviews.ts or .tsx file exports these types
 import {
   GoogleReviewsWidgetProps,
   Review,
   ReviewCardProps as OriginalReviewCardProps, // Rename to avoid conflict if we redefine
   StarRatingProps,
-  // Reviewer, // Make sure Reviewer is exported if it's a separate interface
 } from '../../models/reviews'
 
 const themeConfig = {
@@ -17,7 +15,8 @@ const themeConfig = {
   basedOnTextColor: 'text-gray-500', // "based on X reviews"
   writeReviewButton:
     'bg-green-900 text-white px-5 py-2.5 rounded-3xl text-md font-medium hover:bg-green-900/80 transition-colors',
-  arrowButtonBg: 'bg-green-900/80 hover:bg-black/90', // Background for prev/next arrows
+  arrowButtonBg:
+    'bg-green-900/80 hover:bg-black/90 active:bg-black/90 focus:bg-green-900/80 focus:outline-none transition-colors duration-150', // Background for prev/next arrows
   arrowButtonIconColor: 'text-gray-50',
   cardBg: 'reviews-bg', // User's custom class
   cardBorder: 'border-gray-200',

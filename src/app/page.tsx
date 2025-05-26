@@ -1,7 +1,6 @@
 import React from 'react'
 import BookingEmbedded from '../components/BookingEmbedded.tsx'
 import Mailchimp from '../components/Mailchimp.tsx'
-import Reviews from '../components/Reviews.tsx'
 import Slider from '../components/Slider.tsx'
 import { Metadata } from 'next'
 import Map from '../components/Map.tsx'
