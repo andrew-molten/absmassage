@@ -31,6 +31,7 @@ const themeConfig = {
   cardBaseWidthPx: 200, // Base/Minimum width of a single review card
   cardGapPx: 16, // Gap between review cards (Tailwind space-4 = 1rem = 16px)
   extraSpaceThresholdPx: 40,
+  oneCardWidthPercentage: 0.92, // % of viewport width
 }
 
 const GoogleLogoFull: FC<{ className?: string }> = ({
@@ -258,7 +259,6 @@ const ReviewCard: FC<ReviewCardPropsWithWidth> = ({
           </p>
           <p
             className={`text-xs ${themeConfig.cardDateColor} mt-0 whitespace-nowrap`}
-            // You might also consider adding mt-0 here if there are global styles affecting <p> top margins
           >
             {formatDate(review.createTime || review.updateTime)}
           </p>
@@ -291,7 +291,6 @@ const ReviewCard: FC<ReviewCardPropsWithWidth> = ({
     </div>
   )
 }
-// #endregion
 
 const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
   reviews = [],
@@ -313,7 +312,6 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
   const updateLayoutMetrics = useCallback(() => {
     if (viewportRef.current) {
       const viewportWidth = viewportRef.current.offsetWidth
-      console.log('viewportWidth', viewportWidth)
       const { cardBaseWidthPx, extraSpaceThresholdPx } = themeConfig
       // Determine max cards based on screen size breakpoints
       let maxCardsForBreakpoint = 1
@@ -339,15 +337,11 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
         Math.min(numCardsFit, maxCardsForBreakpoint),
       )
       setCardsToDisplay(currentCardsToDisplay)
-      console.log('currentCardsToDisplay', currentCardsToDisplay)
       // Calculate actual card width to fill the available space
       if (currentCardsToDisplay > 1) {
-        // Total gap width for (currentCardsToDisplay - 1) gaps
-        const totalGapWidth = (currentCardsToDisplay - 1) * cardGapPx
-        console.log('totalGapWidth', totalGapWidth)
-        // setCardGapPx(extraSpaceThresholdPx / (currentCardsToDisplay - 1))
-        console.log('cardGapPx', cardGapPx)
-        // Available width for cards after accounting for gaps and padding
+        setCardGapPx(themeConfig.cardGapPx)
+        const totalGapWidth =
+          (currentCardsToDisplay - 1) * themeConfig.cardGapPx
         const availableWidthForCards = viewportWidth - totalGapWidth
         // Distribute available width across cards, but not below base width
         const calculatedCardWidth = Math.max(
@@ -356,8 +350,11 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
         )
         setActualCardWidthPx(calculatedCardWidth)
       } else {
-        // Fallback to base width if no cards can be displayed
-        setActualCardWidthPx(viewportWidth)
+        // 1 or 0 cards
+        setActualCardWidthPx(themeConfig.oneCardWidthPercentage * viewportWidth)
+        setCardGapPx(
+          0.5 * (1 - themeConfig.oneCardWidthPercentage) * viewportWidth,
+        )
       }
     }
   }, [])
@@ -489,11 +486,19 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
 
   return (
     <div
-      className={`${themeConfig.widgetBg} py-8 ${themeConfig.fontFamily} reviews-container`}
+      className={`${themeConfig.widgetBg} ${themeConfig.fontFamily} reviews-container`}
     >
-      <div className="mx-auto max-w-6xl px-4">
-        {/* Header (User's version) */}
-        <div className="reviews-bg mb-6 flex flex-col items-center justify-between rounded-3xl p-6 text-center sm:flex-row sm:text-left">
+      <div className="mx-auto max-w-6xl px-2">
+        {/* Header */}
+        <div
+          className={`reviews-bg mx-auto mb-6 flex flex-col items-center justify-between rounded-3xl p-6 text-center sm:flex-row sm:text-left`}
+          style={{
+            width:
+              cardsToDisplay === 1 && viewportRef.current
+                ? `${themeConfig.oneCardWidthPercentage * viewportRef.current.offsetWidth}px`
+                : '100%',
+          }}
+        >
           <div className="flex items-center">
             <span
               className={`text-4xl font-bold ${themeConfig.ratingTextColor} mr-2`}
@@ -559,12 +564,16 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
               {shuffledReviews.map((reviewItem, index) => (
                 <div
                   key={reviewItem.name || reviewItem.reviewId}
-                  className="flex-shrink-0"
+                  className={`flex-shrink-0 ${cardsToDisplay === 1 ? 'mx-auto' : ''}`}
                   style={{
                     // Apply margin for gap, except for the first item in the visible set if it's also the first overall
                     // Or, more simply, apply margin-right to all but the last one in the whole track
                     marginRight:
                       index < shuffledReviews.length - 1
+                        ? `${cardGapPx}px`
+                        : '0px',
+                    marginLeft:
+                      index === 0 && cardsToDisplay === 1
                         ? `${cardGapPx}px`
                         : '0px',
                   }}
