@@ -91,13 +91,15 @@ export default function Page() {
               <br />
               45 mins - $80
               <br />
-              60 mins - $100
+              60 mins - $99
               <br />
-              75 mins - $120
+              75 mins - $119
               <br />
-              90 mins - $140
+              90 mins - $135
               <br />
-              120 mins - $190
+              105 mins - $150
+              <br />
+              120 mins - $170
             </p>
           </div>
           <div className="column center">
@@ -107,8 +109,11 @@ export default function Page() {
               <br />
               75 mins - $109
               <br />
-              90 mins - $129
+              90 mins - $125
               <br />
+              105 mins - $139
+              <br />
+              120 mins - $159
             </p>
           </div>
         </div>
