@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
-    "types": [
-      "vite/client",
-      "node"
-    ],
+    "types": ["vite/client", "node"],
     "target": "es2020",
     "jsx": "preserve",
     "module": "ES2020",
@@ -22,20 +19,14 @@
         "name": "next"
       }
     ],
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "resolveJsonModule": true
   },
   "include": [
-    "./client",
+    "./src/**/*.ts",
     "./dist/types/**/*.ts",
     "./next-env.d.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "./node_modules"
-  ]
+  "exclude": ["./node_modules"]
 }

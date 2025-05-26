@@ -1,22 +1,30 @@
+import React from 'react'
 import massageSpace from '../../../images/slider/massage-space.webp'
 import andrewMassaging from '../../../images/slider/andrew-massaging.webp'
 import neckMassage from '../../../images/slider/Andrew-Bolton-Sports-Massage(sm).webp'
 import malasana from '../../../images/andrew/Malasana.webp'
-import Reviews from '../../components/Reviews'
-import React from 'react'
 import BookingEmbedded from '../../components/BookingEmbedded.tsx'
+import reviewData from '../../data/reviews.json'
+import { Review } from '../../../models/reviews.ts'
 
 import { Metadata } from 'next/types'
+import GoogleReviewsWidget from '../../components/GoogleReviewsWidget.tsx'
 
 export const metadata: Metadata = {
   title: 'Massage & Prices - Andrew Bolton Sports Massage',
   description:
-    'Explore professional massage services with options like deep tissue, sports, and relaxing massages. Affordable prices from $55 for 30 minutes to $90 for 60 minutes. Intro offer available. Book now for a personalized experience tailored to your needs.',
+    'Intro offer: $60 for 30 mins, $80 for 45 mins, $89 for 60 mins, $109 for 75 mins, $125 for 90 mins, $139 for 105 mins, $159 for 120 mins. Read more about my services to discover what will work best for you.',
   alternates: {
     canonical: 'https://andrewboltonsportsmassage.com/massageprices',
   },
 }
+const writeReviewUrl = 'https://g.page/AndrewBoltonSportsMassage/review?gm'
 export default function massageprices() {
+  const typedReviews: Review[] = reviewData.map((review) => ({
+    ...review,
+    // Assert that this specific property matches 'Review' interface
+    starRating: review.starRating as Review['starRating'],
+  }))
   return (
     <div>
       <div className="heading-wrapper">
@@ -31,13 +39,15 @@ export default function massageprices() {
               <br />
               45 mins - $80
               <br />
-              60 mins - $100
+              60 mins - $99
               <br />
-              75 mins - $120
+              75 mins - $119
               <br />
-              90 mins - $140
+              90 mins - $135
               <br />
-              120 mins - $190
+              105 mins - $150
+              <br />
+              120 mins - $170
             </p>
           </div>
           <div className="column center">
@@ -47,8 +57,11 @@ export default function massageprices() {
               <br />
               75 mins - $109
               <br />
-              90 mins - $129
+              90 mins - $125
               <br />
+              105 mins - $139
+              <br />
+              120 mins - $159
             </p>
           </div>
         </div>
@@ -137,7 +150,10 @@ export default function massageprices() {
         </div>
         <div className="break-line"></div>
       </div>
-      <Reviews />
+      <GoogleReviewsWidget
+        reviews={typedReviews}
+        writeReviewUrl={writeReviewUrl}
+      />
 
       <BookingEmbedded />
       <div className="content-container">

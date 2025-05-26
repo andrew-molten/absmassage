@@ -1,0 +1,78 @@
+[
+  {
+    "name": "accounts/9712041106034458949/reviews/ChZDSUhNMG9nS0VJQ0FnTUNZLUlQSVNnEAE",
+    "reviewId": "ChZDSUhNMG9nS0VJQ0FnTUNZLUlQSVNnEAE",
+    "reviewer": {
+      "displayName": "Bradlyn Goldstone",
+      "profilePhotoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjXtMfNKtOhB2jOTLSM9kXiCcK5JiiCQQZSwBFc1qQDQu2Pon3vL=s40-c-rp-mo-br100",
+      "reviewCount": "1 review",
+      "photoCount": "0 photos"
+    },
+    "starRating": "FIVE_STAR",
+    "comment": "First professional massage I’ve had, Definitely a 5 star service! Very thorough consultation, asked the right questions, and catered the massage to my main concerns. I will definitely be back to see Andrew",
+    "createTime": "2025-05-05T00:00:00Z",
+    "updateTime": null,
+    "isNew": true,
+    "shareUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnTUNZLUlQSVNnEAE!2m1!1s0x0:0xb55caf2c88c66b0b!3m1!1s2@1:CIHM0ogKEICAgMCY-IPISg%7CCgsIjNLMwAYQyIvGRg%7C?hl=en-GB"
+  },
+  {
+    "name": "accounts/1001/locations/2001/reviews/3001",
+    "reviewId": "3001",
+    "reviewer": {
+      "displayName": "Alex P.",
+      "profilePhotoUrl": "https://placehold.co/40x40/E0E0E0/777?text=AP"
+    },
+    "starRating": "FIVE_STAR",
+    "comment": "Absolutely brilliant! Felt like a new person after my session. Andrew really knows his stuff. Will be back for sure. This is a slightly longer review to test the 'Read more' functionality to see how it behaves when the text exceeds the predefined maximum length.",
+    "createTime": "2025-04-20T14:22:17Z",
+    "updateTime": "2025-04-20T14:25:30Z"
+  },
+  {
+    "name": "accounts/1001/locations/2001/reviews/3002",
+    "reviewId": "3002",
+    "reviewer": {
+      "displayName": "Sarah W.",
+      "profilePhotoUrl": null
+    },
+    "starRating": "FOUR_STAR",
+    "comment": "Great massage, very professional. Feeling much better.",
+    "createTime": "2025-03-10T09:15:00Z",
+    "updateTime": "2025-03-10T09:15:00Z"
+  },
+  {
+    "name": "accounts/1001/locations/2001/reviews/3003",
+    "reviewId": "3003",
+    "reviewer": {
+      "displayName": "Mike B.",
+      "profilePhotoUrl": "https://placehold.co/40x40/D1D5DB/4B5563?text=MB"
+    },
+    "starRating": "FIVE_STAR",
+    "comment": "Best sports massage I've had. Andrew is excellent and very attentive to problem areas. Highly recommended!",
+    "createTime": "2024-11-05T16:45:10Z",
+    "updateTime": "2024-11-05T16:45:10Z"
+  },
+  {
+    "name": "accounts/1001/locations/2001/reviews/3004",
+    "reviewId": "3004",
+    "reviewer": {
+      "displayName": "Laura K.",
+      "profilePhotoUrl": "https://placehold.co/40x40/A5B4FC/1E3A8A?text=LK"
+    },
+    "starRating": "FOUR_STAR",
+    "comment": "Very good service. Helped with my tight hamstrings. The online booking was easy too.",
+    "createTime": "2024-09-22T11:00:00Z",
+    "updateTime": "2024-09-22T11:05:00Z"
+  },
+  {
+    "name": "accounts/1001/locations/2001/reviews/3005",
+    "reviewId": "3005",
+    "reviewer": {
+      "displayName": "David G.",
+      "profilePhotoUrl": null
+    },
+    "starRating": "FIVE_STAR",
+    "comment": "Top class treatment. Andrew is a true professional and I always leave feeling significantly better. If you're looking for a sports massage, this is the place.",
+    "createTime": "2024-07-15T18:12:45Z",
+    "updateTime": "2024-07-15T18:12:45Z"
+  }
+]
