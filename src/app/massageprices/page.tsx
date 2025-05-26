@@ -6,6 +6,8 @@ import malasana from '../../../images/andrew/Malasana.webp'
 import BookingEmbedded from '../../components/BookingEmbedded.tsx'
 import reviewData from '../../data/reviews.json'
 import { Review } from '../../../models/reviews.ts'
+import IntroOfferPrices from './introOfferPrices.tsx'
+import Prices from './prices.tsx'
 
 import { Metadata } from 'next/types'
 import GoogleReviewsWidget from '../../components/GoogleReviewsWidget.tsx'
@@ -34,35 +36,11 @@ export default function massageprices() {
         <div className="row">
           <div className="column center">
             <h2 className="p-heading">Massage Prices</h2>
-            <p>
-              30 mins - $60
-              <br />
-              45 mins - $80
-              <br />
-              60 mins - $99
-              <br />
-              75 mins - $119
-              <br />
-              90 mins - $135
-              <br />
-              105 mins - $150
-              <br />
-              120 mins - $170
-            </p>
+            <Prices />
           </div>
           <div className="column center">
             <h2 className="p-heading">Intro offer</h2>
-            <p className="text-xl">
-              60 mins - $89
-              <br />
-              75 mins - $109
-              <br />
-              90 mins - $125
-              <br />
-              105 mins - $139
-              <br />
-              120 mins - $159
-            </p>
+            <IntroOfferPrices />
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import '../styles/Slider.scss'
-import { sliderImages } from '../../images/slider/sliderImages.ts'
+import { sliderImages } from '../../images/slider/sliderImages.js'
 import { useRef, useState, useEffect } from 'react'
 import { SliderImage } from '../../models/mainModels.ts'
 import Dot from './Dot.tsx'
