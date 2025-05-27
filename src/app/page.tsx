@@ -9,6 +9,7 @@ import GoogleReviewsWidget from '../components/GoogleReviewsWidget.tsx'
 import { Review } from '../../models/reviews.ts'
 import IntroOfferPrices from './massageprices/introOfferPrices.tsx'
 import Prices from './massageprices/prices.tsx'
+import BookNowButton from '../components/BookNowButton.tsx'
 
 export const metadata: Metadata = {
   alternates: {
@@ -76,6 +77,8 @@ export default function Page() {
           your preferences, whether you prefer deep tissue work or a lighter
           touch.
         </p> */}
+        <BookNowButton />
+
         <div className="break-line"></div>
       </div>
       <GoogleReviewsWidget
@@ -95,13 +98,6 @@ export default function Page() {
           </div>
         </div>
         <div className="break-line"></div>
-
-        <a
-          className="book-now-btn"
-          href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
-        >
-          Book Now
-        </a>
       </div>
       <Map page="home" />
       <BookingEmbedded />
