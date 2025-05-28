@@ -29,8 +29,10 @@ export default function Page() {
     <div>
       <Slider />
       <div className="content-container">
-        <h1 className="text-xl">{`Hi, I’m Andrew.`}</h1>
-        {/* <h2>Massaging since 2018.</h2> */}
+        <h1 className="text-2xl">
+          <strong>Move better. Relieve pain. Relax deeply.</strong>
+        </h1>
+        <h2 className="text-xl">{`Hi, I’m Andrew.`}</h2>
         <h2>
           I have 7 years experience specialising in{' '}
           <strong>Deep Tissue & Sports massage</strong>.
@@ -69,7 +71,7 @@ export default function Page() {
 
         <p>I'm down for a chat or you can sink into silence & relax.</p>
 
-        <p>Every massage is tailored to your needs & preferences.</p>
+        <p>Massage tailored to your needs & preferences.</p>
 
         {/* <p>
           {`I'm passionate about helping people live pain-free lives and believe that cultivating balance in our physical & mental well-being is key. I know how challenging it is to find that balance with lives outside of maintenance, so I focus on finding the small things that provide the biggest impact.`}
