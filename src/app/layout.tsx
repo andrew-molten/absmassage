@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="GTM-M3DPXCG" />
+      <GoogleTagManager gtmId="GTM-PSTX555" />
 
       <body>
         <NavBarSSR />
