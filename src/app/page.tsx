@@ -30,11 +30,10 @@ export default function Page() {
       <Slider />
       <div className="content-container">
         <h1 className="text-xl">{`Hi, I’m Andrew.`}</h1>
-        <h2>Massaging since 2018.</h2>
+        {/* <h2>Massaging since 2018.</h2> */}
         <h2>
-          I specialise in{' '}
-          <strong>Deep Tissue, Sports, Relaxation, and Prenatal massage</strong>
-          .
+          I have 7 years experience specialising in{' '}
+          <strong>Deep Tissue & Sports massage</strong>.
         </h2>
         {/* <p>Relieve your tension, heal your injuries & find lasting relief!</p>
         <p>{`I'm both strong & sensitive so I have a good sense of the perfect pressure but can always ease off or work deeper when needed. My space is always warm & you will leave feeling lighter than when you came in.`}</p> */}
@@ -42,30 +41,35 @@ export default function Page() {
         {/* <p>
           <strong>{`I use a combination of techniques to help you achieve results, whether that's to:`}</strong>
         </p> */}
-        <p>
-          Having overcome my own chronic pain with yoga & massage, I'm
-          passionate about helping you:
-        </p>
+        <p>I help people:</p>
         <ul className="ml-5 mt-5 text-left">
-          <li>🦵 Overcome injury</li>
-          <li className="mt-1">😌 Relieve pain</li>
-          <li className="mt-1">💆 Alleviate tension</li>
-          <li className="mt-1">🏃‍♂️ Restore mobility</li>
-          <li className="mt-1">🚵🏽‍♂️ Prepare for/recover from events</li>
-          <li className="mt-1">💆‍♀️ Or just relax</li>
+          <li>
+            <strong>🦵 Overcome injury</strong>
+          </li>
+          <li className="mt-1">
+            <strong>😌 Relieve pain</strong>
+          </li>
+          <li className="mt-1">
+            <strong>💆 Alleviate tension</strong>
+          </li>
+          <li className="mt-1">
+            <strong>🏃‍♂️ Restore mobility</strong>
+          </li>
+          <li className="mt-1">
+            <strong>🚵🏽‍♂️ Prepare for/recover from events</strong>
+          </li>
+          <li className="mt-1">
+            <strong>💆‍♀️ Relax</strong>
+          </li>
         </ul>
 
-        <p>I use a holistic approach to help release your tension.</p>
+        <p>I work holistically with body & breath to release tension.</p>
 
-        <p>A warm & calm space is key to your relaxation.</p>
+        {/* <p>A warm & calm space is key to your relaxation.</p> */}
 
-        <p>
-          I love having a chat! But equally encourage you to experience the
-          massage with your breath, allowing your muscles to relax a little more
-          with every exhale.
-        </p>
+        <p>I'm down for a chat or you can sink into silence & relax.</p>
 
-        <p>Each session is tailored to your needs, preferences & goals.</p>
+        <p>Every massage is tailored to your needs & preferences.</p>
 
         {/* <p>
           {`I'm passionate about helping people live pain-free lives and believe that cultivating balance in our physical & mental well-being is key. I know how challenging it is to find that balance with lives outside of maintenance, so I focus on finding the small things that provide the biggest impact.`}
