@@ -39,8 +39,8 @@ export default function RootLayout({
         <SpeedInsights />
         <Footer />
 
-        {/* <script src="./client/index.tsx" type="module"></script>
-        <script src="./client/cliniko.js" type="module"></script> */}
+        {/* <script src="./client/index.tsx" type="module"></script> */}
+        <script src="./client/cliniko.js" type="module"></script>
       </body>
     </html>
   )
