@@ -29,7 +29,7 @@ export default function Page() {
     <div>
       <Slider />
       <div className="content-container">
-        <h1 className="text-2xl">
+        <h1 className="text-center text-2xl sm:text-3xl">
           <strong>Move better. Relieve pain. Relax deeply.</strong>
         </h1>
         <h2 className="text-xl">{`Hi, I’m Andrew.`}</h2>
