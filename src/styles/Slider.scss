@@ -20,9 +20,9 @@
   max-height: 100%;
   object-fit: cover;
 }
-.slide:not(.vis) {
-  visibility: hidden;
-}
+// .slide:not(.vis) {
+//   visibility: hidden;
+// }
 .sl0 {
   transform: translateX(-100%);
 }
@@ -77,6 +77,7 @@
   }
   .sl-1 {
     transform: translateX(-150%);
+    visibility: hidden;
   }
   .sl0 {
     transform: translateX(-50%);
@@ -90,6 +91,9 @@
   }
   .sl3 {
     transform: translatex(200%);
+  }
+  .sl4 {
+    visibility: hidden;
   }
 }
 

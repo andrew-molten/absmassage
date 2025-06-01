@@ -13,6 +13,7 @@ function Slider() {
   const [windowWidth, setWindowWidth] = useState(0)
   const slides = useRef<HTMLDivElement[]>([])
   const sliderRef = useRef<HTMLDivElement>(null)
+  const numSlides = useRef<number>(0)
 
   // IMAGE LOAD
   useEffect(() => {
@@ -23,6 +24,7 @@ function Slider() {
         (image) => (image as HTMLImageElement).offsetHeight,
       )
       setImageHeights(loadedHeights)
+      numSlides.current = images.length
     }
 
     setWindowWidth(window.innerWidth)
@@ -95,7 +97,9 @@ function Slider() {
   function getSlideClass(index: number) {
     if (
       curSlide === index ||
-      (curSlide - 5 === index && windowWidth < 900 && windowWidth > 600)
+      (curSlide - (numSlides.current - 2) === index &&
+        windowWidth < 900 &&
+        windowWidth > 600)
     )
       return 'sl2 vis'
     if (curSlide + 1 === index) return 'sl3 vis'
@@ -106,7 +110,9 @@ function Slider() {
       return 'sl4'
     if (
       curSlide - 1 > index ||
-      (curSlide + 5 === index && windowWidth < 900 && windowWidth > 600)
+      (curSlide + (numSlides.current - 2) === index &&
+        windowWidth < 900 &&
+        windowWidth > 600)
     )
       return 'sl0 vis'
     if (curSlide + 1 < index) return 'sl4 vis'
