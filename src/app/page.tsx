@@ -93,14 +93,14 @@ export default function Page() {
       />
       <div className="content-container remove-top-margin">
         <div className="break-line"></div>
-        <div className="row">
-          <div className="column center">
-            <h2 className="p-heading remove-top-margin">Prices</h2>
-            <Prices />
+        <div className="row items-center">
+          <div className="column center ">
+            <h2 className="p-heading   remove-top-margin">Intro offer</h2>
+            <IntroOfferPrices />
           </div>
           <div className="column center">
-            <h2 className="p-heading">Intro offer</h2>
-            <IntroOfferPrices />
+            <h2 className="p-heading  sm:remove-top-margin">Prices</h2>
+            <Prices />
           </div>
         </div>
         <div className="break-line"></div>
