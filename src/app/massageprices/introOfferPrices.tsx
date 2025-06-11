@@ -6,9 +6,6 @@ export default function IntroOfferPrices() {
       75 min – $109
       <br />
       90 min – $125
-      <br />
-      1 hr 45 – $139
-      <br />2 hr – $159
     </p>
   )
 }

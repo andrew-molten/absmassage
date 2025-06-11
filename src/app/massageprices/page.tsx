@@ -15,7 +15,7 @@ import GoogleReviewsWidget from '../../components/GoogleReviewsWidget.tsx'
 export const metadata: Metadata = {
   title: 'Massage & Prices - Andrew Bolton Sports Massage',
   description:
-    'Intro offer: $60 for 30 mins, $80 for 45 mins, $89 for 60 mins, $109 for 75 mins, $125 for 90 mins, $139 for 105 mins, $159 for 120 mins. Read more about my services to discover what will work best for you.',
+    'Intro offer: $80 for 45 mins, $89 for 60 mins, $109 for 75 mins, $125 for 90 mins. Read more about my services to discover what will work best for you.',
   alternates: {
     canonical: 'https://andrewboltonsportsmassage.com/massageprices',
   },
@@ -33,14 +33,14 @@ export default function massageprices() {
         <h1 className="heading center italic">Massage</h1>
       </div>
       <div className="content-container">
-        <div className="row">
-          <div className="column center">
-            <h2 className="p-heading">Massage Prices</h2>
-            <Prices />
-          </div>
+        <div className="row  items-center">
           <div className="column center">
             <h2 className="p-heading">Intro offer</h2>
             <IntroOfferPrices />
+          </div>
+          <div className="column center">
+            <h2 className="p-heading">Massage Prices</h2>
+            <Prices />
           </div>
         </div>
 
