@@ -1,6 +1,6 @@
 export default function Prices() {
   return (
-    <p>
+    <p className="text-lg">
       45 min – $80
       <br />
       60 min – $99
