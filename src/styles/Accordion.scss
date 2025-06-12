@@ -1,0 +1,123 @@
+/* --- Base Styling --- */
+.accordion-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Space between items */
+}
+
+.accordion-item {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden; /* Ensures content doesn't spill out */
+  transition: all 0.3s ease-in-out;
+}
+
+.accordion-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none; /* Removes the default marker */
+}
+
+.accordion-title::-webkit-details-marker {
+  display: none; /* Hides the default marker for Safari */
+}
+
+.accordion-content {
+  padding: 0 1.25rem 1.25rem 1.25rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.accordion-content p {
+  margin: 0 0 1rem 0;
+}
+.accordion-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Arrow Styling & Animation --- */
+.accordion-arrow {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid #333;
+  border-right: 2px solid #333;
+  transform: rotate(135deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.accordion-item[open] > .accordion-title > .accordion-arrow {
+  transform: rotate(-45deg);
+}
+
+/* --- Style Variant 1: Sleek (Default) --- */
+.sleek .accordion-title {
+  transition: background-color 0.2s ease;
+}
+
+.sleek .accordion-title:hover {
+  background-color: #f7f7f7;
+}
+
+.sleek .accordion-item {
+  border-bottom: 1px solid #e5e7eb; /* Subtle separator */
+  border-radius: 0;
+}
+
+.sleek .accordion-item:first-of-type {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.sleek .accordion-item:last-of-type {
+  border-bottom: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* --- Add this to your RenderAccordion.css file --- */
+
+/* --- Style Variant 2: Minimal --- */
+.minimal .accordion-container {
+  gap: 0;
+}
+
+.minimal .accordion-item {
+  border-radius: 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.minimal .accordion-item:last-of-type {
+  border-bottom: none;
+}
+
+.minimal .accordion-title:hover {
+  color: #0070f3; /* Add a touch of color on hover */
+}
+
+/* --- Add this to your RenderAccordion.css file --- */
+
+/* --- Style Variant 3: Modern Card --- */
+.modern-card .accordion-container {
+    gap: 1rem;
+}
+
+.modern-card .accordion-item {
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border-radius: 12px;
+}
+
+.modern-card .accordion-item[open] {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.modern-card .accordion-title {
+    font-weight: 600;
+}

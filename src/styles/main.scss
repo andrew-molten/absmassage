@@ -177,6 +177,10 @@ h2 {
   .contact-container {
     padding: 0 10%;
   }
+
+  .faq-container {
+    padding: 0 10%;
+  }
 }
 
 @media only screen and (max-width: 1023px) {
@@ -241,6 +245,10 @@ h2 {
   // about
   .central-img {
     height: 100px;
+  }
+
+  .faq-container {
+    padding: 0 0;
   }
 }
 

@@ -21,7 +21,7 @@ function faq() {
       <div className="heading-wrapper">
         <h1 className="heading">Frequently Asked Questions</h1>
       </div>
-      <div className="contact-container">
+      <div className='faq-container'>
         <RenderAccordian FAQs={FAQs} />
       </div>
     </>
