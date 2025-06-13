@@ -359,15 +359,71 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
     }
   }, [])
 
+  // useEffect(() => {
+  //   if (reviews.length > 0) {
+  //     const newArray = [...reviews]
+  //     for (let i = newArray.length - 1; i > 0; i--) {
+  //       const j = Math.floor(Math.random() * (i + 1))
+  //       ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+  //     }
+  //     setShuffledReviews(newArray)
+  //     setTotalReviewsCount(newArray.length)
+  //   } else {
+  //     setShuffledReviews([])
+  //     setTotalReviewsCount(0)
+  //   }
+  //   setCurrentIndex(0)
+  // }, [reviews])
+
   useEffect(() => {
     if (reviews.length > 0) {
-      const newArray = [...reviews]
-      for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+      // Helper function to convert star rating strings to numbers for sorting
+      const starRatingToNumber = (rating: string | number) => {
+        if (typeof rating === 'number') return rating
+        if (typeof rating === 'string') {
+          const ratings = {
+            FIVE_STAR: 5,
+            FOUR_STAR: 4,
+            THREE_STAR: 3,
+            TWO_STAR: 2,
+            ONE_STAR: 1,
+          }
+          return ratings[rating as keyof typeof ratings] || 0
+        }
+        return 0
       }
-      setShuffledReviews(newArray)
-      setTotalReviewsCount(newArray.length)
+
+      // 1. Create a mutable copy and shuffle it to randomize the order
+      const processedReviews = [...reviews]
+      for (let i = processedReviews.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[processedReviews[i], processedReviews[j]] = [
+          processedReviews[j],
+          processedReviews[i],
+        ]
+      }
+
+      // 2. Sort the shuffled array. Because sort is stable, items that are
+      //    equal (e.g., two 5-star reviews with text) will maintain their
+      //    randomized order from the previous step.
+      processedReviews.sort((a, b) => {
+        const aHasText = a.comment && a.comment.trim() !== ''
+        const bHasText = b.comment && b.comment.trim() !== ''
+
+        // Primary sort: prioritize reviews that have text content
+        if (aHasText && !bHasText) return -1
+        if (!bHasText && aHasText) return 1
+
+        // Secondary sort: for reviews in the same group (e.g., both with text),
+        // sort by star rating in descending order.
+        const aRating = starRatingToNumber(a.starRating)
+        const bRating = starRatingToNumber(b.starRating)
+
+        return bRating - aRating // Sorts from 5 down to 1
+      })
+
+      setShuffledReviews(processedReviews)
+      setTotalReviewsCount(processedReviews.length)
     } else {
       setShuffledReviews([])
       setTotalReviewsCount(0)
