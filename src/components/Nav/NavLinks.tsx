@@ -32,6 +32,9 @@ function NavLinks({ handleOpenMenuClick }: Props) {
       >
         Contact
       </Link>
+      <Link href={'/blog'} onClick={handleOpenMenuClick} className="nav-link">
+        Blog
+      </Link>
       <a
         className="nav-link nav-book-now"
         href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
