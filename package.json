@@ -24,6 +24,7 @@
   "license": "ISC",
   "dependencies": {
     "@next/third-parties": "^14.2.13",
+    "@tailwindcss/typography": "github:tailwindcss/typography",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "gray-matter": "^4.0.3",

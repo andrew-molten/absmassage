@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { Post } from './page.tsx' // Import the Post type
+import { Post } from './page.tsx'
 
 interface ClientBlogPageProps {
   posts: Post[]
@@ -14,38 +14,46 @@ export function ClientBlogPage({ posts }: ClientBlogPageProps) {
 
   const allTags = useMemo(() => {
     const tags = new Set<string>()
-    posts.forEach((post) => post.tags.forEach((tag) => tags.add(tag)))
+    posts.forEach((post) => {
+      if (post.tags && Array.isArray(post.tags)) {
+        post.tags.forEach((tag) => tags.add(tag))
+      }
+    })
     return Array.from(tags)
   }, [posts])
 
   const filteredPosts = useMemo(() => {
+    const lowercasedSearchTerm = searchTerm.toLowerCase()
+
     return posts.filter((post) => {
-      const matchesSearch = post.title
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase())
-      const matchesTag = selectedTag ? post.tags.includes(selectedTag) : true
+      // Search both title and content
+      const matchesSearch =
+        searchTerm === '' ||
+        post.title.toLowerCase().includes(lowercasedSearchTerm) ||
+        post.content.toLowerCase().includes(lowercasedSearchTerm)
+
+      const postTags = post.tags || []
+      const matchesTag = selectedTag ? postTags.includes(selectedTag) : true
+
       return matchesSearch && matchesTag
     })
   }, [posts, searchTerm, selectedTag])
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <header className="heading-wrapper">
+        <h1 className="heading center">Blog</h1>
+        <p className="center mt-0 text-lg text-gray-50">
+          Insights on massage, wellness, and injury recovery.
+        </p>
+      </header>
       <div className="content-container px-4 py-12 sm:px-6 lg:px-8">
-        <header className="mb-12 text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-            Our Blog
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600">
-            Insights on massage, wellness, and injury recovery.
-          </p>
-        </header>
-
         {/* --- Search and Filter UI --- */}
-        <div className="sticky top-4 z-10 mb-10 rounded-xl border border-gray-200 bg-gray-50/80 p-4 backdrop-blur-sm">
+        <div className="z-10 mb-10 rounded-xl border border-gray-200 bg-gray-50/80 p-4 backdrop-blur-sm">
           <div className="mx-auto max-w-3xl">
             <input
               type="text"
-              placeholder="Search articles..."
+              placeholder="Search articles by title or content..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full rounded-lg border border-gray-300 px-4 py-3 transition-shadow focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
@@ -88,13 +96,13 @@ export function ClientBlogPage({ posts }: ClientBlogPageProps) {
                     <img
                       src={post.coverImage}
                       alt={`Cover image for ${post.title}`}
-                      className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/20"></div>
                   </div>
                   <div className="p-6">
                     <div className="mb-2 flex flex-wrap gap-2">
-                      {post.tags.map((tag) => (
+                      {(post.tags || []).map((tag) => (
                         <span
                           key={tag}
                           className="rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold capitalize text-blue-800"
