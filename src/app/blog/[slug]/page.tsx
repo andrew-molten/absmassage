@@ -5,8 +5,9 @@ import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { LinkGrid, YouTubeLink } from '../../../components/YouTubeLink'
 
-const postsDirectory = path.join(process.cwd(), 'posts')
+const postsDirectory = path.join(process.cwd(), 'src/posts')
 
 // --- Generate static paths for all posts ---
 export async function generateStaticParams() {
@@ -45,6 +46,10 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     date: string
     coverImage: string
     tags: string[]
+  }
+  const components = {
+    YouTubeLink,
+    LinkGrid,
   }
 
   return (
@@ -98,7 +103,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         {/* --- Post Content --- */}
         {/* The `prose` classes from Tailwind CSS provide beautiful typography styling for markdown content */}
         <div className="prose prose-lg mx-auto max-w-4xl lg:prose-xl prose-a:text-blue-600 prose-a:underline hover:prose-a:text-blue-800">
-          <MDXRemote source={content} />
+          <MDXRemote source={content} components={components} />
         </div>
       </div>
     </article>

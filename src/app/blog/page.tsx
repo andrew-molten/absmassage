@@ -19,7 +19,7 @@ export interface Post extends PostFrontmatter {
 
 // --- Server-side data fetching ---
 const getPosts = (): Post[] => {
-  const postsDirectory = path.join(process.cwd(), 'posts')
+  const postsDirectory = path.join(process.cwd(), 'src/posts')
 
   if (!fs.existsSync(postsDirectory)) {
     console.warn(
