@@ -2,7 +2,7 @@
 
 import absmlogo from '../../../images/logos/andrew-bolton-sports-massage-logo.webp'
 import NavLinks from './NavLinks'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FaBars } from 'react-icons/fa6'
 import React from 'react'
 import Link from 'next/link'
@@ -10,34 +10,33 @@ import Link from 'next/link'
 function NavBarSSR() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [screenSize, setScreenSize] = useState<number>()
-  const [navHeight, setNavHeight] = useState(window.innerwidth < 820 ? 45 : 65)
-  const [isSmallScreen, setIsSmallScreen] = useState(false)
+  const [navHeight, setNavHeight] = useState(65)
+  const [isSmallScreen, setIsSmallScreen] = useState(true)
+  const logoRef = useRef<HTMLImageElement | null>(null)
 
   useEffect(() => {
-    const handleResize = () => {
-      if (typeof window !== 'undefined') {
-        setScreenSize(window.innerWidth)
-        setNavHeight(logo.offsetHeight)
-      }
-    }
-
-    setScreenSize(window.innerWidth)
-    const logo = document.querySelector('.header-logo img') as HTMLImageElement
     if (typeof window !== 'undefined') {
-      if (logo.complete) {
+      setScreenSize(window.innerWidth)
+      setIsSmallScreen(window.innerWidth < 820)
+
+      const logo = logoRef.current
+      if (logo?.complete) {
         setNavHeight(logo.offsetHeight)
       } else if (logo) {
-        // Wait for load
-        logo.onload = () => {
-          setNavHeight(logo.offsetHeight)
-        }
+        logo.onload = () => setNavHeight(logo.offsetHeight)
+      }
+
+      const handleResize = () => {
+        setScreenSize(window.innerWidth)
+        if (logo) setNavHeight(logo.offsetHeight)
+      }
+
+      window.addEventListener('resize', handleResize)
+      return () => {
+        window.removeEventListener('resize', handleResize)
       }
     }
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [navHeight])
+  }, [])
 
   // update css when navHeight changes
   useEffect(() => {
@@ -50,10 +49,8 @@ function NavBarSSR() {
   }, [navHeight])
 
   useEffect(() => {
-    if (screenSize && screenSize < 820) {
-      setIsSmallScreen(true)
-    } else {
-      setIsSmallScreen(false)
+    if (screenSize) {
+      setIsSmallScreen(screenSize < 820)
     }
   }, [screenSize, setIsSmallScreen])
 
@@ -83,7 +80,11 @@ function NavBarSSR() {
         className="header-logo nav-link"
         onClick={handleOpenMenuClick}
       >
-        <img src={absmlogo.src} alt="Andrew Bolton Sports Massage logo" />
+        <img
+          ref={logoRef}
+          src={absmlogo.src}
+          alt="Andrew Bolton Sports Massage Christchurch logo"
+        />
       </Link>
 
       {isSmallScreen && (

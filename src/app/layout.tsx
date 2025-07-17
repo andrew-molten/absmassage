@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 const NavBarSSR = dynamic(() => import('../components/Nav/NavBarSSR.tsx'), {
-  ssr: false,
+  ssr: true,
 })
 
 const Footer = dynamic(() => import('../components/Nav/Footer.tsx'), {
