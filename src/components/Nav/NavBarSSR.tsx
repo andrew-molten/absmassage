@@ -7,13 +7,6 @@ import { FaBars } from 'react-icons/fa6'
 import React from 'react'
 import Link from 'next/link'
 
-// interface Props {
-//   navHeight: number
-//   setNavHeight: (height: number) => void
-//   isSmallScreen: boolean
-//   setIsSmallScreen: (bool: boolean) => void
-// }
-
 function NavBarSSR() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [screenSize, setScreenSize] = useState<number>()
