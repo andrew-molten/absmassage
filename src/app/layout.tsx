@@ -11,7 +11,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 export const metadata: Metadata = {
   title: 'Andrew Bolton Sports Massage',
   description:
-    'Professional, strong & effective massage to relieve your pain and tension now. Become relaxed, rejuvenated & pain free today.',
+    "Sports & Deep Tissue Massage for serious pain relief. I'm an experienced therapist helping athletes & active people recover faster. Book now - from $89",
 }
 
 const NavBarSSR = dynamic(() => import('../components/Nav/NavBarSSR.tsx'), {
