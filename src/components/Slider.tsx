@@ -17,22 +17,18 @@ function Slider() {
 
   // IMAGE LOAD
   useEffect(() => {
-    console.log('useEffect one')
     const images = Array.from(
       document.querySelectorAll('.slide img'),
     ) as HTMLImageElement[]
     let loadedCount = 0
-    console.log('images.length', images.length)
 
     const checkAllLoaded = () => {
       loadedCount++
-      console.log('loadedCount', loadedCount)
       if (loadedCount === images.length) {
         const loadedHeights = images.map(
           (image) => (image as HTMLImageElement).offsetHeight,
         )
         setImageHeights(loadedHeights)
-        console.log('ImageHeights set')
         numSlides.current = images.length
       }
     }
@@ -65,7 +61,6 @@ function Slider() {
     // SLIDER HEIGHT UPDATE
     if (imageHeights.length > 0) {
       const min = Math.min(...imageHeights)
-      console.log('greater min', min)
       if (min > 0) {
         setMinHeight(min)
       }
