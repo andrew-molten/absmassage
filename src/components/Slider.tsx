@@ -17,14 +17,24 @@ function Slider() {
 
   // IMAGE LOAD
   useEffect(() => {
-    const images = document.querySelectorAll('.slide img')
+    console.log('useEffect one')
+    const images = Array.from(
+      document.querySelectorAll('.slide img'),
+    ) as HTMLImageElement[]
+    let loadedCount = 0
+    console.log('images.length', images.length)
 
-    const handleImageLoad = () => {
-      const loadedHeights = Array.from(images).map(
-        (image) => (image as HTMLImageElement).offsetHeight,
-      )
-      setImageHeights(loadedHeights)
-      numSlides.current = images.length
+    const checkAllLoaded = () => {
+      loadedCount++
+      console.log('loadedCount', loadedCount)
+      if (loadedCount === images.length) {
+        const loadedHeights = images.map(
+          (image) => (image as HTMLImageElement).offsetHeight,
+        )
+        setImageHeights(loadedHeights)
+        console.log('ImageHeights set')
+        numSlides.current = images.length
+      }
     }
 
     setWindowWidth(window.innerWidth)
@@ -32,22 +42,16 @@ function Slider() {
     // Attach load event listeners to images
     images.forEach((image) => {
       if ((image as HTMLImageElement).complete) {
-        handleImageLoad() // If image already loaded
+        checkAllLoaded() // If image already loaded
       } else {
-        ;(image as HTMLImageElement).onload = handleImageLoad
+        ;(image as HTMLImageElement).onload = checkAllLoaded
       }
     })
-
-    // SLIDER HEIGHT UPDATE
-    if (imageHeights.length > 0) {
-      const min = Math.min(...imageHeights)
-      setMinHeight(min)
-    }
 
     // WINDOW RESIZE HANDLING
     const handleResize = () => {
       setWindowWidth(window.innerWidth)
-      handleImageLoad()
+      checkAllLoaded()
     }
 
     window.addEventListener('resize', handleResize)
@@ -56,6 +60,17 @@ function Slider() {
       window.removeEventListener('resize', handleResize)
     }
   }, [windowWidth])
+
+  useEffect(() => {
+    // SLIDER HEIGHT UPDATE
+    if (imageHeights.length > 0) {
+      const min = Math.min(...imageHeights)
+      console.log('greater min', min)
+      if (min > 0) {
+        setMinHeight(min)
+      }
+    }
+  }, [imageHeights])
 
   // SWIPE
   useEffect(() => {
@@ -122,7 +137,7 @@ function Slider() {
   return (
     <div
       className="slider"
-      style={{ maxHeight: `${minHeight}px` }}
+      style={{ maxHeight: `${minHeight || 225}px` }}
       ref={sliderRef}
     >
       {sliderImages.map((image: SliderImage, index: number) => (
