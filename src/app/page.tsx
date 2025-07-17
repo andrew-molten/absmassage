@@ -32,17 +32,12 @@ export default function Page() {
         <h1 className="text-center text-2xl sm:text-3xl">
           <strong>Move better. Relieve pain. Relax deeply.</strong>
         </h1>
-        <h2 className="text-xl">{`Hi, I’m Andrew.`}</h2>
+        <span className="mt-6 inline-block text-xl">{`Hi, I’m Andrew.`}</span>
         <h2>
           I have 7 years experience specialising in{' '}
-          <strong>Deep Tissue & Sports massage</strong>.
+          <strong>Deep Tissue & Sports massage in Christchurch</strong>.
         </h2>
-        {/* <p>Relieve your tension, heal your injuries & find lasting relief!</p>
-        <p>{`I'm both strong & sensitive so I have a good sense of the perfect pressure but can always ease off or work deeper when needed. My space is always warm & you will leave feeling lighter than when you came in.`}</p> */}
 
-        {/* <p>
-          <strong>{`I use a combination of techniques to help you achieve results, whether that's to:`}</strong>
-        </p> */}
         <p>I help people:</p>
         <ul className="ml-5 mt-5 text-left">
           <li>
@@ -65,24 +60,18 @@ export default function Page() {
           </li>
         </ul>
 
-        <p>I work holistically with body & breath to release tension.</p>
+        <p>I'm passionate about helping people live pain-free lives.</p>
 
-        {/* <p>A warm & calm space is key to your relaxation.</p> */}
+        <p>
+          I work holistically with body & breath to release tension. Each
+          session is tailored to your preferences, whether you prefer strong
+          deep tissue work, a lighter touch or something in between. My clients
+          often say that they've struggled to find someone with my strength &
+          sensitivity.
+        </p>
 
         <p>I'm down for a chat or you can sink into silence & relax.</p>
 
-        <p>Massage tailored to your needs & preferences.</p>
-
-        {/* <p>
-          {`I'm passionate about helping people live pain-free lives and believe that cultivating balance in our physical & mental well-being is key. I know how challenging it is to find that balance with lives outside of maintenance, so I focus on finding the small things that provide the biggest impact.`}
-        </p>
-
-        <p>
-          My goal is to help you find lasting relief, but if you love regular
-          maintenance massages, you’re always welcome! I tailor each session to
-          your preferences, whether you prefer deep tissue work or a lighter
-          touch.
-        </p> */}
         <BookNowButton />
 
         <div className="break-line"></div>
