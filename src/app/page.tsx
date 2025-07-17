@@ -7,8 +7,8 @@ import Map from '../components/Map.tsx'
 import reviewData from '../data/reviews.json'
 import GoogleReviewsWidget from '../components/GoogleReviewsWidget.tsx'
 import { Review } from '../../models/reviews.ts'
-import IntroOfferPrices from './massageprices/introOfferPrices.tsx'
-import Prices from './massageprices/prices.tsx'
+import IntroOfferPrices from './services/introOfferPrices.tsx'
+import Prices from './services/prices.tsx'
 import BookNowButton from '../components/BookNowButton.tsx'
 
 export const metadata: Metadata = {
@@ -82,13 +82,15 @@ export default function Page() {
       />
       <div className="content-container remove-top-margin">
         <div className="break-line"></div>
+        <h2 className="p-heading ">Pricing</h2>
+
         <div className="row items-center">
           <div className="column center ">
-            <h2 className="p-heading   remove-top-margin">Intro offer</h2>
+            <h3 className="remove-top-margin   text-3xl">Intro offer</h3>
             <IntroOfferPrices />
           </div>
           <div className="column center">
-            <h2 className="p-heading  sm:remove-top-margin">Prices</h2>
+            <h3 className="sm:remove-top-margin  text-3xl">Follow up</h3>
             <Prices />
           </div>
         </div>

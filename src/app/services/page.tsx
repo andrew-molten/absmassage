@@ -13,15 +13,16 @@ import { Metadata } from 'next/types'
 import GoogleReviewsWidget from '../../components/GoogleReviewsWidget.tsx'
 
 export const metadata: Metadata = {
-  title: 'Massage & Prices - Andrew Bolton Sports Massage',
+  title:
+    'Massage Services Christchurch | Sports & Deep Tissue Massage | Andrew Bolton',
   description:
-    'Intro offer: $80 for 45 mins, $89 for 60 mins, $109 for 75 mins, $125 for 90 mins. Read more about my services to discover what will work best for you.',
+    'Professional sports & deep tissue massage in Christchurch. Experienced therapist helping athletes & active people recover faster. From $80 - book now.',
   alternates: {
-    canonical: 'https://andrewboltonsportsmassage.com/massageprices',
+    canonical: 'https://andrewboltonsportsmassage.com/services',
   },
 }
 const writeReviewUrl = 'https://g.page/AndrewBoltonSportsMassage/review?gm'
-export default function massageprices() {
+export default function services() {
   const typedReviews: Review[] = reviewData.map((review) => ({
     ...review,
     // Assert that this specific property matches 'Review' interface
@@ -30,30 +31,12 @@ export default function massageprices() {
   return (
     <div>
       <div className="heading-wrapper">
-        <h1 className="heading center italic">Massage</h1>
+        {/* <h1 className="heading center italic">Massage</h1> */}
+        <h1 className="heading center italic">
+          Professional Sports & Deep Tissue Massage in Christchurch
+        </h1>
       </div>
       <div className="content-container">
-        <div className="row  items-center">
-          <div className="column center">
-            <h2 className="p-heading">Intro offer</h2>
-            <IntroOfferPrices />
-          </div>
-          <div className="column center">
-            <h2 className="p-heading">Massage Prices</h2>
-            <Prices />
-          </div>
-        </div>
-
-        <div className="break-line"></div>
-        <a
-          className="book-now-btn"
-          href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
-        >
-          Book Now
-        </a>
-
-        <div className="break-line"></div>
-
         <div className="row column-reverse">
           <div className="column">
             <h2 className="p-heading">Deep Tissue Massage</h2>
@@ -67,12 +50,13 @@ export default function massageprices() {
               well-being.
             </p>
             <p>Especially effective for persistent tension.</p>
+            <p>Popular with Christchurch athletes, tradies & desk jockeys.</p>
           </div>
           <div className="column image-column">
             <img
               className="col-img"
               src={massageSpace.src}
-              alt="Leafy massage space"
+              alt="Professional massage therapy room in Christchurch"
             />
           </div>
         </div>
@@ -83,7 +67,7 @@ export default function massageprices() {
             <img
               className="col-img"
               src={andrewMassaging.src}
-              alt="Deep Tissue Massage"
+              alt="Deep tissue massage therapy session in Christchurch"
             />
           </div>
           <div className="column">
@@ -99,7 +83,8 @@ export default function massageprices() {
             </p>
             <p>Can reduce fatigue, injury & DOMs.</p>
             <p>
-              Beneficial for athletes, active people & anybody with tension.
+              Beneficial for athletes, active people & anybody with tension
+              across Christchurch.
             </p>
           </div>
         </div>
@@ -122,12 +107,33 @@ export default function massageprices() {
             <img
               className="col-img"
               src={neckMassage.src}
-              alt="Calm relaxing massage"
+              alt="Relaxing sports massage treatment Christchurch"
             />
           </div>
         </div>
         <div className="break-line"></div>
       </div>
+      <h2 className="p-heading ">Pricing & Booking</h2>
+      <div className="row  items-center">
+        <div className="column center">
+          <h3 className="text-3xl">Intro offer</h3>
+          <IntroOfferPrices />
+        </div>
+        <div className="column center">
+          <h3 className="text-3xl">Follow up</h3>
+          <Prices />
+        </div>
+      </div>
+
+      <div className="break-line"></div>
+      <a
+        className="book-now-btn"
+        href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
+      >
+        Book Now
+      </a>
+      <div className="break-line"></div>
+
       <GoogleReviewsWidget
         reviews={typedReviews}
         writeReviewUrl={writeReviewUrl}
@@ -142,7 +148,7 @@ export default function massageprices() {
             <img
               className="col-img"
               src={malasana.src}
-              alt="Malasana in nature"
+              alt="Andrew Bolton massage therapist practicing yoga in nature"
             />
           </div>
           <div className="column">

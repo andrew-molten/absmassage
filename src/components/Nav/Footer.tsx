@@ -49,10 +49,10 @@ function Footer() {
           </Link>
 
           <Link
-            href={'/massageprices'}
+            href={'/services'}
             className={`footer-link hover-link  inline-block  `}
           >
-            Massage & Prices
+            Services
           </Link>
           <Link
             href={'/about'}

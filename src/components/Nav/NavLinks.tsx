@@ -13,11 +13,11 @@ function NavLinks({ handleOpenMenuClick }: Props) {
         Home
       </Link>
       <Link
-        href={'/massageprices'}
+        href={'/services'}
         onClick={handleOpenMenuClick}
         className="nav-link"
       >
-        Massage & Prices
+        Services
       </Link>
       <Link href={'/about'} onClick={handleOpenMenuClick} className="nav-link">
         About
