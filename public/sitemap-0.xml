@@ -50,22 +50,25 @@
     <priority>0.2</priority>
     <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com/refundcancellations" />
   </url>
-  <url>
-    <loc>https://andrewboltonsportsmassage.com/blog</loc>
-    <lastmod>2025-07-16T04:00:00.000Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://andrewboltonsportsmassage.com/blog/yin-yoga</loc>
-    <lastmod>2025-07-16T04:00:00.000Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://andrewboltonsportsmassage.com/blog/breath</loc>
-    <lastmod>2025-07-16T04:00:00.000Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://andrewboltonsportsmassage.com/blog</loc>
+  <lastmod>2025-07-16T04:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+  <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com/blog" />
+</url>
+<url>
+  <loc>https://andrewboltonsportsmassage.com/blog/yin-yoga</loc>
+  <lastmod>2025-07-16T04:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+  <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com/blog/yin-yoga" />
+</url>
+<url>
+  <loc>https://andrewboltonsportsmassage.com/blog/breath</loc>
+  <lastmod>2025-07-16T04:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+  <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com/blog/breath" />
+</url>
 </urlset>

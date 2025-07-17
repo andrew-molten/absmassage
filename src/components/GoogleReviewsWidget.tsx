@@ -377,33 +377,35 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
         return 0
       }
 
-      // 1. Create a mutable copy and shuffle it to randomize the order
+      // 1. Create a mutable copy of reviews
       const processedReviews = [...reviews]
-      for (let i = processedReviews.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[processedReviews[i], processedReviews[j]] = [
-          processedReviews[j],
-          processedReviews[i],
-        ]
-      }
+      // Shuffle the array
+      // for (let i = processedReviews.length - 1; i > 0; i--) {
+      //   const j = Math.floor(Math.random() * (i + 1))
+      //   ;[processedReviews[i], processedReviews[j]] = [
+      //     processedReviews[j],
+      //     processedReviews[i],
+      //   ]
+      // }
 
-      // 2. Sort the shuffled array. Because sort is stable, items that are
-      //    equal (e.g., two 5-star reviews with text) will maintain their
-      //    randomized order from the previous step.
       processedReviews.sort((a, b) => {
-        const aHasText = a.comment && a.comment.trim() !== ''
-        const bHasText = b.comment && b.comment.trim() !== ''
-
-        // Primary sort: prioritize reviews that have text content
-        if (aHasText && !bHasText) return -1
-        if (!bHasText && aHasText) return 1
-
-        // Secondary sort: for reviews in the same group (e.g., both with text),
-        // sort by star rating in descending order.
         const aRating = starRatingToNumber(a.starRating)
         const bRating = starRatingToNumber(b.starRating)
 
-        return bRating - aRating // Sorts from 5 down to 1
+        // 1. Star rating (descending)
+        if (aRating !== bRating) return bRating - aRating
+
+        const aHasText = a.comment && a.comment.trim() !== ''
+        const bHasText = b.comment && b.comment.trim() !== ''
+
+        // 2. Has text (true first)
+        if (aHasText !== bHasText) return bHasText ? 1 : -1
+
+        // 3. Most recent createTime (descending)
+        const aTime = new Date(a.createTime).getTime()
+        const bTime = new Date(b.createTime).getTime()
+
+        return bTime - aTime
       })
 
       setShuffledReviews(processedReviews)
