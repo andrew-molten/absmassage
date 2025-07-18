@@ -8,6 +8,7 @@ import reviewData from '../../data/reviews.json'
 import { Review } from '../../../models/reviews.ts'
 import IntroOfferPrices from './introOfferPrices.tsx'
 import Prices from './prices.tsx'
+import Image from 'next/image'
 
 import { Metadata } from 'next/types'
 import GoogleReviewsWidget from '../../components/GoogleReviewsWidget.tsx'
@@ -52,10 +53,14 @@ export default function services() {
             <p>Popular with Christchurch athletes, tradies & desk jockeys.</p>
           </div>
           <div className="column image-column">
-            <img
+            <Image
               className="col-img"
-              src={massageSpace.src}
+              src={massageSpace}
               alt="Professional massage therapy room in Christchurch"
+              fill={false}
+              width={270}
+              height={206}
+              priority
             />
           </div>
         </div>
@@ -63,10 +68,12 @@ export default function services() {
 
         <div className="row">
           <div className="column image-column">
-            <img
+            <Image
               className="col-img"
-              src={andrewMassaging.src}
+              src={andrewMassaging}
               alt="Deep tissue massage therapy session in Christchurch"
+              width={270}
+              height={206}
             />
           </div>
           <div className="column">
@@ -103,10 +110,12 @@ export default function services() {
             <p>Can still focus on particular areas if you like.</p>
           </div>
           <div className="column image-column">
-            <img
+            <Image
               className="col-img"
-              src={neckMassage.src}
+              src={neckMassage}
               alt="Relaxing sports massage treatment Christchurch"
+              width={270}
+              height={206}
             />
           </div>
         </div>
@@ -144,10 +153,12 @@ export default function services() {
 
         <div className="row">
           <div className="column image-column">
-            <img
+            <Image
               className="col-img"
-              src={malasana.src}
+              src={malasana}
               alt="Andrew Bolton massage therapist practicing yoga in nature"
+              width={270}
+              height={206}
             />
           </div>
           <div className="column">
