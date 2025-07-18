@@ -7,6 +7,7 @@ import type { Metadata } from 'next'
 import { GoogleTagManager } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Raleway } from 'next/font/google'
 
 export const metadata: Metadata = {
   title: 'Sports & Deep Tisue Massage | Andrew Bolton Sports Massage',
@@ -22,13 +23,19 @@ const Footer = dynamic(() => import('../components/Nav/Footer.tsx'), {
   ssr: true,
 })
 
+const raleway = Raleway({
+  subsets: ['latin'],
+  weight: ['300', '400', '600', '700'], // choose weights you use
+  display: 'swap',
+})
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={raleway.className}>
       <GoogleTagManager gtmId="GTM-PSTX555" />
 
       <body>
