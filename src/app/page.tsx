@@ -29,9 +29,12 @@ export default function Page() {
     <div>
       <Slider />
       <div className="content-container">
-        <h1 className="text-center text-2xl sm:text-3xl">
-          <strong>Move better. Relieve pain. Relax deeply.</strong>
+        <h1 className="sr-only">
+          Professional Sports & Deep Tissue Massage in Christchurch
         </h1>
+        <h2 className="text-center text-2xl sm:text-3xl">
+          <strong>Move better. Relieve pain. Relax deeply.</strong>
+        </h2>
         <span className="mt-6 inline-block text-xl">{`Hi, I’m Andrew.`}</span>
         <h2>
           I have 7 years experience specialising in{' '}

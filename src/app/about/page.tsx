@@ -4,12 +4,12 @@ import yogaToes from '../../../images/andrew/yoga-toes.webp'
 import crescentLunge from '../../../images/andrew/Crescent-lunge.webp'
 import massageTable from '../../../images/studio/massage-table.webp'
 import family from '../../../images/andrew/Family.webp'
-import React from 'react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About - Andrew Bolton Sports Massage',
-  description: `I'm passionate about pain-free living and creating habits to improve life for better well-being so we can all feel better and have more fun!`,
+  title: 'About Andrew Bolton | Sports Massage Therapist Christchurch',
+  description:
+    'Meet Andrew Bolton, experienced sports & deep tissue massage therapist in Christchurch. 7+ years helping athletes and active people with pain relief and recovery.',
   alternates: {
     canonical: 'https://andrewboltonsportsmassage.com/about',
   },
@@ -19,7 +19,10 @@ function About() {
   return (
     <div>
       <div className="heading-wrapper">
-        <h1 className="heading center italic">About Me</h1>
+        <h1 className="sr-only">
+          About Andrew Bolton - Massage Therapist Christchurch
+        </h1>
+        <h2 className="heading center mt-0 italic">About Me</h2>
       </div>
 
       <div className="content-container">
@@ -152,9 +155,9 @@ function About() {
           <div className="column">
             {/* <h2 className=" p-heading text-xl">Movement</h2> */}
             <p>
-              I live in Heathcote Valley with my wife & our 3-year-old. We love
-              being close to the sea & the hills so try to get into them plenty.
-              We also love getting into the garden & growing veggies.
+              I live in Heathcote Valley, Christchurch with my wife & 2 kids. We
+              love being close to the sea & the hills so try to get into them
+              plenty. We also love getting into the garden & growing veggies.
             </p>
             <p>
               I’ve also been learning web development for a few years, I built

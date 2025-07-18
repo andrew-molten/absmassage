@@ -21,12 +21,11 @@ function Slider() {
       document.querySelectorAll('.slide img'),
     ) as HTMLImageElement[]
     let loadedCount = 0
-    console.log('image length', images.length)
 
     const checkAllLoaded = () => {
       loadedCount++
       console.log(loadedCount)
-      if (loadedCount === images.length) {
+      if (loadedCount === 3 || loadedCount === images.length) {
         const loadedHeights = images.map(
           (image) => (image as HTMLImageElement).offsetHeight,
         )
