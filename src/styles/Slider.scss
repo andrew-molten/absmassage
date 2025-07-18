@@ -1,7 +1,6 @@
 .slider {
   margin: auto;
-  height: 289px;
-  // height: 200px;
+  height: 320px;
   position: relative;
   overflow: hidden;
 }
@@ -20,9 +19,6 @@
   max-height: 100%;
   object-fit: cover;
 }
-// .slide:not(.vis) {
-//   visibility: hidden;
-// }
 .sl0 {
   transform: translateX(-100%);
 }

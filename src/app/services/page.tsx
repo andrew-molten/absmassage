@@ -25,16 +25,15 @@ const writeReviewUrl = 'https://g.page/AndrewBoltonSportsMassage/review?gm'
 export default function services() {
   const typedReviews: Review[] = reviewData.map((review) => ({
     ...review,
-    // Assert that this specific property matches 'Review' interface
     starRating: review.starRating as Review['starRating'],
   }))
   return (
     <div>
       <div className="heading-wrapper">
-        {/* <h1 className="heading center italic">Massage</h1> */}
-        <h1 className="heading center italic">
+        <h1 className="heading center sr-only italic">
           Professional Sports & Deep Tissue Massage in Christchurch
         </h1>
+        <h2 className="center heading mt-0 italic">Massage Services</h2>
       </div>
       <div className="content-container">
         <div className="row column-reverse">
@@ -120,7 +119,7 @@ export default function services() {
           <IntroOfferPrices />
         </div>
         <div className="column center">
-          <h3 className="text-3xl">Follow up</h3>
+          <h3 className="mt-8 text-3xl sm:mt-0">Follow up</h3>
           <Prices />
         </div>
       </div>

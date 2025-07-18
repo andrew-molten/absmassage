@@ -9,7 +9,7 @@ import Dot from './Dot.tsx'
 function Slider() {
   const [curSlide, setCurSlide] = useState(1)
   const [imageHeights, setImageHeights] = useState<number[]>([])
-  const [minHeight, setMinHeight] = useState(225)
+  const [minHeight, setMinHeight] = useState(320)
   const [windowWidth, setWindowWidth] = useState(0)
   const slides = useRef<HTMLDivElement[]>([])
   const sliderRef = useRef<HTMLDivElement>(null)
@@ -21,9 +21,11 @@ function Slider() {
       document.querySelectorAll('.slide img'),
     ) as HTMLImageElement[]
     let loadedCount = 0
+    console.log('image length', images.length)
 
     const checkAllLoaded = () => {
       loadedCount++
+      console.log(loadedCount)
       if (loadedCount === images.length) {
         const loadedHeights = images.map(
           (image) => (image as HTMLImageElement).offsetHeight,
@@ -132,7 +134,9 @@ function Slider() {
   return (
     <div
       className="slider"
-      style={{ maxHeight: `${minHeight || 225}px` }}
+      style={{
+        height: `${minHeight || 320}px`,
+      }}
       ref={sliderRef}
     >
       {sliderImages.map((image: SliderImage, index: number) => (
@@ -146,11 +150,7 @@ function Slider() {
             }
           }}
         >
-          <img
-            src={image.image.src}
-            alt={image.alt}
-            loading={index > 2 ? 'lazy' : 'eager'}
-          />
+          <img src={image.image.src} alt={image.alt} loading={'eager'} />
         </div>
       ))}
 

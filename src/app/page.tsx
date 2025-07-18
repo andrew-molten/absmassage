@@ -86,11 +86,11 @@ export default function Page() {
 
         <div className="row items-center">
           <div className="column center ">
-            <h3 className="remove-top-margin   text-3xl">Intro offer</h3>
+            <h3 className="text-3xl">Intro offer</h3>
             <IntroOfferPrices />
           </div>
           <div className="column center">
-            <h3 className="sm:remove-top-margin  text-3xl">Follow up</h3>
+            <h3 className="mt-8 text-3xl sm:mt-0">Follow up</h3>
             <Prices />
           </div>
         </div>
