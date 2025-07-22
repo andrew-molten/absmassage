@@ -10,9 +10,10 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Raleway } from 'next/font/google'
 
 export const metadata: Metadata = {
-  title: 'Sports & Deep Tisue Massage | Andrew Bolton Sports Massage',
+  title: 'Sports Massage Christchurch | Deep Tissue Therapy | Andrew Bolton',
   description:
     "Sports & Deep Tissue Massage for serious pain relief. I'm an experienced therapist helping athletes & active people recover faster. Book now - from $89",
+  robots: 'index, follow',
 }
 
 const NavBarSSR = dynamic(() => import('../components/Nav/NavBarSSR.tsx'), {

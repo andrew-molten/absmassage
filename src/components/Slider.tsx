@@ -24,7 +24,6 @@ function Slider() {
 
     const checkAllLoaded = () => {
       loadedCount++
-      console.log(loadedCount)
       if (loadedCount === 3 || loadedCount === images.length) {
         const loadedHeights = images.map(
           (image) => (image as HTMLImageElement).offsetHeight,

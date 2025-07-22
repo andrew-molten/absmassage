@@ -8,13 +8,17 @@ function BookingEmbedded() {
 
   useEffect(() => {
     const handleIFrameMessage = (e: MessageEvent) => {
+      console.log('Enter')
       if (typeof e.data !== 'string') return
       if (e.data.includes('cliniko-bookings-resize')) {
+        console.log('resize')
         const newHeight = Number(e.data.split(':')[1])
         setHeight(`${newHeight}px`)
       }
       if (e.data.includes('cliniko-bookings-page')) {
+        console.log('includes cliniko-bookings-pag')
         const clinikoBookings = document.getElementById('cliniko-94087596')
+        console.log('clinikoBookings', clinikoBookings)
         clinikoBookings!.scrollIntoView()
       }
     }
