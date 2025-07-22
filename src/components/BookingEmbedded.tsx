@@ -15,7 +15,16 @@ function BookingEmbedded() {
         const newHeight = Number(e.data.split(':')[1])
         setHeight(`${newHeight}px`)
       }
+      if (e.data.search('cliniko-bookings-page:confirmed') > -1) {
+        var dataLayer = window.dataLayer || (window.dataLayer = [])
+
+        dataLayer.push({
+          event: 'clinikoBookingCompleted',
+        })
+        console.log('datalayer: ', dataLayer)
+      }
       if (e.data.includes('cliniko-bookings-page')) {
+        console.log('e.data', e.data)
         console.log('includes cliniko-bookings-pag')
         const clinikoBookings = document.getElementById('cliniko-94087596')
         console.log('clinikoBookings', clinikoBookings)
