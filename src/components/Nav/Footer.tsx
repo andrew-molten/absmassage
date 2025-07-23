@@ -3,6 +3,7 @@ import Link from 'next/link'
 import absmlogo from '../../../images/logos/andrew-bolton-sports-massage-logo.webp'
 import { FaEnvelope, FaPhone, FaLocationDot } from 'react-icons/fa6'
 import React, { useEffect, useState } from 'react'
+import BookNowButton from '../BookNowButton'
 
 function Footer() {
   const [isSmallScreen, setIsSmallScreen] = useState(false)
@@ -40,10 +41,6 @@ function Footer() {
         <div
           className={`footer-link-container ${!isSmallScreen && 'forty-percent flex-col'}  `}
         >
-          {/* {!isSmallScreen && (
-            <h3 className="text-xl font-medium">Navigation</h3>
-          )} */}
-
           <Link href={'/'} className={`footer-link hover-link inline-block `}>
             Home
           </Link>
@@ -84,16 +81,10 @@ function Footer() {
           >
             Privacy Policy
           </Link>
-          <a
-            className={`footer-link hover-link  inline-block  `}
-            href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
-          >
-            Book Now
-          </a>
+          <BookNowButton className="footer-link hover-link  inline-block" />
         </div>
         {!isSmallScreen && (
           <div className=" forty-percent flex flex-col flex-wrap content-center">
-            {/* <h3 className="text-xl font-medium">Contact</h3> */}
             <p className="hover-link">
               <a
                 href="mailto:andrew@andrewboltonsportsmassage.com "

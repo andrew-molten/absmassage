@@ -136,12 +136,6 @@ export default function services() {
 
       <div className="break-line"></div>
       <BookNowButton className="book-now-btn" />
-      {/* <a
-        className="book-now-btn"
-        href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
-      >
-        Book Now
-      </a> */}
       <div className="break-line"></div>
 
       <GoogleReviewsWidget

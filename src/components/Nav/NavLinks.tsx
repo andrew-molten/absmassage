@@ -37,12 +37,6 @@ function NavLinks({ handleOpenMenuClick }: Props) {
         Blog
       </Link>
       <BookNowButton className="nav-link nav-book-now" />
-      {/* <a
-        className="nav-link nav-book-now"
-        href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
-      >
-        Book Now
-      </a> */}
     </>
   )
 }
