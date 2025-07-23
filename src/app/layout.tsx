@@ -1,4 +1,3 @@
-import React from 'react'
 import '../styles/main.scss'
 import '../styles/NavBar.scss'
 // import NavBarSSR from '../components/Nav/NavBar'
@@ -8,6 +7,7 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Raleway } from 'next/font/google'
+import GclidTracker from '../components/GclidTracker.tsx'
 
 export const metadata: Metadata = {
   title: 'Sports Massage Christchurch | Deep Tissue Therapy | Andrew Bolton',
@@ -40,6 +40,7 @@ export default function RootLayout({
       <GoogleTagManager gtmId="GTM-PSTX555" />
 
       <body>
+        <GclidTracker />
         <NavBarSSR />
 
         <div id="root">{children}</div>

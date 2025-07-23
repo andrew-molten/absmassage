@@ -9,6 +9,7 @@ import { Review } from '../../../models/reviews.ts'
 import IntroOfferPrices from './introOfferPrices.tsx'
 import Prices from './prices.tsx'
 import Image from 'next/image'
+import BookNowButton from '../../components/BookNowButton.tsx'
 
 import { Metadata } from 'next/types'
 import GoogleReviewsWidget from '../../components/GoogleReviewsWidget.tsx'
@@ -134,12 +135,13 @@ export default function services() {
       </div>
 
       <div className="break-line"></div>
-      <a
+      <BookNowButton className="book-now-btn" />
+      {/* <a
         className="book-now-btn"
         href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
       >
         Book Now
-      </a>
+      </a> */}
       <div className="break-line"></div>
 
       <GoogleReviewsWidget

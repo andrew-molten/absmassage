@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import BookNowButton from '../../components/BookNowButton.tsx'
 
 interface Props {
   handleOpenMenuClick: () => void
@@ -35,12 +36,13 @@ function NavLinks({ handleOpenMenuClick }: Props) {
       <Link href={'/blog'} onClick={handleOpenMenuClick} className="nav-link">
         Blog
       </Link>
-      <a
+      <BookNowButton className="nav-link nav-book-now" />
+      {/* <a
         className="nav-link nav-book-now"
         href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
       >
         Book Now
-      </a>
+      </a> */}
     </>
   )
 }

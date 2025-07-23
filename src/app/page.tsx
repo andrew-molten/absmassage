@@ -75,7 +75,7 @@ export default function Page() {
 
         <p>I'm down for a chat or you can sink into silence & relax.</p>
 
-        <BookNowButton />
+        <BookNowButton className='"book-now-btn"' />
 
         <div className="break-line"></div>
       </div>

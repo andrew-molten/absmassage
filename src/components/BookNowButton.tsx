@@ -1,18 +1,35 @@
-export default function BookNowButton() {
+'use client'
+
+import { useEffect, useState } from 'react'
+
+interface Props {
+  className: string
+}
+
+export default function BookNowButton({ className }: Props) {
+  const [link, setLink] = useState(
+    'https://andrew-bolton-massage-and-yoga.cliniko.com/bookings',
+  )
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const gclid = sessionStorage.getItem('gclid')
+      if (gclid) {
+        setLink(
+          `https://andrew-bolton-massage-and-yoga.cliniko.com/bookings?gclid=${gclid}`,
+        )
+      }
+    }
+  }, [])
+
   return (
     <a
-      href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
+      href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="book-now-btn"
+      className={className}
     >
       Book Now
     </a>
   )
 }
-//    <a
-//           className="book-now-btn"
-//           href="https://andrew-bolton-massage-and-yoga.cliniko.com/bookings#service"
-//         >
-//           Book Now
-//         </a>
