@@ -156,6 +156,39 @@ function privacypolicy() {
           <li>‘Hnry’, our tax agent, located in New Zealand</li>
         </ul>
         <p>
+          <strong>Google Ads and Customer Match</strong>
+        </p>
+        <p>
+          We use Google Ads, including features such as Customer Match, to
+          deliver personalised advertising and measure the effectiveness of our
+          marketing campaigns. As part of this service, we may share limited
+          personal information (such as email addresses) with Google to match
+          our customers with Google accounts and deliver relevant ads across
+          Google services.
+        </p>
+        <p>
+          This data is only used to help us reach customers with relevant offers
+          and content, and to ensure compliance with Google’s Customer Match
+          policies. Google acts as a “processor” of this data under the
+          applicable Data Processing Terms, and only processes this information
+          on our behalf.
+        </p>
+        <p>
+          Where required by law or applicable Google policies—including the EU
+          User Consent Policy—we obtain appropriate consent before collecting
+          and sharing this data. You can learn more about how Google uses data
+          for advertising by visiting{' '}
+          <a
+            href="https://policies.google.com/technologies/ads"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Google’s advertising privacy policies
+          </a>
+          .
+        </p>
+
+        <p>
           that we allow access to personal information, and may use it on our
           behalf strictly for the purposes for which they are engaged. We
           minimise the amount of personal data that is utilised by these
