@@ -153,31 +153,14 @@ function About() {
 
         <div className="row column-reverse">
           <div className="column">
-            {/* <h2 className=" p-heading text-xl">Movement</h2> */}
             <p>
-              I live in Heathcote Valley, Christchurch with my wife & 2 kids. We
-              love being close to the sea & the hills so try to get into them
-              plenty. We also love getting into the garden & growing veggies.
+              I live in Heathcote Valley with my wife and two kids. We love
+              being close to the sea and hills, and spend time gardening,
+              exploring nature, and staying active as a family.
             </p>
             <p>
-              I’ve also been learning web development for a few years, I built
-              this site, I’m working on a gardening app with some friends:{' '}
-              <a
-                href="https://grow-grub.andrewmolten.com/"
-                className="font-medium underline"
-              >
-                Grow-grub
-              </a>
-              {'. '}
-              If you’re a language learner stay tuned for the language learning
-              app I’m building,{' '}
-              <a
-                href="https://languagebuddy.andrewmolten.com/"
-                className="font-medium underline"
-              >
-                this is the prototype
-              </a>
-              .
+              Outside of massage, I also enjoy web development and am currently
+              working on a language learning app.
             </p>
           </div>
           <div className="column image-column">

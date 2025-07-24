@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react'
 
 interface Props {
   className: string
+  text?: string
 }
 
-export default function BookNowButton({ className }: Props) {
+export default function BookNowButton({ className, text }: Props) {
   const [link, setLink] = useState(
     'https://andrew-bolton-massage-and-yoga.cliniko.com/bookings',
   )
@@ -29,7 +30,7 @@ export default function BookNowButton({ className }: Props) {
       rel="noopener noreferrer"
       className={className}
     >
-      Book Now
+      {text ? text : 'Book Now'}
     </a>
   )
 }

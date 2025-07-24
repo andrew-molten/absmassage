@@ -73,9 +73,12 @@ export default function Page() {
           sensitivity.
         </p>
 
-        <p>I'm down for a chat or you can sink into silence & relax.</p>
+        <p>
+          I'm happy to chat, but appreciate that you get more from your massage
+          by sinking into your breath & relaxing.
+        </p>
 
-        <BookNowButton className='"book-now-btn"' />
+        <BookNowButton className="book-now-btn" text="Book Your Massage" />
 
         <div className="break-line"></div>
       </div>
