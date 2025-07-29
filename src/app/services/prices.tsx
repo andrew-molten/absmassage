@@ -1,15 +1,15 @@
 export default function Prices() {
   return (
-    <p className="text-lg">
+    <p className="mt-0 text-xl">
       45 min – $80
       <br />
-      60 min – $99
+      60 min – $95
       <br />
-      75 min – $119
+      75 min – $115
       <br />
       90 min – $135
       <br />
-      120 min – $170
+      120 min – $175
     </p>
   )
 }

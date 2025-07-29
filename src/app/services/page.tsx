@@ -6,7 +6,6 @@ import malasana from '../../../images/andrew/Malasana.webp'
 import BookingEmbedded from '../../components/BookingEmbedded.tsx'
 import reviewData from '../../data/reviews.json'
 import { Review } from '../../../models/reviews.ts'
-import IntroOfferPrices from './introOfferPrices.tsx'
 import Prices from './prices.tsx'
 import Image from 'next/image'
 import BookNowButton from '../../components/BookNowButton.tsx'
@@ -125,16 +124,10 @@ export default function services() {
       <h2 className="p-heading ">Pricing & Booking</h2>
       <div className="row  items-center">
         <div className="column center">
-          <h3 className="text-3xl">Intro offer</h3>
-          <IntroOfferPrices />
-        </div>
-        <div className="column center">
-          <h3 className="mt-8 text-3xl sm:mt-0">Follow up</h3>
           <Prices />
         </div>
       </div>
 
-      <div className="break-line"></div>
       <BookNowButton className="book-now-btn" />
       <div className="break-line"></div>
 
