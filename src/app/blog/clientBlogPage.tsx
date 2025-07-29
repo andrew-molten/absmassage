@@ -16,7 +16,7 @@ export function ClientBlogPage({ posts }: ClientBlogPageProps) {
     const tags = new Set<string>()
     posts.forEach((post) => {
       if (post.tags && Array.isArray(post.tags)) {
-        post.tags.forEach((tag) => tags.add(tag))
+        post.tags.forEach((tag) => tags.add(tag.toLowerCase()))
       }
     })
     return Array.from(tags)
@@ -115,7 +115,9 @@ export function ClientBlogPage({ posts }: ClientBlogPageProps) {
                       {post.title}
                     </h3>
                     <p className="mt-2 text-sm text-gray-500">
-                      {new Date(post.date).toLocaleDateString('en-US', {
+                      {new Date(
+                        post.lastEdited ? post.lastEdited : post.date,
+                      ).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',

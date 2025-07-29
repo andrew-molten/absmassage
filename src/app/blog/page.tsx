@@ -8,6 +8,7 @@ import { ClientBlogPage } from './clientBlogPage'
 export interface PostFrontmatter {
   title: string
   date: string
+  lastEdited: string
   coverImage: string
   tags: string[]
 }

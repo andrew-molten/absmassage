@@ -44,6 +44,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
   const frontmatter = data as {
     title: string
     date: string
+    lastEdited: string
     coverImage: string
     tags: string[]
   }
@@ -56,7 +57,6 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     <article className="bg-white">
       <div className="heading-wrapper">
         {/* --- Back to Blog Link --- */}
-        {/* <div className="mb-8"> */}
         <div className="mb-0">
           <Link href="/blog" legacyBehavior>
             <a className="text-sm text-blue-500 transition-colors hover:text-blue-600">
@@ -64,7 +64,6 @@ export default function PostPage({ params }: { params: { slug: string } }) {
             </a>
           </Link>
         </div>
-        {/* <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 md:text-5xl"> */}
         <h1 className="heading center">{frontmatter.title}</h1>
       </div>
 
@@ -77,6 +76,15 @@ export default function PostPage({ params }: { params: { slug: string } }) {
             month: 'long',
             day: 'numeric',
           })}
+          <br />
+          {frontmatter.lastEdited &&
+            `Last edited on ${new Date(
+              frontmatter.lastEdited,
+            ).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}`}
         </p>
         <div className="mt-4 flex flex-wrap justify-center gap-2">
           {frontmatter.tags.map((tag) => (
