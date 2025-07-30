@@ -25,7 +25,7 @@
     <loc>https://andrewboltonsportsmassage.com/faq</loc>
     <lastmod>2024-10-01T02:39:59.891Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.5</priority>
     <xhtml:link rel="canonical" href="https://andrewboltonsportsmassage.com/faq" />
   </url>
   <url>
@@ -66,5 +66,11 @@
     <lastmod>2025-07-16T04:00:00.000Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.andrewboltonsportsmassage.com/blog/get-more-from-your-massage</loc>
+    <lastmod>2025-07-30T04:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
