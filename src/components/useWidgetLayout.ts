@@ -11,7 +11,6 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
   const updateLayoutMetrics = useCallback(() => {
     if (!viewportRef.current) return
     const viewportWidth = viewportRef.current.offsetWidth
-    const { cardBaseWidthPx } = themeConfig
     let maxCards = 1
     if (typeof window !== 'undefined') {
       if (window.innerWidth >= 1280) maxCards = 4
@@ -22,15 +21,21 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
     const cardWithGap = cardBaseWidthPx + cardGapPx
     const fitCards = Math.floor(viewportWidth / cardWithGap)
     const current = Math.max(1, Math.min(fitCards, maxCards))
+    console.log('current: ', current)
     setCardsToDisplay(current)
 
     if (current > 1) {
       setCardGapPx(themeConfig.cardGapPx)
       const totalGap = (current - 1) * themeConfig.cardGapPx
       const widthForCards = viewportWidth - totalGap
+      console.log('widthForCards: ', widthForCards)
       setActualCardWidthPx(Math.max(cardBaseWidthPx, widthForCards / current))
     } else {
       setActualCardWidthPx(themeConfig.oneCardWidthPercentage * viewportWidth)
+      console.log(
+        'card Width: ',
+        themeConfig.oneCardWidthPercentage * viewportWidth,
+      )
       setCardGapPx(
         0.5 * (1 - themeConfig.oneCardWidthPercentage) * viewportWidth,
       )
@@ -38,7 +43,19 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
   }, [cardGapPx])
 
   useEffect(() => {
-    updateLayoutMetrics()
+    // updateLayoutMetrics()
+    // window.addEventListener('resize', updateLayoutMetrics)
+    // return () => window.removeEventListener('resize', updateLayoutMetrics)
+    const tryUpdate = () => {
+      if (viewportRef.current?.offsetWidth) {
+        updateLayoutMetrics()
+      } else {
+        // Try again in next frame
+        requestAnimationFrame(tryUpdate)
+      }
+    }
+
+    tryUpdate()
     window.addEventListener('resize', updateLayoutMetrics)
     return () => window.removeEventListener('resize', updateLayoutMetrics)
   }, [updateLayoutMetrics])
@@ -56,6 +73,8 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
   const handleNext = () =>
     setCurrentIndex((i) => Math.min(i + 1, totalItems - cardsToDisplay))
   const slideOffsetPx = -currentIndex * (actualCardWidthPx + cardGapPx)
+
+  console.log('Widget actual px', actualCardWidthPx)
 
   return {
     viewportRef,

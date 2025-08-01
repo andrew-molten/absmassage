@@ -8,6 +8,7 @@ import {
   StarRatingProps,
 } from '../../models/reviews'
 import { NextBtn, PrevBtn, themeConfig } from '../lib/widgetTheme'
+import useWidgetLayout from './useWidgetLayout'
 
 const GoogleLogoFull: FC<{ className?: string }> = ({
   className = 'h-6 w-auto mr-2 inline',
@@ -274,69 +275,21 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
   const [averageRating, setAverageRating] = useState<number>(0)
   const [totalReviewsCount, setTotalReviewsCount] = useState<number>(0)
   const [shuffledReviews, setShuffledReviews] = useState<Review[]>([])
-  const [currentIndex, setCurrentIndex] = useState<number>(0)
-
-  const [cardsToDisplay, setCardsToDisplay] = useState<number>(1)
-  const [actualCardWidthPx, setActualCardWidthPx] = useState<number>(
-    themeConfig.cardBaseWidthPx,
-  )
-  const [cardGapPx, setCardGapPx] = useState<number>(themeConfig.cardGapPx)
-
-  const viewportRef = useRef<HTMLDivElement>(null)
-
-  const updateLayoutMetrics = useCallback(() => {
-    if (viewportRef.current) {
-      const viewportWidth = viewportRef.current.offsetWidth
-      const { cardBaseWidthPx } = themeConfig
-      // Determine max cards based on screen size breakpoints
-      let maxCardsForBreakpoint = 1
-      if (typeof window !== 'undefined') {
-        if (window.innerWidth >= 1280)
-          maxCardsForBreakpoint = 4 // Desktop
-        else if (window.innerWidth >= 760)
-          maxCardsForBreakpoint = 3 // Tablet
-        else if (window.innerWidth >= 450)
-          maxCardsForBreakpoint = 2 // Tablet
-        else maxCardsForBreakpoint = 1 // Mobile
-      }
-
-      // Calculate how many cards can fit fully within the viewport
-      // Include gaps between cards and extra space for padding/arrows
-      const cardWithGapWidth = cardBaseWidthPx + cardGapPx
-      // Use floor to ensure only full cards are counted (no partials)
-      let numCardsFit = Math.floor(viewportWidth / cardWithGapWidth)
-
-      // Ensure at least one card and respect breakpoint maximum
-      const currentCardsToDisplay = Math.max(
-        1,
-        Math.min(numCardsFit, maxCardsForBreakpoint),
-      )
-      setCardsToDisplay(currentCardsToDisplay)
-      // Calculate actual card width to fill the available space
-      if (currentCardsToDisplay > 1) {
-        setCardGapPx(themeConfig.cardGapPx)
-        const totalGapWidth =
-          (currentCardsToDisplay - 1) * themeConfig.cardGapPx
-        const availableWidthForCards = viewportWidth - totalGapWidth
-        // Distribute available width across cards, but not below base width
-        const calculatedCardWidth = Math.max(
-          cardBaseWidthPx,
-          availableWidthForCards / currentCardsToDisplay,
-        )
-        setActualCardWidthPx(calculatedCardWidth)
-      } else {
-        // 1 or 0 cards
-        setActualCardWidthPx(themeConfig.oneCardWidthPercentage * viewportWidth)
-        setCardGapPx(
-          0.5 * (1 - themeConfig.oneCardWidthPercentage) * viewportWidth,
-        )
-      }
-    }
-  }, [])
+  const {
+    viewportRef,
+    handleNext,
+    handlePrev,
+    canShowNext,
+    canShowPrev,
+    slideOffsetPx,
+    actualCardWidthPx,
+    cardsToDisplay,
+    cardGapPx,
+  } = useWidgetLayout(reviews.length, themeConfig.cardBaseWidthPx)
 
   useEffect(() => {
     if (reviews.length > 0) {
-      // Helper function to convert star rating strings to numbers for sorting
+      // Convert star rating strings to numbers for sorting
       const starRatingToNumber = (rating: string | number) => {
         if (typeof rating === 'number') return rating
         if (typeof rating === 'string') {
@@ -389,7 +342,6 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
       setShuffledReviews([])
       setTotalReviewsCount(0)
     }
-    setCurrentIndex(0)
   }, [reviews])
 
   useEffect(() => {
@@ -430,50 +382,6 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
       setAverageRating(0)
     }
   }, [shuffledReviews])
-
-  useEffect(() => {
-    if (shuffledReviews.length > 0 && cardsToDisplay > 0) {
-      const maxPossibleIndex = Math.max(
-        0,
-        shuffledReviews.length - cardsToDisplay,
-      )
-      if (currentIndex > maxPossibleIndex) {
-        setCurrentIndex(maxPossibleIndex)
-      }
-    } else if (shuffledReviews.length === 0) {
-      setCurrentIndex(0)
-    }
-  }, [currentIndex, cardsToDisplay, shuffledReviews])
-
-  useEffect(() => {
-    // Use setTimeout to ensure DOM is ready
-    const timer = setTimeout(() => {
-      updateLayoutMetrics()
-    }, 100)
-
-    window.addEventListener('resize', updateLayoutMetrics)
-    return () => {
-      clearTimeout(timer)
-      window.removeEventListener('resize', updateLayoutMetrics)
-    }
-  }, [updateLayoutMetrics])
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => Math.max(0, prev - 1))
-  }
-
-  const handleNext = () => {
-    setCurrentIndex((prev) =>
-      Math.min(prev + 1, shuffledReviews.length - cardsToDisplay),
-    )
-  }
-
-  const slideOffsetPx = -currentIndex * (actualCardWidthPx + cardGapPx)
-
-  const canShowPrev = currentIndex > 0
-  const canShowNext =
-    shuffledReviews.length > 0 &&
-    currentIndex < shuffledReviews.length - cardsToDisplay
 
   if (shuffledReviews.length === 0) {
     return (
@@ -565,7 +473,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
                   className={`flex-shrink-0 ${cardsToDisplay === 1 ? 'mx-auto' : ''}`}
                   style={{
                     // Apply margin for gap, except for the first item in the visible set if it's also the first overall
-                    // Or, more simply, apply margin-right to all but the last one in the whole track
+                    // Or, apply margin-right to all but the last one
                     marginRight:
                       index < shuffledReviews.length - 1
                         ? `${cardGapPx}px`
@@ -595,36 +503,3 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
 }
 
 export default GoogleReviewsWidget
-
-/*
-  How to use:
-  1. Make sure you have Tailwind CSS configured in your Next.js project.
-  2. If you moved the types to a separate file (e.g., `types.ts`), import them:
-     `import { Review, GoogleReviewsWidgetProps } from './types';`
-  3. Import this component: `import GoogleReviewsWidget from './components/GoogleReviewsWidget';`
-  4. Prepare your reviews data (array of `Review` objects) and the URL for the "Write a review" button.
-  5. Pass the data to the component:
-     `<GoogleReviewsWidget reviews={yourReviewsArray} writeReviewUrl="your_google_review_link" />`
-
-  Sample structure for a review object (see `Review` interface above):
-  const sampleApiReviews: Review[] = [
-    {
-      name: "accounts/1001/locations/2001/reviews/3001",
-      reviewId: "3001", // Optional
-      reviewer: {
-        displayName: "Alex P.",
-        profilePhotoUrl: "https://placehold.co/40x40/E0E0E0/777?text=AP"
-      },
-      starRating: "FIVE_STAR", // Or 5
-      comment: "Absolutely brilliant! Felt like a new person after my session. Andrew really knows his stuff. Will be back for sure. This is a slightly longer review to test the 'Read more' functionality to see how it behaves when the text exceeds the predefined maximum length.",
-      createTime: "2023-04-20T14:22:17Z", // ISO 8601 timestamp
-      updateTime: "2023-04-20T14:25:30Z" // Optional
-    },
-    // ... more reviews
-  ];
-
-  To use these sample reviews in your page:
-  <GoogleReviewsWidget reviews={sampleApiReviews} writeReviewUrl="https://search.google.com/localservices/writereview?placeid=YOUR_PLACE_ID_HERE" />
-  Replace YOUR_PLACE_ID_HERE with your actual Google Place ID.
-  You can find your Place ID here: https://developers.google.com/maps/documentation/places/web-service/place-id
-*/
