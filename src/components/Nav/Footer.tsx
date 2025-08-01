@@ -81,7 +81,7 @@ function Footer() {
           >
             Privacy Policy
           </Link>
-          <BookNowButton className="footer-link hover-link  inline-block" />
+          <BookNowButton className="footer-link hover-link  book-now-footer max-w-3xs inline-block" />
         </div>
         {!isSmallScreen && (
           <div className=" forty-percent flex flex-col flex-wrap content-center">

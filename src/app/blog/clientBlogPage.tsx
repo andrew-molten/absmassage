@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import Link from 'next/link'
-import { Post } from './page.tsx'
+import { Post } from '../../lib/getBlogPosts'
+import { BlogCard } from '../../components/BlogCard'
 
 interface ClientBlogPageProps {
   posts: Post[]
@@ -90,42 +90,7 @@ export function ClientBlogPage({ posts }: ClientBlogPageProps) {
         {filteredPosts.length > 0 ? (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {filteredPosts.map((post) => (
-              <Link href={`/blog/${post.slug}`} key={post.slug} legacyBehavior>
-                <a className="group block overflow-hidden rounded-xl bg-white shadow-md transition-shadow duration-300 hover:shadow-xl">
-                  <div className="relative">
-                    <img
-                      src={post.coverImage}
-                      alt={`Cover image for ${post.title}`}
-                      className="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/20"></div>
-                  </div>
-                  <div className="p-6">
-                    <div className="mb-2 flex flex-wrap gap-2">
-                      {(post.tags || []).map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold capitalize text-blue-800"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 transition-colors group-hover:text-blue-600">
-                      {post.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-gray-500">
-                      {new Date(
-                        post.lastEdited ? post.lastEdited : post.date,
-                      ).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </p>
-                  </div>
-                </a>
-              </Link>
+              <BlogCard key={post.slug} post={post} />
             ))}
           </div>
         ) : (
