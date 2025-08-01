@@ -1,4 +1,3 @@
-import React from 'react'
 import massageSpace from '../../../images/slider/massage-space.webp'
 import andrewMassaging from '../../../images/slider/andrew-massaging.webp'
 import neckMassage from '../../../images/slider/Andrew-Bolton-Sports-Massage(sm).webp'

@@ -7,9 +7,10 @@ import Map from '../components/Map.tsx'
 import reviewData from '../data/reviews.json'
 import GoogleReviewsWidget from '../components/GoogleReviewsWidget.tsx'
 import { Review } from '../../models/reviews.ts'
-import IntroOfferPrices from './services/introOfferPrices.tsx'
 import Prices from './services/prices.tsx'
 import BookNowButton from '../components/BookNowButton.tsx'
+import { BlogWidget } from '../components/BlogWidget'
+import { getPosts } from '../lib/getBlogPosts'
 
 export const metadata: Metadata = {
   alternates: {
@@ -25,6 +26,8 @@ export default function Page() {
     // Assert that this specific property matches your 'Review' interface
     starRating: review.starRating as Review['starRating'],
   }))
+  const posts = getPosts()
+
   return (
     <div>
       <Slider />
@@ -99,6 +102,7 @@ export default function Page() {
       </div>
       <Map page="home" />
       <BookingEmbedded />
+      <BlogWidget posts={posts} />
       <Mailchimp />
     </div>
   )

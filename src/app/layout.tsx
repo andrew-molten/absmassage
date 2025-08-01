@@ -12,7 +12,7 @@ import GclidTracker from '../components/GclidTracker.tsx'
 export const metadata: Metadata = {
   title: 'Sports Massage Christchurch | Deep Tissue Therapy | Andrew Bolton',
   description:
-    "Sports & Deep Tissue Massage for serious pain relief. I'm an experienced therapist helping athletes & active people recover faster. Book now - from $89",
+    "Sports & Deep Tissue Massage for serious pain relief. I'm an experienced therapist helping athletes & active people recover faster. Book now - from $80",
   robots: 'index, follow',
 }
 

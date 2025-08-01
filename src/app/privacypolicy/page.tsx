@@ -1,5 +1,4 @@
 import { Metadata } from 'next/types'
-import React from 'react'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy - Andrew Bolton Sports Massage',
@@ -8,6 +7,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://andrewboltonsportsmassage.com/privacypolicy',
   },
+  robots: 'noindex, nofollow',
 }
 
 function privacypolicy() {

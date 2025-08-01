@@ -1,6 +1,7 @@
-# *
 User-agent: *
-Allow: /
+Disallow: /refundcancellations
+Disallow: /privacypolicy
+
 
 # Host
 Host: https://www.andrewboltonsportsmassage.com/
