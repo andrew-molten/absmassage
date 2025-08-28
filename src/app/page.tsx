@@ -40,11 +40,12 @@ export default function Page() {
         </h2>
         <span className="mt-6 inline-block text-xl">{`Hi, I’m Andrew.`}</span>
         <h2>
-          I have 7 years experience specialising in{' '}
-          <strong>Deep Tissue & Sports massage in Christchurch</strong>.
+          I've got 7 years’ experience helping the people of Christchurch live
+          stronger, pain-free lives, specialising in Deep Tissue & Sports
+          Massage.
         </h2>
 
-        <p>I help people:</p>
+        <p>I can help you:</p>
         <ul className="ml-5 mt-5 text-left">
           <li>
             <strong>🦵 Overcome injury</strong>
@@ -59,14 +60,14 @@ export default function Page() {
             <strong>🏃‍♂️ Restore mobility</strong>
           </li>
           <li className="mt-1">
-            <strong>🚵🏽‍♂️ Prepare for/recover from events</strong>
+            <strong>🚵🏽‍♂️ Prepare for & recover from events</strong>
           </li>
           <li className="mt-1">
             <strong>💆‍♀️ Relax</strong>
           </li>
         </ul>
 
-        <p>I'm passionate about helping people live pain-free lives.</p>
+        <p>I'm serious about helping you live a pain-free life.</p>
 
         <p>
           I work holistically with body & breath to release tension. Each
@@ -101,8 +102,8 @@ export default function Page() {
         <div className="break-line"></div>
       </div>
       <Map page="home" />
-      <BookingEmbedded />
       <BlogWidget posts={posts} />
+      <BookingEmbedded />
       <Mailchimp />
     </div>
   )

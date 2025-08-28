@@ -4,16 +4,33 @@ import indiaAndrew from './India2.webp'
 import massageHands from './massage-hands.webp'
 import massageStudio from './massage-studio.webp'
 import massageSpace from './massage-space.webp'
-import leafy from './leafy.webp'
+import andrewMassagingChristchurch from './andrew-massaging-christchurch.webp'
 import andrew from './andrew.webp'
+import strongMassageAndrew from './strong-massage-andrew.webp'
 
 export const sliderImages = [
-  { image: andrew, alt: 'andrew' },
-  { image: massageSpace, alt: 'leafy massage space' },
-  { image: andrewMassaging, alt: 'andrew masaging' },
-  { image: massageStudio, alt: 'warm massage studio' },
-  { image: leafy, alt: 'massage consultation space' },
-  { image: massageHands, alt: 'hands massaging' },
-  { image: indiaAndrew, alt: 'Andrew in India' },
-  { image: absm, alt: 'relaxing neck massage' },
+  {
+    image: strongMassageAndrew,
+    alt: 'Andrew Bolton giving a strong sports massage',
+  },
+  {
+    image: andrew,
+    alt: 'Andrew Bolton, sports massage therapist in Christchurch',
+  },
+  { image: andrewMassaging, alt: 'Andrew Bolton giving a sports massage' },
+  {
+    image: massageStudio,
+    alt: 'Warm and relaxing massage studio in Christchurch',
+  },
+  { image: massageHands, alt: 'Hands massaging tight shoulder muscles' },
+  { image: massageSpace, alt: 'Leafy massage therapy space in Christchurch' },
+  {
+    image: andrewMassagingChristchurch,
+    alt: 'Massage consultation and treatment in Christchurch',
+  },
+  {
+    image: indiaAndrew,
+    alt: 'Andrew Bolton learning massage techniques in India',
+  },
+  { image: absm, alt: 'Relaxing neck and shoulder massage in Christchurch' },
 ]
