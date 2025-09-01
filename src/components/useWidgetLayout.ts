@@ -6,7 +6,28 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
   const [cardsToDisplay, setCardsToDisplay] = useState(1)
   const [actualCardWidthPx, setActualCardWidthPx] = useState(cardBaseWidthPx)
   const [cardGapPx, setCardGapPx] = useState(themeConfig.cardGapPx)
+  const [isVisible, setIsVisible] = useState(false)
   const viewportRef = useRef<HTMLDivElement>(null)
+
+  // Observe whether slider is in the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting)
+        })
+      },
+      { threshold: 0.75 }, // 75% of the slider needs to be visible
+    )
+
+    if (viewportRef.current) {
+      observer.observe(viewportRef.current)
+    }
+
+    return () => {
+      if (viewportRef.current) observer.unobserve(viewportRef.current)
+    }
+  }, [])
 
   const updateLayoutMetrics = useCallback(() => {
     if (!viewportRef.current) return
@@ -21,21 +42,15 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
     const cardWithGap = cardBaseWidthPx + cardGapPx
     const fitCards = Math.floor(viewportWidth / cardWithGap)
     const current = Math.max(1, Math.min(fitCards, maxCards))
-    console.log('current: ', current)
     setCardsToDisplay(current)
 
     if (current > 1) {
       setCardGapPx(themeConfig.cardGapPx)
       const totalGap = (current - 1) * themeConfig.cardGapPx
       const widthForCards = viewportWidth - totalGap
-      console.log('widthForCards: ', widthForCards)
       setActualCardWidthPx(Math.max(cardBaseWidthPx, widthForCards / current))
     } else {
       setActualCardWidthPx(themeConfig.oneCardWidthPercentage * viewportWidth)
-      console.log(
-        'card Width: ',
-        themeConfig.oneCardWidthPercentage * viewportWidth,
-      )
       setCardGapPx(
         0.5 * (1 - themeConfig.oneCardWidthPercentage) * viewportWidth,
       )
@@ -43,9 +58,6 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
   }, [cardGapPx])
 
   useEffect(() => {
-    // updateLayoutMetrics()
-    // window.addEventListener('resize', updateLayoutMetrics)
-    // return () => window.removeEventListener('resize', updateLayoutMetrics)
     const tryUpdate = () => {
       if (viewportRef.current?.offsetWidth) {
         updateLayoutMetrics()
@@ -69,12 +81,66 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
     }
   }, [cardsToDisplay, totalItems, currentIndex])
 
-  const handlePrev = () => setCurrentIndex((i) => Math.max(0, i - 1))
-  const handleNext = () =>
-    setCurrentIndex((i) => Math.min(i + 1, totalItems - cardsToDisplay))
+  console.log(currentIndex)
+  function handlePrev() {
+    setCurrentIndex((prevIndex) => {
+      if (prevIndex === 0) {
+        return totalItems - cardsToDisplay
+      }
+      return prevIndex - 1
+    })
+  }
+  function handleNext() {
+    setCurrentIndex((prevIndex) => {
+      if (prevIndex < totalItems - cardsToDisplay) {
+        return prevIndex + 1
+      }
+      return 0
+    })
+  }
+
   const slideOffsetPx = -currentIndex * (actualCardWidthPx + cardGapPx)
 
-  console.log('Widget actual px', actualCardWidthPx)
+  // Timed Next once in viewport
+  useEffect(() => {
+    if (isVisible) {
+      const interval = setInterval(() => {
+        handleNext()
+      }, 4000)
+      return () => clearInterval(interval)
+    }
+  }, [isVisible, currentIndex])
+
+  // Add swiping functionality
+  useEffect(() => {
+    console.log('hellppp')
+    const slider = viewportRef.current
+    if (!slider) return
+
+    slider.addEventListener('touchstart', handleTouchStart)
+    slider.addEventListener('touchend', handleTouchEnd)
+
+    return () => {
+      slider.removeEventListener('touchstart', handleTouchStart)
+      slider.removeEventListener('touchend', handleTouchEnd)
+    }
+  }, [])
+
+  let touchstartX: number
+  const handleTouchStart = (e: TouchEvent) => {
+    touchstartX = e.changedTouches[0].screenX
+  }
+
+  const handleTouchEnd = (e: TouchEvent) => {
+    const touchendX = e.changedTouches[0].screenX
+    // SWIPE LEFT
+    if (touchendX < touchstartX) {
+      handleNext()
+      // SWIPE RIGHT
+    } else {
+      handlePrev()
+    }
+  }
 
   return {
     viewportRef,

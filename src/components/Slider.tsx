@@ -67,6 +67,14 @@ function Slider() {
     }
   }, [imageHeights])
 
+  // Timed swipe
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide()
+    }, 3500)
+    return () => clearInterval(interval)
+  }, [curSlide])
+
   // SWIPE
   useEffect(() => {
     const slider = sliderRef.current
@@ -91,13 +99,21 @@ function Slider() {
     const touchendX = e.changedTouches[0].screenX
     // SWIPE LEFT
     if (touchendX < touchstartX) {
-      if (curSlide === 7) return setCurSlide(1)
-      setCurSlide(curSlide + 1)
+      nextSlide()
       // SWIPE RIGHT
     } else if (touchstartX < touchendX) {
-      if (curSlide === 1) return setCurSlide(7)
-      setCurSlide(curSlide - 1)
+   prevSlide()
     }
+  }
+
+  function prevSlide() {
+    if (curSlide === 1) return setCurSlide(7)
+    setCurSlide(curSlide - 1)
+  }
+
+  function nextSlide() {
+    if (curSlide === 7) return setCurSlide(1)
+    setCurSlide(curSlide + 1)
   }
 
   function checkActive(num: number) {

@@ -10,24 +10,25 @@ import strongMassageAndrew from './strong-massage-andrew.webp'
 
 export const sliderImages = [
   {
-    image: strongMassageAndrew,
-    alt: 'Andrew Bolton giving a strong sports massage',
+    image: andrewMassagingChristchurch,
+    alt: 'Massage consultation and treatment in Christchurch',
   },
   {
     image: andrew,
     alt: 'Andrew Bolton, sports massage therapist in Christchurch',
   },
-  { image: andrewMassaging, alt: 'Andrew Bolton giving a sports massage' },
+  {
+    image: strongMassageAndrew,
+    alt: 'Andrew Bolton giving a strong sports massage',
+  },
   {
     image: massageStudio,
     alt: 'Warm and relaxing massage studio in Christchurch',
   },
-  { image: massageHands, alt: 'Hands massaging tight shoulder muscles' },
+  { image: andrewMassaging, alt: 'Andrew Bolton giving a sports massage' },
   { image: massageSpace, alt: 'Leafy massage therapy space in Christchurch' },
-  {
-    image: andrewMassagingChristchurch,
-    alt: 'Massage consultation and treatment in Christchurch',
-  },
+  { image: massageHands, alt: 'Hands massaging tight shoulder muscles' },
+
   {
     image: indiaAndrew,
     alt: 'Andrew Bolton learning massage techniques in India',
