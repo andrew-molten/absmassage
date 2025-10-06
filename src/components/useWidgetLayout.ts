@@ -81,7 +81,6 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
     }
   }, [cardsToDisplay, totalItems, currentIndex])
 
-  console.log(currentIndex)
   function handlePrev() {
     setCurrentIndex((prevIndex) => {
       if (prevIndex === 0) {
@@ -113,7 +112,6 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
 
   // Add swiping functionality
   useEffect(() => {
-    console.log('hellppp')
     const slider = viewportRef.current
     if (!slider) return
 
