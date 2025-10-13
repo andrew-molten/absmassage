@@ -14,6 +14,7 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          console.log('observer')
           setIsVisible(entry.isIntersecting)
         })
       },
@@ -99,7 +100,7 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
   }
 
   const slideOffsetPx = -currentIndex * (actualCardWidthPx + cardGapPx)
-
+  console.log(isVisible)
   // Timed Next once in viewport
   useEffect(() => {
     if (isVisible) {
