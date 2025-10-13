@@ -102,7 +102,7 @@ function Slider() {
       nextSlide()
       // SWIPE RIGHT
     } else if (touchstartX < touchendX) {
-   prevSlide()
+      prevSlide()
     }
   }
 

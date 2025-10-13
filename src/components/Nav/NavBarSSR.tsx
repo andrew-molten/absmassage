@@ -4,7 +4,6 @@ import absmlogo from '../../../images/logos/andrew-bolton-sports-massage-logo.we
 import NavLinks from './NavLinks'
 import { useEffect, useRef, useState } from 'react'
 import { FaBars } from 'react-icons/fa6'
-import React from 'react'
 import Link from 'next/link'
 
 function NavBarSSR() {
