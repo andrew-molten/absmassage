@@ -15,7 +15,7 @@
     "postbuild": "next-sitemap"
   },
   "eslintConfig": {
-    "extends": "@devacademy/eslint-config/react",
+    "extends": "next/core-web-vitals",
     "ignorePatterns": [
       "bundle.js"
     ]
