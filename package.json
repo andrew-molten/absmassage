@@ -15,7 +15,14 @@
     "postbuild": "next-sitemap"
   },
   "eslintConfig": {
-    "extends": "next/core-web-vitals",
+    "extends": [
+      "next",
+      "next/core-web-vitals"
+    ],
+    "rules": {
+      "@next/next/no-img-element": "off",
+      "react/no-unescaped-entities": "off"
+    },
     "ignorePatterns": [
       "bundle.js"
     ]
