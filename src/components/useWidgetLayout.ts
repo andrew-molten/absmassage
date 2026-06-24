@@ -18,7 +18,7 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
           setIsVisible(entry.isIntersecting)
         })
       },
-      { threshold: 0.75 }, // 75% of the slider needs to be visible
+      { threshold: 0.75 }, // 75% of slider needs to be visible
     )
 
     if (viewportRef.current) {
