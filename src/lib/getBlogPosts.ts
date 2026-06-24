@@ -7,6 +7,7 @@ export interface Post {
   slug: string
   date: string
   lastEdited?: string
+  description?: string
   content: string
   coverImage: string
   tags?: string[]
@@ -15,6 +16,7 @@ export interface PostFrontmatter {
   title: string
   date: string
   lastEdited: string
+  description?: string
   coverImage: string
   tags: string[]
 }
