@@ -111,7 +111,11 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         {/* --- Post Content --- */}
         {/* The `prose` classes from Tailwind CSS provide beautiful typography styling for markdown content */}
         <div className="prose prose-lg mx-auto max-w-4xl lg:prose-xl prose-a:text-blue-600 prose-a:underline hover:prose-a:text-blue-800">
-          <MDXRemote source={content} components={components} />
+          <MDXRemote
+            source={content}
+            components={components}
+            options={{ blockJS: false }}
+          />
         </div>
       </div>
     </article>
