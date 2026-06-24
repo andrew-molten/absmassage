@@ -26,7 +26,6 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
     }
 
     return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       if (viewportRef.current) observer.unobserve(viewportRef.current)
     }
   }, [])
@@ -57,7 +56,6 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
         0.5 * (1 - themeConfig.oneCardWidthPercentage) * viewportWidth,
       )
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardGapPx])
 
   useEffect(() => {
@@ -111,7 +109,6 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
       }, 4000)
       return () => clearInterval(interval)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible, currentIndex])
 
   // Add swiping functionality
@@ -126,7 +123,6 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
       slider.removeEventListener('touchstart', handleTouchStart)
       slider.removeEventListener('touchend', handleTouchEnd)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   let touchstartX: number
