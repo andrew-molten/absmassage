@@ -34,7 +34,28 @@ export async function generateMetadata({
   const { data } = getPost(params.slug)
   return {
     title: data.title,
-    description: `Blog post about ${data.title}`,
+    description:
+      data.description ||
+      `A practical article from Andrew Bolton Sports Massage about ${data.title.toLowerCase()}, with ideas to help you move, breathe and feel better.`,
+    alternates: {
+      canonical: `https://andrewboltonsportsmassage.com/blog/${params.slug}`,
+    },
+    openGraph: {
+      title: data.title,
+      description:
+        data.description ||
+        `A practical article from Andrew Bolton Sports Massage about ${data.title.toLowerCase()}.`,
+      url: `https://andrewboltonsportsmassage.com/blog/${params.slug}`,
+      type: 'article',
+      images: data.coverImage
+        ? [
+            {
+              url: data.coverImage,
+              alt: data.title,
+            },
+          ]
+        : undefined,
+    },
   }
 }
 

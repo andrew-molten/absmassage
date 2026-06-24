@@ -13,15 +13,36 @@ export const metadata: Metadata = {
   },
 }
 
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQs.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: [item.answer, item.answer2, item.answer3, item.link?.text]
+        .filter(Boolean)
+        .join(' '),
+    },
+  })),
+}
+
 // Adding this as a separate component which can be use Client.
 
 function faq() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd),
+        }}
+      />
       <div className="heading-wrapper">
         <h1 className="heading">Frequently Asked Questions</h1>
       </div>
-      <div className='faq-container'>
+      <div className="faq-container">
         <RenderAccordian FAQs={FAQs} />
       </div>
     </>

@@ -3,6 +3,12 @@ import { useState, useEffect } from 'react'
 import '../styles/Booking.scss'
 import React from 'react'
 
+declare global {
+  interface Window {
+    dataLayer?: Array<Record<string, unknown>>
+  }
+}
+
 function BookingEmbedded() {
   const [height, setHeight] = useState('1000px')
 
@@ -14,7 +20,7 @@ function BookingEmbedded() {
         setHeight(`${newHeight}px`)
       }
       if (e.data.search('cliniko-bookings-page:confirmed') > -1) {
-        var dataLayer = window.dataLayer || (window.dataLayer = [])
+        const dataLayer = window.dataLayer || (window.dataLayer = [])
 
         dataLayer.push({
           event: 'clinikoBookingCompleted',

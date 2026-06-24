@@ -8,6 +8,7 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
   const [cardGapPx, setCardGapPx] = useState(themeConfig.cardGapPx)
   const [isVisible, setIsVisible] = useState(false)
   const viewportRef = useRef<HTMLDivElement>(null)
+  const touchstartXRef = useRef(0)
 
   // Observe whether slider is in the viewport
   useEffect(() => {
@@ -21,12 +22,14 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
       { threshold: 0.75 }, // 75% of slider needs to be visible
     )
 
-    if (viewportRef.current) {
-      observer.observe(viewportRef.current)
+    const viewport = viewportRef.current
+
+    if (viewport) {
+      observer.observe(viewport)
     }
 
     return () => {
-      if (viewportRef.current) observer.unobserve(viewportRef.current)
+      if (viewport) observer.unobserve(viewport)
     }
   }, [])
 
@@ -56,7 +59,43 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
         0.5 * (1 - themeConfig.oneCardWidthPercentage) * viewportWidth,
       )
     }
-  }, [cardGapPx])
+  }, [cardBaseWidthPx, cardGapPx])
+
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prevIndex) => {
+      if (prevIndex === 0) {
+        return totalItems - cardsToDisplay
+      }
+      return prevIndex - 1
+    })
+  }, [cardsToDisplay, totalItems])
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prevIndex) => {
+      if (prevIndex < totalItems - cardsToDisplay) {
+        return prevIndex + 1
+      }
+      return 0
+    })
+  }, [cardsToDisplay, totalItems])
+
+  const handleTouchStart = useCallback((e: TouchEvent) => {
+    touchstartXRef.current = e.changedTouches[0].screenX
+  }, [])
+
+  const handleTouchEnd = useCallback(
+    (e: TouchEvent) => {
+      const touchendX = e.changedTouches[0].screenX
+      // SWIPE LEFT
+      if (touchendX < touchstartXRef.current) {
+        handleNext()
+        // SWIPE RIGHT
+      } else {
+        handlePrev()
+      }
+    },
+    [handleNext, handlePrev],
+  )
 
   useEffect(() => {
     const tryUpdate = () => {
@@ -82,23 +121,6 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
     }
   }, [cardsToDisplay, totalItems, currentIndex])
 
-  function handlePrev() {
-    setCurrentIndex((prevIndex) => {
-      if (prevIndex === 0) {
-        return totalItems - cardsToDisplay
-      }
-      return prevIndex - 1
-    })
-  }
-  function handleNext() {
-    setCurrentIndex((prevIndex) => {
-      if (prevIndex < totalItems - cardsToDisplay) {
-        return prevIndex + 1
-      }
-      return 0
-    })
-  }
-
   const slideOffsetPx = -currentIndex * (actualCardWidthPx + cardGapPx)
   console.log(isVisible)
   // Timed Next once in viewport
@@ -109,7 +131,7 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
       }, 4000)
       return () => clearInterval(interval)
     }
-  }, [isVisible, currentIndex])
+  }, [handleNext, isVisible])
 
   // Add swiping functionality
   useEffect(() => {
@@ -123,23 +145,7 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
       slider.removeEventListener('touchstart', handleTouchStart)
       slider.removeEventListener('touchend', handleTouchEnd)
     }
-  }, [])
-
-  let touchstartX: number
-  const handleTouchStart = (e: TouchEvent) => {
-    touchstartX = e.changedTouches[0].screenX
-  }
-
-  const handleTouchEnd = (e: TouchEvent) => {
-    const touchendX = e.changedTouches[0].screenX
-    // SWIPE LEFT
-    if (touchendX < touchstartX) {
-      handleNext()
-      // SWIPE RIGHT
-    } else {
-      handlePrev()
-    }
-  }
+  }, [handleTouchEnd, handleTouchStart])
 
   return {
     viewportRef,
