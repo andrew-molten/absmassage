@@ -135,6 +135,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           <MDXRemote
             source={content}
             components={components}
+            options={{ blockJS: false }}
           />
         </div>
       </div>
