@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import heroPoster from '../../images/slider/lower-back.webp'
 import BookNowButton from './BookNowButton'
 
-const desktopQuery = '(min-width: 768px)'
+const desktopQuery = '(min-width: 801px)'
 const reducedMotionQuery = '(prefers-reduced-motion: reduce)'
 const mobilePoster = '/videos/absm-website-hero-mobile-720x960.webp'
 
@@ -44,7 +44,7 @@ export default function VideoHero() {
     <section className="video-hero" aria-labelledby="home-hero-title">
       <div className="video-hero__media" aria-hidden="true">
         <picture>
-          <source media="(max-width: 767px)" srcSet={mobilePoster} />
+          <source media="(max-width: 800px)" srcSet={mobilePoster} />
           <Image
             src={heroPoster}
             alt=""
