@@ -74,13 +74,25 @@ function Slider() {
     if (!slider) return
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let isIntersecting = false
+    const updateAnimationState = () => {
+      setIsInView(isIntersecting && !reduceMotion.matches)
+    }
     const observer = new IntersectionObserver(
-      ([entry]) => setIsInView(entry.isIntersecting && !reduceMotion.matches),
+      ([entry]) => {
+        isIntersecting = entry.isIntersecting
+        updateAnimationState()
+      },
       { threshold: 0.2 },
     )
 
     observer.observe(slider)
-    return () => observer.disconnect()
+    reduceMotion.addEventListener('change', updateAnimationState)
+
+    return () => {
+      reduceMotion.removeEventListener('change', updateAnimationState)
+      observer.disconnect()
+    }
   }, [])
 
   // Timed swipe
