@@ -105,7 +105,7 @@ function Footer() {
             <p className="hover-link">
               <FaLocationDot />
               <a
-                href="https://www.google.co.nz/maps/place/Andrew+Bolton+Sports+Massage/@-43.5663084,172.7386475,17z/data=!3m1!4b1!4m6!3m5!1s0x6d318ba023d35463:0xb55caf2c88c66b0b!8m2!3d-43.5663084!4d172.7412224!16s%2Fg%2F11hd_jz1ld?entry=ttu&g_ep=EgoyMDI0MDkwNC4wIKXMDSoASAFQAw%3D%3D"
+                href="https://www.google.com/maps/search/?api=1&query=21%20Laing%20Crescent%2C%20Heathcote%20Valley%2C%20Christchurch%208022%2C%20New%20Zealand"
                 target="_blank"
                 rel="noreferrer"
               >

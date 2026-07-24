@@ -37,11 +37,6 @@ const localBusinessJsonLd = {
     postalCode: '8022',
     addressCountry: 'NZ',
   },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: -43.5663084,
-    longitude: 172.7412224,
-  },
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
