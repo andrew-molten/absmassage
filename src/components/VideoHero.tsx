@@ -49,7 +49,6 @@ export default function VideoHero() {
             src={heroPoster}
             alt=""
             fill
-            priority
             sizes="100vw"
             className="video-hero__poster"
           />
