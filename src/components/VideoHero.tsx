@@ -50,6 +50,8 @@ export default function VideoHero() {
             alt=""
             fill
             sizes="100vw"
+            loading="eager"
+            fetchPriority="high"
             className="video-hero__poster"
           />
         </picture>
