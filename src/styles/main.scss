@@ -19,6 +19,168 @@
 body {
   text-align: justify;
 }
+
+// HOME HERO
+
+.video-hero {
+  min-height: 460px;
+  height: min(41.667vw, 600px);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--primary);
+  color: #fff;
+}
+
+.video-hero__media,
+.video-hero__shade {
+  position: absolute;
+  inset: 0;
+}
+
+.video-hero__media {
+  z-index: -2;
+}
+
+.video-hero__poster,
+.video-hero__video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.video-hero__video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.video-hero__video--ready {
+  opacity: 1;
+}
+
+.video-hero__shade {
+  z-index: -1;
+  background: linear-gradient(
+      90deg,
+      rgba(9, 26, 20, 0.9) 0%,
+      rgba(9, 26, 20, 0.68) 38%,
+      rgba(9, 26, 20, 0.18) 72%,
+      rgba(9, 26, 20, 0.08) 100%
+    ),
+    linear-gradient(0deg, rgba(9, 26, 20, 0.2), transparent 45%);
+}
+
+.video-hero__content {
+  width: min(90%, 1200px);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.video-hero__eyebrow,
+.home-gallery__eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.video-hero h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(2.6rem, 5.2vw, 4.9rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.video-hero__promise {
+  margin-top: 1.25rem;
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-weight: 400;
+}
+
+.video-hero__button {
+  display: inline-block;
+  margin-top: 1.75rem;
+  border: 1px solid #ff8a45;
+  border-radius: 999px;
+  background: #ff5e00;
+  color: #fff;
+  box-shadow: 0 14px 35px rgba(13, 24, 19, 0.28);
+  padding: 0.7rem 1.35rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-align: center;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.video-hero__button:hover {
+  transform: translateY(-2px);
+  background: #e95300;
+  box-shadow: 0 17px 38px rgba(13, 24, 19, 0.35);
+}
+
+.video-hero__button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+// HOME GALLERY
+
+.home-gallery {
+  width: min(90%, 1200px);
+  margin: 3rem auto 0;
+}
+
+.home-gallery__heading {
+  margin: 0 auto 1.25rem;
+  text-align: center;
+}
+
+.home-gallery__eyebrow {
+  color: var(--primary);
+}
+
+.home-gallery h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.home-gallery .slider {
+  border-radius: 24px;
+  box-shadow: 0 18px 50px rgba(26, 45, 36, 0.12);
+}
+
+.home-gallery .dots {
+  padding: 0.45rem 0.25rem;
+  border-radius: 999px;
+  background: rgba(14, 35, 27, 0.55);
+  backdrop-filter: blur(5px);
+}
+
+.home-gallery .dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 7px;
+}
+.home-intro {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
 p {
   margin: 1.5rem 0 0 0;
 }
@@ -200,6 +362,49 @@ h2 {
 }
 
 @media only screen and (max-width: 800px) {
+  .video-hero {
+    min-height: 500px;
+    height: min(68svh, 620px);
+    align-items: flex-end;
+  }
+
+  .video-hero__poster {
+    object-position: 52% center;
+  }
+
+  .video-hero__shade {
+    background: linear-gradient(
+      0deg,
+      rgba(8, 25, 19, 0.94) 0%,
+      rgba(8, 25, 19, 0.62) 48%,
+      rgba(8, 25, 19, 0.08) 82%
+    );
+  }
+
+  .video-hero__content {
+    width: 88%;
+    margin-bottom: 3.25rem;
+  }
+
+  .video-hero h1 {
+    max-width: 620px;
+    font-size: clamp(2.45rem, 9vw, 4rem);
+  }
+
+  .home-gallery {
+    width: 100%;
+    margin-top: 2.5rem;
+  }
+
+  .home-gallery__heading {
+    padding: 0 1.25rem;
+  }
+
+  .home-gallery .slider {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
   .reviews-container {
     width: 100%;
   }
@@ -247,7 +452,38 @@ h2 {
 }
 
 @media screen and (max-width: 600px) {
+  .video-hero {
+    min-height: 520px;
+    height: 72svh;
+    max-height: 660px;
+  }
+
+  .video-hero__content {
+    margin-bottom: 2.5rem;
+  }
+
+  .video-hero__eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.13em;
+  }
+
+  .video-hero__button {
+    width: 100%;
+    padding: 0.8rem 1rem;
+  }
+
+  .home-gallery__eyebrow {
+    margin-bottom: 0.6rem;
+  }
+
   #home_gmap_canvas {
     width: 94%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-hero__video,
+  .video-hero__button {
+    transition: none;
   }
 }

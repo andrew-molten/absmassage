@@ -11,6 +11,7 @@ function Slider() {
   const [imageHeights, setImageHeights] = useState<number[]>([])
   const [minHeight, setMinHeight] = useState(320)
   const [windowWidth, setWindowWidth] = useState(0)
+  const [isInView, setIsInView] = useState(false)
   const slides = useRef<HTMLDivElement[]>([])
   const sliderRef = useRef<HTMLDivElement>(null)
   const numSlides = useRef<number>(0)
@@ -67,13 +68,30 @@ function Slider() {
     }
   }, [imageHeights])
 
+  // Only animate while the below-the-fold gallery is visible.
+  useEffect(() => {
+    const slider = sliderRef.current
+    if (!slider) return
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting && !reduceMotion.matches),
+      { threshold: 0.2 },
+    )
+
+    observer.observe(slider)
+    return () => observer.disconnect()
+  }, [])
+
   // Timed swipe
   useEffect(() => {
+    if (!isInView) return
+
     const interval = setInterval(() => {
       setCurSlide((currentSlide) => (currentSlide === 7 ? 1 : currentSlide + 1))
     }, 3500)
     return () => clearInterval(interval)
-  }, [])
+  }, [isInView])
 
   // SWIPE
   useEffect(() => {
@@ -164,7 +182,12 @@ function Slider() {
             }
           }}
         >
-          <img src={image.image.src} alt={image.alt} loading={'eager'} />
+          <img
+            src={image.image.src}
+            alt={image.alt}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       ))}
 
