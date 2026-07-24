@@ -11,6 +11,7 @@ import Prices from './services/prices.tsx'
 import BookNowButton from '../components/BookNowButton.tsx'
 import { BlogWidget } from '../components/BlogWidget'
 import { getPosts } from '../lib/getBlogPosts'
+import VideoHero from '../components/VideoHero'
 
 export const metadata: Metadata = {
   alternates: {
@@ -30,15 +31,9 @@ export default function Page() {
 
   return (
     <div>
-      <Slider />
+      <VideoHero />
       <div className="content-container">
-        <h1 className="text-center text-2xl sm:text-3xl">
-          <strong>Sports & Deep Tissue Massage in Christchurch</strong>
-        </h1>
-        <h2 className="text-center text-xl sm:text-2xl">
-          <strong>Move better. Relieve pain. Relax deeply.</strong>
-        </h2>
-        <span className="mt-6 inline-block text-xl">{`Hi, I’m Andrew.`}</span>
+        <p className="home-intro">{`Hi, I’m Andrew.`}</p>
         <h2>
           I've got 7 years’ experience helping the people of Christchurch live
           stronger, pain-free lives, specialising in Deep Tissue & Sports
@@ -90,6 +85,13 @@ export default function Page() {
         reviews={typedReviews}
         writeReviewUrl={writeReviewUrl}
       />
+      <section className="home-gallery" aria-labelledby="home-gallery-title">
+        <div className="home-gallery__heading">
+          <p className="home-gallery__eyebrow">The treatment experience</p>
+          <h2 id="home-gallery-title">Strong, relieving, personalised</h2>
+        </div>
+        <Slider />
+      </section>
       <div className="content-container remove-top-margin">
         <div className="break-line"></div>
         <h2 className="p-heading ">Pricing</h2>
