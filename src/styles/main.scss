@@ -426,6 +426,11 @@ h2 {
 
   .video-hero__button {
     margin-top: 0;
+    box-shadow: none;
+  }
+
+  .video-hero__button:hover {
+    box-shadow: none;
   }
 
   .video-hero h1 {

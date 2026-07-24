@@ -1,12 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { themeConfig } from '../lib/widgetTheme'
 
+const AUTOPLAY_INTERVAL_MS = 6500
+
 function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [cardsToDisplay, setCardsToDisplay] = useState(1)
   const [actualCardWidthPx, setActualCardWidthPx] = useState(cardBaseWidthPx)
   const [cardGapPx, setCardGapPx] = useState(themeConfig.cardGapPx)
   const [isVisible, setIsVisible] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [hasFocusWithin, setHasFocusWithin] = useState(false)
+  const [isTouching, setIsTouching] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const viewportRef = useRef<HTMLDivElement>(null)
   const touchstartXRef = useRef(0)
 
@@ -15,7 +21,6 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log('observer')
           setIsVisible(entry.isIntersecting)
         })
       },
@@ -30,6 +35,25 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
 
     return () => {
       if (viewport) observer.unobserve(viewport)
+    }
+  }, [])
+
+  useEffect(() => {
+    const reducedMotionQuery = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    )
+    const updateReducedMotionPreference = () => {
+      setPrefersReducedMotion(reducedMotionQuery.matches)
+    }
+
+    updateReducedMotionPreference()
+    reducedMotionQuery.addEventListener('change', updateReducedMotionPreference)
+
+    return () => {
+      reducedMotionQuery.removeEventListener(
+        'change',
+        updateReducedMotionPreference,
+      )
     }
   }, [])
 
@@ -80,6 +104,7 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
   }, [cardsToDisplay, totalItems])
 
   const handleTouchStart = useCallback((e: TouchEvent) => {
+    setIsTouching(true)
     touchstartXRef.current = e.changedTouches[0].screenX
   }, [])
 
@@ -93,9 +118,14 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
       } else {
         handlePrev()
       }
+      setIsTouching(false)
     },
     [handleNext, handlePrev],
   )
+
+  const handleTouchCancel = useCallback(() => {
+    setIsTouching(false)
+  }, [])
 
   useEffect(() => {
     const tryUpdate = () => {
@@ -122,30 +152,62 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
   }, [cardsToDisplay, totalItems, currentIndex])
 
   const slideOffsetPx = -currentIndex * (actualCardWidthPx + cardGapPx)
-  console.log(isVisible)
-  // Timed Next once in viewport
-  useEffect(() => {
-    if (isVisible) {
-      const interval = setInterval(() => {
-        handleNext()
-      }, 4000)
-      return () => clearInterval(interval)
-    }
-  }, [handleNext, isVisible])
+  const isPaused = isHovered || hasFocusWithin || isTouching
 
-  // Add swiping functionality
+  // Advance only while the slider is visible and the visitor is not interacting.
+  useEffect(() => {
+    if (
+      !isVisible ||
+      isPaused ||
+      prefersReducedMotion ||
+      totalItems <= cardsToDisplay
+    ) {
+      return
+    }
+
+    const interval = setInterval(handleNext, AUTOPLAY_INTERVAL_MS)
+    return () => clearInterval(interval)
+  }, [
+    cardsToDisplay,
+    handleNext,
+    isPaused,
+    isVisible,
+    prefersReducedMotion,
+    totalItems,
+  ])
+
+  // Pause autoplay while visitors read or interact, and support touch swiping.
   useEffect(() => {
     const slider = viewportRef.current
     if (!slider) return
 
+    const handleMouseEnter = () => setIsHovered(true)
+    const handleMouseLeave = () => setIsHovered(false)
+    const handleFocusIn = () => setHasFocusWithin(true)
+    const handleFocusOut = (event: FocusEvent) => {
+      if (!slider.contains(event.relatedTarget as Node | null)) {
+        setHasFocusWithin(false)
+      }
+    }
+
+    slider.addEventListener('mouseenter', handleMouseEnter)
+    slider.addEventListener('mouseleave', handleMouseLeave)
+    slider.addEventListener('focusin', handleFocusIn)
+    slider.addEventListener('focusout', handleFocusOut)
     slider.addEventListener('touchstart', handleTouchStart)
     slider.addEventListener('touchend', handleTouchEnd)
+    slider.addEventListener('touchcancel', handleTouchCancel)
 
     return () => {
+      slider.removeEventListener('mouseenter', handleMouseEnter)
+      slider.removeEventListener('mouseleave', handleMouseLeave)
+      slider.removeEventListener('focusin', handleFocusIn)
+      slider.removeEventListener('focusout', handleFocusOut)
       slider.removeEventListener('touchstart', handleTouchStart)
       slider.removeEventListener('touchend', handleTouchEnd)
+      slider.removeEventListener('touchcancel', handleTouchCancel)
     }
-  }, [handleTouchEnd, handleTouchStart])
+  }, [handleTouchCancel, handleTouchEnd, handleTouchStart])
 
   return {
     viewportRef,
@@ -159,6 +221,7 @@ function useWidgetLayout(totalItems: number, cardBaseWidthPx: number) {
     actualCardWidthPx,
     cardGapPx,
     slideOffsetPx,
+    prefersReducedMotion,
   }
 }
 

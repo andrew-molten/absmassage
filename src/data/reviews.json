@@ -1,5 +1,53 @@
 [
   {
+    "name": "accounts/9712041106034458949/reviews/Ci9DQUlRQUNvZENodHljRjlvT2twQlZWbG9RMUZaYURVdE9FSkVkRVJ2TTBObVprRRAB",
+    "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT2twQlZWbG9RMUZaYURVdE9FSkVkRVJ2TTBObVprRRAB",
+    "reviewer": {
+      "displayName": "Mariela Schultz",
+      "profilePhotoUrl": null,
+      "reviewCountText": "1 review",
+      "reviewCount": 1,
+      "photoCount": 0,
+      "isLocalGuide": false
+    },
+    "starRating": "FIVE_STAR",
+    "comment": "The massage I had with Andrew was excellent. He was really professional, easy to talk to and tailored the massage to effectively target the pain I was experiencing. I can move my shoulder much more freely now, and the leg tightness from a recent running event is completely gone. Thanks Andrew!",
+    "createTime": "2026-07-24T00:00:00Z",
+    "updateTime": null,
+    "isNew": true,
+    "shareUrl": "https://maps.app.goo.gl/fhpuWj6j285cLeCo9",
+    "ownerResponse": {
+      "responderName": "Andrew Bolton Sports Massage",
+      "responseText": "Thanks Mariela! Glad your feeling so much better. Nice to meet you! P.s. I was thinking after you left, if you want to try out a Tim Ferriss episode, one of my faves is 214 with Debbie Millman - how to design a life.",
+      "responseTime": "2026-07-24T00:00:00Z"
+    },
+    "positiveTags": []
+  },
+  {
+    "name": "accounts/9712041106034458949/reviews/Ci9DQUlRQUNvZENodHljRjlvT25ZMmFWYzBXR1JuWWxaeGVGVTJNelJ6WjNWR1RYYxAB",
+    "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT25ZMmFWYzBXR1JuWWxaeGVGVTJNelJ6WjNWR1RYYxAB",
+    "reviewer": {
+      "displayName": "Gene Saunders",
+      "profilePhotoUrl": null,
+      "reviewCountText": "4 reviews",
+      "reviewCount": 4,
+      "photoCount": 0,
+      "isLocalGuide": false
+    },
+    "starRating": "FIVE_STAR",
+    "comment": "I went to Andrew with a back and neck that felt as stiff as a board. After an hour of Andrew working on my very tight muscles, everything feels so much better. Great technique, with a great result. I’ll definitely be back.",
+    "createTime": "2026-06-27T00:00:00Z",
+    "updateTime": null,
+    "isNew": true,
+    "shareUrl": "https://maps.app.goo.gl/v5A5Ypydm4HPj9Hj6",
+    "ownerResponse": {
+      "responderName": "Andrew Bolton Sports Massage",
+      "responseText": "Thanks Gene! Have a great trip!",
+      "responseTime": "2026-06-27T00:00:00Z"
+    },
+    "positiveTags": []
+  },
+  {
     "name": "accounts/9712041106034458949/reviews/Ci9DQUlRQUNvZENodHljRjlvT25sTlZuSm1RVVZGVWw4emNFSXpaVkJFTlRWbGJrRRAB",
     "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT25sTlZuSm1RVVZGVWw4emNFSXpaVkJFTlRWbGJrRRAB",
     "reviewer": {

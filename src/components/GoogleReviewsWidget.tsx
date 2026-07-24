@@ -285,6 +285,7 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
     actualCardWidthPx,
     cardsToDisplay,
     cardGapPx,
+    prefersReducedMotion,
   } = useWidgetLayout(reviews.length, themeConfig.cardBaseWidthPx)
 
   useEffect(() => {
@@ -461,7 +462,11 @@ const GoogleReviewsWidget: FC<GoogleReviewsWidgetProps> = ({
 
           <div ref={viewportRef} className="mx-auto overflow-hidden">
             <div
-              className={`flex transition-transform duration-500 ease-in-out`}
+              className={`flex ${
+                prefersReducedMotion
+                  ? ''
+                  : 'transition-transform duration-500 ease-in-out'
+              }`}
               style={{
                 transform: `translateX(${slideOffsetPx}px)`,
                 // Gaps handled by margins on the cards if not using space-x-*
