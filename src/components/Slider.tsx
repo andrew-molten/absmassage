@@ -70,10 +70,10 @@ function Slider() {
   // Timed swipe
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide()
+      setCurSlide((currentSlide) => (currentSlide === 7 ? 1 : currentSlide + 1))
     }, 3500)
     return () => clearInterval(interval)
-  }, [curSlide])
+  }, [])
 
   // SWIPE
   useEffect(() => {
