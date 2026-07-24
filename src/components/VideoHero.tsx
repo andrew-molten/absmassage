@@ -90,15 +90,19 @@ export default function VideoHero() {
       <div className="video-hero__shade" aria-hidden="true" />
 
       <div className="video-hero__content">
-        <p className="video-hero__eyebrow">Christchurch · Heathcote Valley</p>
-        <h1 id="home-hero-title">Sports &amp; Deep Tissue Massage</h1>
-        <p className="video-hero__promise">
-          Move better. Relieve pain. Relax deeply.
-        </p>
-        <BookNowButton
-          className="video-hero__button"
-          text="Book Your Massage"
-        />
+        <div className="video-hero__title-group">
+          <p className="video-hero__eyebrow">Christchurch · Heathcote Valley</p>
+          <h1 id="home-hero-title">Sports &amp; Deep Tissue Massage</h1>
+          <p className="video-hero__promise">
+            Move better. Relieve pain. Relax deeply.
+          </p>
+        </div>
+        <div className="video-hero__action-group">
+          <BookNowButton
+            className="video-hero__button"
+            text="Book Your Massage"
+          />
+        </div>
       </div>
     </section>
   )
